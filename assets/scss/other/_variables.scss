@@ -1,6 +1,7 @@
 /* Variables START*/
 
 $white: #fff;
+$white-light: #f9f9f9;
 $black: #000000;
 $red: red;
 $primary-color: coral;
@@ -46,6 +47,20 @@ $grey-color: #888;
         background-color: #69e011;
         border-color: transparent;
     }
+}
+
+@mixin button-2 {
+    //for this, background of section should be same as this background color
+    background-color: #efefef;
+    border: none;
+    border-radius: 25px;
+    padding: 2px 10px;
+    color: $grey-color;
+    box-shadow: -6px -6px 10px $white-light, 6px 6px 10px #00000026;
+    transition: all .3s;
+    &:hover {
+        box-shadow: 2px 2px 2px $white-light, -2px -2px 2px #00000026;
+    }    
 }
 
 /* Variables END*/
