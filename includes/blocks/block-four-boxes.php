@@ -1,7 +1,7 @@
 <?php if (!get_field('four_box-default')['disable_section'] ?? false): ?>
 <section class="four__boxes" aria-label="Section with Four Boxes">
     <div class="container">
-        <?php render_section_header('four_box-count'); ?>
+        <?php render_section_header('four_box-default'); ?>
         <div class="row">
             <div class="box col-lg-3 col-sm-3">
                 <div class="box__wrap">

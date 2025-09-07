@@ -37,6 +37,24 @@
             "layout": "block",
             "sub_fields": [
                 {
+                    "key": "field_68bb66fbec7c7",
+                    "label": "Section Settings",
+                    "name": "",
+                    "aria-label": "",
+                    "type": "tab",
+                    "instructions": "",
+                    "required": 0,
+                    "conditional_logic": 0,
+                    "wrapper": {
+                        "width": "",
+                        "class": "",
+                        "id": ""
+                    },
+                    "placement": "top",
+                    "endpoint": 0,
+                    "selected": 0
+                },
+                {
                     "key": "field_6653375402a6a",
                     "label": "Disable Row",
                     "name": "disable_section",
@@ -57,8 +75,54 @@
                     "ui_off_text": ""
                 },
                 {
+                    "key": "field_68bb671dec7c9",
+                    "label": "Height Desktop",
+                    "name": "min_height_desktop",
+                    "aria-label": "",
+                    "type": "number",
+                    "instructions": "Enter a number to define the banner height in pixels (e.g. 400 = 400px). If left empty, a default value will be used. ( min-height: 512px; )",
+                    "required": 0,
+                    "conditional_logic": 0,
+                    "wrapper": {
+                        "width": "",
+                        "class": "",
+                        "id": ""
+                    },
+                    "default_value": "",
+                    "min": "",
+                    "max": "",
+                    "allow_in_bindings": 0,
+                    "placeholder": "",
+                    "step": "",
+                    "prepend": "Desktop",
+                    "append": "px"
+                },
+                {
+                    "key": "field_68bb6710ec7c8",
+                    "label": "Height Mobile",
+                    "name": "min_height_mobile",
+                    "aria-label": "",
+                    "type": "number",
+                    "instructions": "",
+                    "required": 0,
+                    "conditional_logic": 0,
+                    "wrapper": {
+                        "width": "",
+                        "class": "",
+                        "id": ""
+                    },
+                    "default_value": "",
+                    "min": "",
+                    "max": "",
+                    "allow_in_bindings": 0,
+                    "placeholder": "",
+                    "step": "",
+                    "prepend": "Mobile",
+                    "append": "px"
+                },
+                {
                     "key": "field_65aa4142df5f3",
-                    "label": "Background",
+                    "label": "Background \/ Video",
                     "name": "",
                     "aria-label": "",
                     "type": "tab",
@@ -100,6 +164,65 @@
                     "preview_size": "medium"
                 },
                 {
+                    "key": "field_68bb679d8a744",
+                    "label": "BG Overlay Color",
+                    "name": "background_overlay_color",
+                    "aria-label": "",
+                    "type": "color_picker",
+                    "instructions": "",
+                    "required": 0,
+                    "conditional_logic": 0,
+                    "wrapper": {
+                        "width": "",
+                        "class": "",
+                        "id": ""
+                    },
+                    "default_value": "#000000a1",
+                    "enable_opacity": 0,
+                    "return_format": "string",
+                    "allow_in_bindings": 0
+                },
+                {
+                    "key": "field_68bb67c58a745",
+                    "label": "Video",
+                    "name": "video",
+                    "aria-label": "",
+                    "type": "file",
+                    "instructions": "",
+                    "required": 0,
+                    "conditional_logic": 0,
+                    "wrapper": {
+                        "width": "",
+                        "class": "",
+                        "id": ""
+                    },
+                    "return_format": "url",
+                    "library": "all",
+                    "min_size": "",
+                    "max_size": "",
+                    "mime_types": "",
+                    "allow_in_bindings": 0
+                },
+                {
+                    "key": "field_68bb67db8a746",
+                    "label": "Video Overlay Color",
+                    "name": "video_overlay_color",
+                    "aria-label": "",
+                    "type": "color_picker",
+                    "instructions": "",
+                    "required": 0,
+                    "conditional_logic": 0,
+                    "wrapper": {
+                        "width": "",
+                        "class": "",
+                        "id": ""
+                    },
+                    "default_value": "#000000a1",
+                    "enable_opacity": 0,
+                    "return_format": "string",
+                    "allow_in_bindings": 0
+                },
+                {
                     "key": "field_65aa43acb8cd4",
                     "label": "Content",
                     "name": "",
@@ -136,6 +259,100 @@
                     "placeholder": "",
                     "prepend": "",
                     "append": ""
+                },
+                {
+                    "key": "field_68bb683139b4c",
+                    "label": "Buttons",
+                    "name": "",
+                    "aria-label": "",
+                    "type": "tab",
+                    "instructions": "",
+                    "required": 0,
+                    "conditional_logic": 0,
+                    "wrapper": {
+                        "width": "",
+                        "class": "",
+                        "id": ""
+                    },
+                    "placement": "top",
+                    "endpoint": 0,
+                    "selected": 0
+                },
+                {
+                    "key": "field_68bb683939b4d",
+                    "label": "Button Name 1",
+                    "name": "button_name_1",
+                    "aria-label": "",
+                    "type": "text",
+                    "instructions": "",
+                    "required": 0,
+                    "conditional_logic": 0,
+                    "wrapper": {
+                        "width": "",
+                        "class": "",
+                        "id": ""
+                    },
+                    "default_value": "",
+                    "maxlength": "",
+                    "allow_in_bindings": 0,
+                    "placeholder": "",
+                    "prepend": "",
+                    "append": ""
+                },
+                {
+                    "key": "field_68bb684539b4e",
+                    "label": "Button Link 1",
+                    "name": "button_link_1",
+                    "aria-label": "",
+                    "type": "link",
+                    "instructions": "",
+                    "required": 0,
+                    "conditional_logic": 0,
+                    "wrapper": {
+                        "width": "",
+                        "class": "",
+                        "id": ""
+                    },
+                    "return_format": "url",
+                    "allow_in_bindings": 0
+                },
+                {
+                    "key": "field_68bb685e39b4f",
+                    "label": "Button Name 2",
+                    "name": "button_name_2",
+                    "aria-label": "",
+                    "type": "text",
+                    "instructions": "",
+                    "required": 0,
+                    "conditional_logic": 0,
+                    "wrapper": {
+                        "width": "",
+                        "class": "",
+                        "id": ""
+                    },
+                    "default_value": "",
+                    "maxlength": "",
+                    "allow_in_bindings": 0,
+                    "placeholder": "",
+                    "prepend": "",
+                    "append": ""
+                },
+                {
+                    "key": "field_68bb686039b50",
+                    "label": "Button Link 2",
+                    "name": "button_link_2",
+                    "aria-label": "",
+                    "type": "link",
+                    "instructions": "",
+                    "required": 0,
+                    "conditional_logic": 0,
+                    "wrapper": {
+                        "width": "",
+                        "class": "",
+                        "id": ""
+                    },
+                    "return_format": "url",
+                    "allow_in_bindings": 0
                 }
             ]
         },
@@ -174,6 +391,24 @@
             "layout": "block",
             "sub_fields": [
                 {
+                    "key": "field_68bb5d590a8e0",
+                    "label": "Section Settings",
+                    "name": "",
+                    "aria-label": "",
+                    "type": "tab",
+                    "instructions": "",
+                    "required": 0,
+                    "conditional_logic": 0,
+                    "wrapper": {
+                        "width": "",
+                        "class": "",
+                        "id": ""
+                    },
+                    "placement": "top",
+                    "endpoint": 0,
+                    "selected": 0
+                },
+                {
                     "key": "field_66533892a6ac2",
                     "label": "Disable Row",
                     "name": "disable_section",
@@ -198,7 +433,7 @@
                     "label": "Title Section",
                     "name": "title_section",
                     "aria-label": "",
-                    "type": "text",
+                    "type": "wysiwyg",
                     "instructions": "",
                     "required": 0,
                     "conditional_logic": 0,
@@ -207,19 +442,19 @@
                         "class": "",
                         "id": ""
                     },
-                    "default_value": "Title of section",
-                    "maxlength": "",
-                    "allow_in_bindings": 0,
-                    "placeholder": "",
-                    "prepend": "",
-                    "append": ""
+                    "default_value": "",
+                    "allow_in_bindings": 1,
+                    "tabs": "all",
+                    "toolbar": "full",
+                    "media_upload": 1,
+                    "delay": 0
                 },
                 {
                     "key": "field_683a3bc324fa4",
                     "label": "Subtitle Section",
                     "name": "subtitle_section",
                     "aria-label": "",
-                    "type": "text",
+                    "type": "wysiwyg",
                     "instructions": "",
                     "required": 0,
                     "conditional_logic": 0,
@@ -228,12 +463,76 @@
                         "class": "",
                         "id": ""
                     },
-                    "default_value": "Subtitle of section",
-                    "maxlength": "",
+                    "default_value": "",
+                    "allow_in_bindings": 1,
+                    "tabs": "all",
+                    "toolbar": "full",
+                    "media_upload": 1,
+                    "delay": 0
+                },
+                {
+                    "key": "field_68bb60f63e21b",
+                    "label": "Space under Title Section [desktop]",
+                    "name": "margin_bottom_desktop",
+                    "aria-label": "",
+                    "type": "number",
+                    "instructions": "Enter a nr to set the bottom spacing in pixels (e.g. 20 = 20px). \r\nIf left empty, a default value of 6px will be applied.",
+                    "required": 0,
+                    "conditional_logic": 0,
+                    "wrapper": {
+                        "width": "",
+                        "class": "",
+                        "id": ""
+                    },
+                    "default_value": "",
+                    "min": "",
+                    "max": "",
                     "allow_in_bindings": 0,
                     "placeholder": "",
-                    "prepend": "",
-                    "append": ""
+                    "step": "",
+                    "prepend": "Desktop",
+                    "append": "px"
+                },
+                {
+                    "key": "field_68bb611a3e21c",
+                    "label": "Space under Title Section [mobile]",
+                    "name": "margin_bottom_mobile",
+                    "aria-label": "",
+                    "type": "number",
+                    "instructions": "",
+                    "required": 0,
+                    "conditional_logic": 0,
+                    "wrapper": {
+                        "width": "",
+                        "class": "",
+                        "id": ""
+                    },
+                    "default_value": "",
+                    "min": "",
+                    "max": "",
+                    "allow_in_bindings": 0,
+                    "placeholder": "",
+                    "step": "",
+                    "prepend": "Mobile",
+                    "append": "px"
+                },
+                {
+                    "key": "field_68bb5d670a8e1",
+                    "label": "Content",
+                    "name": "",
+                    "aria-label": "",
+                    "type": "tab",
+                    "instructions": "",
+                    "required": 0,
+                    "conditional_logic": 0,
+                    "wrapper": {
+                        "width": "",
+                        "class": "",
+                        "id": ""
+                    },
+                    "placement": "top",
+                    "endpoint": 0,
+                    "selected": 0
                 },
                 {
                     "key": "field_658b4c65175bd",
@@ -532,6 +831,24 @@
             "layout": "block",
             "sub_fields": [
                 {
+                    "key": "field_68bb5d8aafb2f",
+                    "label": "Section Settings",
+                    "name": "",
+                    "aria-label": "",
+                    "type": "tab",
+                    "instructions": "",
+                    "required": 0,
+                    "conditional_logic": 0,
+                    "wrapper": {
+                        "width": "",
+                        "class": "",
+                        "id": ""
+                    },
+                    "placement": "top",
+                    "endpoint": 0,
+                    "selected": 0
+                },
+                {
                     "key": "field_683a362837288",
                     "label": "Disable Section",
                     "name": "disable_section",
@@ -595,8 +912,8 @@
                     "delay": 0
                 },
                 {
-                    "key": "field_683a364037289",
-                    "label": "Other",
+                    "key": "field_68bb5d9dafb30",
+                    "label": "Content",
                     "name": "",
                     "aria-label": "",
                     "type": "tab",
@@ -817,6 +1134,24 @@
             "layout": "row",
             "sub_fields": [
                 {
+                    "key": "field_68bb5dc0afb31",
+                    "label": "Section Settings",
+                    "name": "",
+                    "aria-label": "",
+                    "type": "tab",
+                    "instructions": "",
+                    "required": 0,
+                    "conditional_logic": 0,
+                    "wrapper": {
+                        "width": "",
+                        "class": "",
+                        "id": ""
+                    },
+                    "placement": "top",
+                    "endpoint": 0,
+                    "selected": 0
+                },
+                {
                     "key": "field_6653390bc821b",
                     "label": "Disable Row",
                     "name": "disable_section",
@@ -835,6 +1170,24 @@
                     "ui": 0,
                     "ui_on_text": "",
                     "ui_off_text": ""
+                },
+                {
+                    "key": "field_68bb5dcaafb32",
+                    "label": "Content",
+                    "name": "",
+                    "aria-label": "",
+                    "type": "tab",
+                    "instructions": "",
+                    "required": 0,
+                    "conditional_logic": 0,
+                    "wrapper": {
+                        "width": "",
+                        "class": "",
+                        "id": ""
+                    },
+                    "placement": "top",
+                    "endpoint": 0,
+                    "selected": 0
                 },
                 {
                     "key": "field_65a927ed515f8",
@@ -934,6 +1287,24 @@
             "layout": "row",
             "sub_fields": [
                 {
+                    "key": "field_68bb5ddbafb33",
+                    "label": "Section Settings",
+                    "name": "",
+                    "aria-label": "",
+                    "type": "tab",
+                    "instructions": "",
+                    "required": 0,
+                    "conditional_logic": 0,
+                    "wrapper": {
+                        "width": "",
+                        "class": "",
+                        "id": ""
+                    },
+                    "placement": "top",
+                    "endpoint": 0,
+                    "selected": 0
+                },
+                {
                     "key": "field_66533929f364f",
                     "label": "Disable Row",
                     "name": "disable_section",
@@ -954,8 +1325,8 @@
                     "ui_off_text": ""
                 },
                 {
-                    "key": "field_65a92b6c0899a",
-                    "label": "Text Side",
+                    "key": "field_68bb5de5afb34",
+                    "label": "Content",
                     "name": "",
                     "aria-label": "",
                     "type": "tab",
@@ -1251,6 +1622,24 @@
             },
             "layout": "row",
             "sub_fields": [
+                {
+                    "key": "field_68bb5dfeafb35",
+                    "label": "Section Settings",
+                    "name": "",
+                    "aria-label": "",
+                    "type": "tab",
+                    "instructions": "",
+                    "required": 0,
+                    "conditional_logic": 0,
+                    "wrapper": {
+                        "width": "",
+                        "class": "",
+                        "id": ""
+                    },
+                    "placement": "top",
+                    "endpoint": 0,
+                    "selected": 0
+                },
                 {
                     "key": "field_66533940f3650",
                     "label": "Disable Row",
@@ -1554,5 +1943,5 @@
     "active": true,
     "description": "",
     "show_in_rest": 0,
-    "modified": 1749334060
+    "modified": 1757113165
 }

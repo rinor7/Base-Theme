@@ -1,0 +1,79 @@
+.banner__section {
+    &.banner-all__section {
+        display: flex;
+        align-items: center;
+        min-height: 512px;
+        background-repeat: no-repeat;
+        background-size: cover;
+        position: relative;
+        z-index: 1;
+        .container {
+            padding-top: 40px;
+            padding-bottom: 40px;
+        }
+        .image-overlay {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            content: "";
+            top: 0;
+            left: 0;
+            z-index: -1;
+        }
+        .video-wrapper {
+                z-index: -1;
+                position: absolute;
+                width: 100%;
+                height: 100%;
+            .overlay {
+                position: absolute;
+                width: 100%;
+                height: 100%;
+                content: "";
+                top: 0;
+                left: 0;
+            }
+            video {
+                width: 100%;
+                height: 100%;
+                object-fit: cover;
+            }
+        }
+        .lefts {
+            display: flex;
+            flex-direction: column;
+            row-gap: 16px;
+            h1 {
+                color: $white;
+            }
+            p {
+                
+            }
+            .buttons {
+                display: flex;
+                column-gap: 20px;
+                flex-wrap: wrap;
+                row-gap: 10px;
+                a {
+                    @include button;
+                }
+                .two-btns {
+                    display: flex;
+                    flex-direction: column;
+                    row-gap: 15px;
+                }
+            }
+        }
+    }
+    &.banner-one__section {
+        display: flex;
+        align-items: center;
+        min-height: 312px;
+        @media(min-width: 450px) {
+            min-height: 412px;
+        }
+        @media(min-width: 991.98px) {
+            min-height: 512px;
+        }
+    }
+}

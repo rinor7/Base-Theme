@@ -23,28 +23,42 @@ $grey-color: #888;
 }
 
 @mixin button {
-    width: 185px;
+    min-width: 185px;
+    padding-left: 12px;
+    padding-right: 12px;
     height: 45px;
-    border: 1px solid;
-    border-color: transparent;
+    border: 1px solid transparent;
     color: $black;
     text-align: center;
     display: flex;
     justify-content: center;
     align-items: center;
     will-change: box-shadow, transform;
-    background-color: #c1ff50;
-    background-image: linear-gradient(to right, #69e011 0, #c1ff50 51%, #69e011 100%);
+    background-color: #FCD13F;
+    background-image: linear-gradient(
+    to right,
+    #FCD13F 0%,
+    #fdd656 40%,
+    #fff178 50%,  // bright highlight in middle
+    #fdd656 60%,
+    #FCD13F 100%
+    );
     border-radius: 4px;
-    box-shadow: 0 2px 2px 0 rgba(193, 255, 80, .14), 0 3px 1px -2px rgba(193, 255, 80, .2), 0 1px 5px 0 rgba(193, 255, 80, .12);
+    box-shadow: 0 2px 4px rgba(252, 209, 63, 0.3),
+                0 3px 6px -2px rgba(252, 209, 63, 0.4),
+                0 1px 8px rgba(252, 209, 63, 0.25);
     background-size: 200% auto !important;
     white-space: nowrap;
-    transition: box-shadow .2s cubic-bezier(.4, 0, 1, 1), background-color .2s cubic-bezier(.4, 0, .2, 1), background-position .5s;
+    transition: box-shadow 0.2s cubic-bezier(.4, 0, 1, 1),
+                background-color 0.2s cubic-bezier(.4, 0, .2, 1),
+                background-position 0.5s;
 
     &:hover {
-        box-shadow: 0 14px 26px -12px rgba(105, 224, 17, .82), 0 4px 23px 0 rgba(0, 0, 0, .32), 0 8px 10px -5px rgba(193, 255, 80, .5);
+        box-shadow: 0 14px 26px -12px rgba(252, 209, 63, 0.7),
+                    0 4px 23px rgba(0, 0, 0, 0.3),
+                    0 8px 10px -5px rgba(252, 209, 63, 0.5);
         background-position: right center;
-        background-color: #69e011;
+        background-color: #fdd656;
         border-color: transparent;
     }
 }

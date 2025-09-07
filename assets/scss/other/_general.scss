@@ -111,12 +111,11 @@ h3 {
 //class for title
 .section-header {
     text-align: center;
-    margin-bottom: 12px;
-    &-title, &-subtitle {
-        
-    }
+    display: flex;
+    flex-direction: column;
+    row-gap: 6px;
     &-title {
-        font-size: 20px;
+        font-size: 24px;
         font-weight: 600;
     }
     &-subtitle {
@@ -124,4 +123,18 @@ h3 {
         font-weight: 400;
     }
 }
+
+.header-sticky {
+     &.body-on-scroll {
+         header {
+             width: 100%;
+             position: fixed;
+             top: 0;
+         }
+         #page {
+            // top: 70px;
+            position: relative;
+         }
+     }
+ }
 /* General style END*/

@@ -86,22 +86,34 @@ function render_section_header($field_group_name) {
     $title = $fields['title_section'] ?? '';
     $subtitle = $fields['subtitle_section'] ?? '';
 
+    // Get margins (number only, add px automatically)
+    $margin_desktop = !empty($fields['margin_bottom_desktop']) ? $fields['margin_bottom_desktop'] . 'px' : '6px';
+    $margin_mobile  = !empty($fields['margin_bottom_mobile'])  ? $fields['margin_bottom_mobile'] . 'px'  : '6px';
+
     if ($title || $subtitle) {
-        echo '<div class="section-header">';
-        
+        echo '<div class="section-header" style="margin-bottom:' . esc_attr($margin_desktop) . ';">';
+
         if ($title) {
-            // Clean outer <p> if any and output safe HTML
             echo '<div class="section-header-title">' . wp_kses_post(strip_outer_p_tags($title)) . '</div>';
         }
 
         if ($subtitle) {
-            // Clean outer <p> if any and output safe HTML
             echo '<div class="section-header-subtitle">' . wp_kses_post(strip_outer_p_tags($subtitle)) . '</div>';
         }
 
         echo '</div>';
+
+        // Output mobile-specific CSS
+        if ($margin_mobile !== $margin_desktop) {
+            echo '<style>
+                @media (max-width: 991.98px) {
+                    .section-header { margin-bottom: ' . esc_attr($margin_mobile) . ' !important; }
+                }
+            </style>';
+        }
     }
 }
+
 
 //Load locale translation ( this is not connected yet 100% )
 function base_theme_load_textdomain() {
