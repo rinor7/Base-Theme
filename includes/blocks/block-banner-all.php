@@ -42,13 +42,42 @@ if (empty($banner['disable_section'])):
 
     <div class="container">
         <div class="row">
-            <div class="lefts col-lg-6">
+           <?php
+            $content_width = $banner['content_width'] ?? 'two_columns';
+
+            switch ($content_width) {
+                case 'two_columns':
+                    $col_class = 'col-lg-6';
+                    break;
+                case 'wide':
+                    $col_class = 'col-lg-7';
+                    break;
+                case 'full_width':
+                default:
+                    $col_class = 'col-lg-12';
+                    break;
+            }
+
+            // Desktop alignment only for full width
+            $alignment_desktop = $banner['content_alignment'] ?? 'center'; // left | center
+
+            // Mobile alignment always available
+            $alignment_mobile  = $banner['content_alignment_mobile'] ?? 'center'; // left | center
+
+            // Build classes
+            $alignment_class = '';
+            if ($col_class === 'col-lg-12') {
+                $alignment_class .= ' align-desktop-' . $alignment_desktop;
+            }
+            $alignment_class .= ' align-mobile-' . $alignment_mobile;
+            ?>
+            <div class="lefts <?php echo esc_attr($col_class . ' ' . $alignment_class); ?>">
                 <?php if (!empty($banner['title'])): ?>
                     <h1><?php echo esc_html($banner['title']); ?></h1>
                 <?php endif; ?>
 
                 <?php if (!empty($banner['subtitle'])): ?>
-                    <?php echo $banner['subtitle']; ?>
+                    <p><?php echo $banner['subtitle']; ?></p>
                 <?php endif; ?>
 
                 <?php if (!empty($banner['button_name_1']) || !empty($banner['button_name_2'])): ?>
@@ -71,7 +100,6 @@ if (empty($banner['disable_section'])):
                     </div>
                 <?php endif; ?>
             </div>
-            <div class="rights col-lg-6"></div>
         </div>
     </div>
 </section>

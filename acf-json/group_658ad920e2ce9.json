@@ -241,6 +241,93 @@
                     "selected": 0
                 },
                 {
+                    "key": "field_68c89cc516d10",
+                    "label": "Content Width",
+                    "name": "content_width",
+                    "aria-label": "",
+                    "type": "radio",
+                    "instructions": "",
+                    "required": 0,
+                    "conditional_logic": 0,
+                    "wrapper": {
+                        "width": "",
+                        "class": "",
+                        "id": ""
+                    },
+                    "choices": {
+                        "two_columns": "06\/12 ( 50% )",
+                        "wide": "07\/12 ( 75% )",
+                        "full_width": "Full width or 12\/12 ( 100% )"
+                    },
+                    "default_value": "two_columns",
+                    "return_format": "value",
+                    "allow_null": 0,
+                    "other_choice": 0,
+                    "allow_in_bindings": 1,
+                    "layout": "vertical",
+                    "save_other_choice": 0
+                },
+                {
+                    "key": "field_68c89e0f2f02f",
+                    "label": "Content Alignement ( only if Content Width Full Width ) - Desktop",
+                    "name": "content_alignment",
+                    "aria-label": "",
+                    "type": "radio",
+                    "instructions": "",
+                    "required": 0,
+                    "conditional_logic": [
+                        [
+                            {
+                                "field": "field_68c89cc516d10",
+                                "operator": "==",
+                                "value": "full_width"
+                            }
+                        ]
+                    ],
+                    "wrapper": {
+                        "width": "",
+                        "class": "",
+                        "id": ""
+                    },
+                    "choices": {
+                        "left": "Left (desktop)",
+                        "center": "Center (desktop)"
+                    },
+                    "default_value": "left",
+                    "return_format": "value",
+                    "allow_null": 0,
+                    "other_choice": 0,
+                    "allow_in_bindings": 1,
+                    "layout": "vertical",
+                    "save_other_choice": 0
+                },
+                {
+                    "key": "field_68c89e762f030",
+                    "label": "Content Alignement ( only if Content Width Full Width ) - Mobile",
+                    "name": "content_alignment_mobile",
+                    "aria-label": "",
+                    "type": "radio",
+                    "instructions": "",
+                    "required": 0,
+                    "conditional_logic": 0,
+                    "wrapper": {
+                        "width": "",
+                        "class": "",
+                        "id": ""
+                    },
+                    "choices": {
+                        "left": "Left (mobile)",
+                        "center": "Center (mobile)"
+                    },
+                    "default_value": "left",
+                    "return_format": "value",
+                    "allow_null": 0,
+                    "other_choice": 0,
+                    "allow_in_bindings": 1,
+                    "layout": "vertical",
+                    "save_other_choice": 0
+                },
+                {
                     "key": "field_65aa43bbb8cd5",
                     "label": "Title",
                     "name": "title",
@@ -259,6 +346,27 @@
                     "placeholder": "",
                     "prepend": "",
                     "append": ""
+                },
+                {
+                    "key": "field_68c89b21f8eb5",
+                    "label": "Subtitle",
+                    "name": "subtitle",
+                    "aria-label": "",
+                    "type": "textarea",
+                    "instructions": "",
+                    "required": 0,
+                    "conditional_logic": 0,
+                    "wrapper": {
+                        "width": "",
+                        "class": "",
+                        "id": ""
+                    },
+                    "default_value": "",
+                    "maxlength": "",
+                    "allow_in_bindings": 0,
+                    "rows": "",
+                    "placeholder": "",
+                    "new_lines": ""
                 },
                 {
                     "key": "field_68bb683139b4c",
@@ -1943,5 +2051,5 @@
     "active": true,
     "description": "",
     "show_in_rest": 0,
-    "modified": 1757113165
+    "modified": 1757979316
 }
