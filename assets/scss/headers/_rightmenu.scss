@@ -20,24 +20,24 @@ header {
                     display: flex;
                     flex: 1;
                     top: 0;
-                    &:before {
-                        @include md {
-                            position: fixed;
-                            height: 70px;
-                            top: 0;
-                            right: 0;
-                            content: "";
-                            width: 75%;
-                            background-color: $white;
-                            z-index: 1;
-                            right: -80%;
-                            transition: .2s ease-out;
-                        }  
-                        @include xs {
-                            width: 100%;
-                            right: -100%;
-                        }
-                    }
+                    // &:before {
+                    //     @include md {
+                    //         position: fixed;
+                    //         height: 70px;
+                    //         top: 0;
+                    //         right: 0;
+                    //         content: "";
+                    //         width: 75%;
+                    //         background-color: $white;
+                    //         z-index: 1;
+                    //         right: -80%;
+                    //         transition: .2s ease-out;
+                    //     }  
+                    //     @include xs {
+                    //         width: 100%;
+                    //         right: -100%;
+                    //     }
+                    // }
                     .navbar-nav {
                         column-gap: 20px;
                         row-gap: 20px;
@@ -88,6 +88,7 @@ header {
                     @include xs {
                         width: 100%;
                         right: -100%;
+                        top: var(--header-height);
                     }
                 }
             }

@@ -180,11 +180,12 @@ header {
                      @include filter-header;
                      transition: 1s;
                      background: #000000a6;
+                     z-index: 2;
                  }   
              }
              .headerbar {
                  overflow: hidden;
-                 position: fixed;
+                //  position: fixed;
                  width: 100%;
                  #navbarNav {
                      height: 100%!important;
@@ -213,6 +214,18 @@ header {
                          background: #000000a6;
                      } 
                  } 
+            }
+         }
+         &.rightmenu {
+            @include xs {
+                .headerbar {
+                    #navbarNav {
+                        height: calc(100% - var(--header-height))!important;
+                        .navbar-nav { 
+                            padding-top: 20px;
+                        }
+                    }
+                }
             }
          }
      }

@@ -190,10 +190,28 @@ var swiper = new Swiper(".mySwiper-boxes-section", {
 });
 
 //Calculate Header Height and set Page Offset
+// jQuery(document).ready(function($) {
+//     function adjustPageOffset() {
+//         var headerHeight = $('header').outerHeight(); // measure <header> height
+//         $('#page').css('top', headerHeight + 'px');
+//     }
+
+//     // Run on load
+//     adjustPageOffset();
+
+//     // Run again on resize (in case header height changes)
+//     $(window).on('resize', function() {
+//         adjustPageOffset();
+//     });
+// });
+
+// Calculate Header Height
 jQuery(document).ready(function($) {
     function adjustPageOffset() {
-        var headerHeight = $('header').outerHeight(); // measure <header> height
-        $('#page').css('top', headerHeight + 'px');
+        var headerHeight = $('header').outerHeight(); // Measure <header> height
+
+        // Set the header height as a global CSS variable
+        document.documentElement.style.setProperty('--header-height', headerHeight + 'px');
     }
 
     // Run on load

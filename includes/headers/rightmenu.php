@@ -26,7 +26,7 @@
         $og_image = ''; // fallback
     }
     ?>
-    <meta property="og:description" content="<?php echo esc_attr($og_description); ?>" />
+    
     <meta name="twitter:card" content="summary_large_image" />
     <meta property="og:image" content="<?php echo esc_url($og_image); ?>">
     <meta name="twitter:image" content="<?php echo esc_url($og_image); ?>">
