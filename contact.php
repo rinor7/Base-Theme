@@ -8,7 +8,9 @@ include("includes/headers/{$header_type}.php");
 
 <?php include("includes/blocks/hero.php"); ?>
 
-
+<div class="container">
+    <?php the_content(); ?>
+</div>
 
 </main>
 

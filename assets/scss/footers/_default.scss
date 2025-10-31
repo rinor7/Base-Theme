@@ -19,8 +19,9 @@ footer {
                 max-width: 90%;
             }
         }
-        h2 {
+        .widget-title {
             font-size: 30px;
+            display: block;
         }
     }
     .site-footer-copyrights {
@@ -34,7 +35,7 @@ footer {
     }
     .logo_footer {
         z-index: 3;
-        li {
+        .widget-wrapper {
             height: 40px;
             max-width: 170px;
             img {

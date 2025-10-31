@@ -100,7 +100,7 @@
 
 .logo_header {
     z-index: 3;
-    li {
+    .widget-wrapper {
         height: 40px;
         max-width: 170px;
         img {
@@ -112,12 +112,12 @@
             object-position: left;
         }
     }
-    li:last-child {
+    .widget-wrapper:last-child {
         @media(min-width: 991.98px) {
             display: none;
         }
     }
-    li:first-child {
+    .widget-wrapper:first-child {
         @include md {
             display: none;
         }
@@ -131,11 +131,11 @@
             display: inherit !important;
         }
 
-        li:first-child {
+        .widget-wrapper:first-child {
             display: none;
         }
 
-        li:last-child {
+        .widget-wrapper:last-child {
             display: inherit !important;
         }
     }

@@ -38,10 +38,19 @@ if (is_tax() || is_category() || is_tag()) {
 } elseif (is_home()) {
     $page_title = get_the_title(get_option('page_for_posts'));
     $post_type = 'post';
+    $blog_page_id = get_option('page_for_posts');
 
-    $hero = $hero_banners['archive_hero_post'] ?? '';
-    $hero_content_type = $hero_banners['archive_hero_post_content_type'] ?? '';
+    // First try to get hero from the Blog page itself
+    $hero = function_exists('get_field') ? get_field('hero', $blog_page_id) : '';
+    $hero_content_type = function_exists('get_field') ? get_field('hero_content_type', $blog_page_id) : '';
 
+    // Fallback to Global Settings if no page-specific hero
+    if (!$hero) {
+        $hero = $hero_banners['archive_hero_post'] ?? '';
+        $hero_content_type = $hero_banners['archive_hero_post_content_type'] ?? '';
+    }
+
+    // Final fallback to default archive hero
     if (!$hero && !empty($hero_banners['default_archive_hero'])) {
         $hero = $hero_banners['default_archive_hero'];
         $hero_content_type = '';

@@ -27,6 +27,14 @@ include("includes/headers/{$header_type}.php");
             <?php endwhile; ?>
             </div>
             
+            <?php
+            // Standard WordPress pagination
+            the_posts_pagination(array(
+                'prev_text' => '« Previous',
+                'next_text' => 'Next »'
+            ));
+            ?>
+            
         <?php else : ?>
 
             <p><?php _e('No posts found', 'base-theme'); ?></p>

@@ -5,8 +5,6 @@ function remove_wp_block_menu() {
 }
 add_action('admin_init', 'remove_wp_block_menu', 100);
 
-
-
 // Disable Theme FileEditor from Appearance
 function disable_theme_file_editor() {
     if ( ! defined('DISALLOW_FILE_EDIT') ) {
@@ -15,14 +13,6 @@ function disable_theme_file_editor() {
 }
 add_action('init', 'disable_theme_file_editor');
 
-
-
-// 
-// 
-//
-//
-//
-//
 //Remove Comments Option from Admin Menu 
 function df_disable_comments_admin_menu() {
     remove_menu_page('edit-comments.php');
@@ -65,9 +55,6 @@ function df_hide_existing_comments($comments) {
     return $comments;
 }
 add_filter('comments_array', 'df_hide_existing_comments', 10, 2);
-
-
-
 
 
 //Function for rendering section headers
@@ -114,14 +101,6 @@ function render_section_header($field_group_name) {
     }
 }
 
-
-//Load locale translation ( this is not connected yet 100% )
-function base_theme_load_textdomain() {
-    load_theme_textdomain('base-theme-domain-name', get_template_directory() . '/languages');
-}
-add_action('after_setup_theme', 'base_theme_load_textdomain');
-
-
 //Theme Settings Menu 
 if (function_exists('acf_add_options_page')) {
     acf_add_options_page(array(
@@ -132,3 +111,23 @@ if (function_exists('acf_add_options_page')) {
         'redirect'      => false
     ));
 }
+
+// Enable pagination for post type archives
+function enable_post_type_archive_pagination() {
+    add_rewrite_rule(
+        '^([^/]+)/page/([0-9]+)/?$',
+        'index.php?post_type=$matches[1]&paged=$matches[2]',
+        'top'
+    );
+}
+add_action('init', 'enable_post_type_archive_pagination');
+
+// Modify main query for post type archives to limit posts
+function modify_post_type_archive_query($query) {
+    if (!is_admin() && $query->is_main_query()) {
+        if (is_post_type_archive()) {
+            $query->set('posts_per_page', 3);
+        }
+    }
+}
+add_action('pre_get_posts', 'modify_post_type_archive_query');

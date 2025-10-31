@@ -144,4 +144,19 @@
     
     <?php } ?>
 
-    <?php echo __('Year', 'base-theme-domain-name'); ?>
+    <?php echo __('Year', 'base-theme'); ?>
+
+     <?php get_search_form(); ?>
+
+
+    <!-- For posts (single.php) - Basic pagination inside the content-->
+    <?php while (have_posts()) : the_post(); ?>
+        <?php the_content(); ?>
+        <?php wp_link_pages(); ?>
+    <?php endwhile; ?>
+    <!-- For posts (single.php) - Custom styled pagination -->
+    <?php wp_link_pages(array(
+        'before' => '<div class="page-links">Pages: ',
+        'after' => '</div>',
+        'separator' => ' | '
+    )); ?>

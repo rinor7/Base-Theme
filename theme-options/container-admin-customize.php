@@ -4,7 +4,7 @@ add_action('customize_register', 'theme_customizer_register');
 function theme_customizer_register($wp_customize) {
     // Create a new section for container max-width options
     $wp_customize->add_section('container_max_width_section', array(
-        'title' => __('Container Max Width', 'standard'),
+        'title' => __('Container Max Width', 'base-theme'),
         'priority' => 30,
     ));
 
@@ -24,7 +24,7 @@ function theme_customizer_register($wp_customize) {
 
     // Step 3: Add Control for each media query
     $wp_customize->add_control('container_max_width_large_control', array(
-        'label' => __('Large Screens (>= 1200px)', 'standard'),
+        'label' => __('Large Screens (>= 1200px)', 'base-theme'),
         'section' => 'container_max_width_section',
         'settings' => 'container_max_width_large_setting',
         'type' => 'text',
@@ -35,7 +35,7 @@ function theme_customizer_register($wp_customize) {
         ),
     ));
     $wp_customize->add_control('container_max_width_medium_control', array(
-        'label' => __('Medium Screens (>= 992px)', 'standard'),
+        'label' => __('Medium Screens (>= 992px)', 'base-theme'),
         'section' => 'container_max_width_section',
         'settings' => 'container_max_width_medium_setting',
         'type' => 'text',
@@ -46,7 +46,7 @@ function theme_customizer_register($wp_customize) {
         ),
     ));
     $wp_customize->add_control('container_max_width_small_control', array(
-        'label' => __('Small Screens (>= 768px)', 'standard'),
+        'label' => __('Small Screens (>= 768px)', 'base-theme'),
         'section' => 'container_max_width_section',
         'settings' => 'container_max_width_small_setting',
         'type' => 'text',
@@ -57,7 +57,7 @@ function theme_customizer_register($wp_customize) {
         ),
     ));
     $wp_customize->add_control('container_max_width_extra_small_control', array(
-        'label' => __('Extra Small Screens (>= 576px)', 'standard'),
+        'label' => __('Extra Small Screens (>= 576px)', 'base-theme'),
         'section' => 'container_max_width_section',
         'settings' => 'container_max_width_extra_small_setting',
         'type' => 'text',

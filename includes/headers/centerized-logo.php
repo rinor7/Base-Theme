@@ -79,12 +79,16 @@
                                 ); 
                             ?>
 
-                            <?php if(is_active_sidebar('widget-1') ) { ?>
-                            <a aria-label="logo" class="logo_header" href="<?php echo esc_url(home_url('/')); ?>">
-                                <ul>
-                                    <?php dynamic_sidebar('widget-1');?>
-                                </ul>
-                            </a>
+                            <?php if ( is_active_sidebar('widget-1') ) { ?>
+                                <a aria-label="logo" class="logo_header" href="<?php echo esc_url( home_url('/') ); ?>">
+                                    <ul>
+                                        <?php dynamic_sidebar('widget-1'); ?>
+                                    </ul>
+                                </a>
+                            <?php } else { ?>
+                                <a aria-label="logo" class="logo_header" href="<?php echo esc_url( home_url('/') ); ?>">
+                                    <?php bloginfo('name'); ?> <!-- Blog Title -->
+                                </a>
                             <?php } ?>
 
                             <?php wp_nav_menu(
