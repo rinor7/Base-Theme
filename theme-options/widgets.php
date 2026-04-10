@@ -1,15 +1,6 @@
 <?php
 
 function standard_widgets_init() {
-	register_sidebar(
-		array('name'          => esc_html__( 'Logo', 'base-theme' ),
-			'id'            => 'widget-1',
-			'description'   => esc_html__( 'Add widgets here to appear in your site logo.', 'base-theme' ),
-			'before_widget' => '<div class="widget-wrapper">',
-			'after_widget'  => '</div>',
-			'before_title'  => '<span class="widget-title">',
-			'after_title'   => '</span>',)
-	);
 	// register_sidebar(
 	// 	array('name'          => esc_html__( 'Widget 2', 'standard' ),
 	// 		'id'            => 'widget-2',
@@ -52,15 +43,6 @@ function standard_widgets_init() {
 			'after_title'   => '</span>',)
 	);
 	register_sidebar(
-		array('name'          => esc_html__( 'Footer Column 1', 'base-theme' ),
-			'id'            => 'footer-1',
-			'description'   => esc_html__( 'Add widgets here to appear in your site footer.', 'base-theme' ),
-			'before_widget' => '<div class="widget-wrapper">',
-			'after_widget'  => '</div>',
-			'before_title'  => '<span class="widget-title">',
-			'after_title'   => '</span>',)
-	);
-	register_sidebar(
 		array('name'          => esc_html__( 'Footer Column 2', 'base-theme' ),
 			'id'            => 'footer-2',
 			'description'   => esc_html__( 'Add widgets here to appear in your site footer.', 'base-theme' ),
@@ -82,15 +64,6 @@ function standard_widgets_init() {
 		array('name'          => esc_html__( 'Footer Column 4', 'base-theme' ),
 			'id'            => 'footer-4',
 			'description'   => esc_html__( 'Add widgets here to appear in your site footer.', 'base-theme' ),
-			'before_widget' => '<div class="widget-wrapper">',
-			'after_widget'  => '</div>',
-			'before_title'  => '<span class="widget-title">',
-			'after_title'   => '</span>',)
-	);
-	register_sidebar(
-		array('name'          => esc_html__( 'Contact Form 1', 'base-theme' ),
-			'id'            => 'cf-1',
-			'description'   => esc_html__( 'Add widgets here to appear in your site CF7.', 'base-theme' ),
 			'before_widget' => '<div class="widget-wrapper">',
 			'after_widget'  => '</div>',
 			'before_title'  => '<span class="widget-title">',

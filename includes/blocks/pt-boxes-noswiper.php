@@ -1,7 +1,7 @@
-<?php if (!get_field('pt-noswiper')['disable_section'] ?? false): ?>
+<?php $section = get_field('pt-noswiper'); if (empty($section['disable_section'])): ?>
 <section class="slider__boxes-section-plus">
     <div class="container">
-        <?php render_section_header('pt-noswiper'); ?>
+        <?php render_section_header($section); ?>
         <div class="row">
             <?php
                 $args = array(

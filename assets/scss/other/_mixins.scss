@@ -1,4 +1,4 @@
-/*Mixins*/
+/*Mixins Start*/
 @mixin xxl {
     @media (max-width: 1600px) { @content; }
 }
@@ -47,21 +47,4 @@
 @mixin min-xxs {
     @media (min-width: 450px) { @content; }
 }
-
-// TODO Placeholder
-@mixin placeholder {
-    &.placeholder { @content; }
-    &:-moz-placeholder { @content; }
-    &::-moz-placeholder { @content; }
-    &:-ms-input-placeholder { @content; }
-    &::-webkit-input-placeholder { @content; }
-}
-
-  // TODO Background Image
-@mixin background-image($image) {
-    background-image: url($image);
-    background-repeat: no-repeat;
-    background-position: center center;
-    background-size: cover;
-}
-/*Mixins END*/
+/*Mixins End*/

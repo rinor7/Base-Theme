@@ -1,6 +1,6 @@
 <!-- if its needed background without container 
 add image-no-container-left class on parent div two-side__section-image-text-->
-<?php if (!get_field('two-side-image-text-group')['disable_section'] ?? false): ?>
+<?php $section = get_field('two-side-image-text-group'); if (empty($section['disable_section'])): ?>
 <section class="two-side__section-image-text" aria-label="Section Image-Text">
     <div class="container">
         <div class="row">

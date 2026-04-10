@@ -1,18 +1,4 @@
 <?php 
-// Remove WP Block ( Patterns from Appearance )
-function remove_wp_block_menu() {
-    remove_submenu_page( 'themes.php', 'edit.php?post_type=wp_block' );
-}
-add_action('admin_init', 'remove_wp_block_menu', 100);
-
-// Disable Theme FileEditor from Appearance
-function disable_theme_file_editor() {
-    if ( ! defined('DISALLOW_FILE_EDIT') ) {
-        define('DISALLOW_FILE_EDIT', true);
-    }
-}
-add_action('init', 'disable_theme_file_editor');
-
 //Remove Comments Option from Admin Menu 
 function df_disable_comments_admin_menu() {
     remove_menu_page('edit-comments.php');
@@ -55,8 +41,6 @@ function df_hide_existing_comments($comments) {
     return $comments;
 }
 add_filter('comments_array', 'df_hide_existing_comments', 10, 2);
-
-
 //Function for rendering section headers
 function strip_outer_p_tags($content) {
     // Remove outer <p> tags if they exist, but keep inner tags
@@ -65,20 +49,31 @@ function strip_outer_p_tags($content) {
     }
     return $content;
 }
+function render_section_header($input, $post_id = null) {
 
-function render_section_header($field_group_name) {
-    $fields = get_field($field_group_name, get_the_ID());
-    if (!$fields) return;
+    // If string → fetch fields
+    if (is_string($input)) {
+        $fields = get_field($input, $post_id ?: get_the_ID());
+    } else {
+        $fields = $input;
+    }
 
-    $title = $fields['title_section'] ?? '';
+    if (!is_array($fields) || empty($fields)) return;
+
+    $title    = $fields['title_section'] ?? '';
     $subtitle = $fields['subtitle_section'] ?? '';
 
-    // Get margins (number only, add px automatically)
-    $margin_desktop = !empty($fields['margin_bottom_desktop']) ? $fields['margin_bottom_desktop'] . 'px' : '6px';
-    $margin_mobile  = !empty($fields['margin_bottom_mobile'])  ? $fields['margin_bottom_mobile'] . 'px'  : '6px';
+    if (!$title && !$subtitle) return;
 
-    if ($title || $subtitle) {
-        echo '<div class="section-header" style="margin-bottom:' . esc_attr($margin_desktop) . ';">';
+    $margin_desktop = !empty($fields['margin_bottom_desktop']) 
+        ? (int)$fields['margin_bottom_desktop'] . 'px' 
+        : '6px';
+
+    $margin_mobile = !empty($fields['margin_bottom_mobile']) 
+        ? (int)$fields['margin_bottom_mobile'] . 'px' 
+        : $margin_desktop;
+
+    echo '<div class="section-header" style="--mb-desktop:' . esc_attr($margin_desktop) . ';--mb-mobile:' . esc_attr($margin_mobile) . ';">';
 
         if ($title) {
             echo '<div class="section-header-title">' . wp_kses_post(strip_outer_p_tags($title)) . '</div>';
@@ -88,17 +83,7 @@ function render_section_header($field_group_name) {
             echo '<div class="section-header-subtitle">' . wp_kses_post(strip_outer_p_tags($subtitle)) . '</div>';
         }
 
-        echo '</div>';
-
-        // Output mobile-specific CSS
-        if ($margin_mobile !== $margin_desktop) {
-            echo '<style>
-                @media (max-width: 991.98px) {
-                    .section-header { margin-bottom: ' . esc_attr($margin_mobile) . ' !important; }
-                }
-            </style>';
-        }
-    }
+    echo '</div>';
 }
 
 //Theme Settings Menu 

@@ -21,53 +21,6 @@
             "selected": 0
         },
         {
-            "key": "field_683a4d439e37f",
-            "label": "OG Description",
-            "name": "og_description",
-            "aria-label": "",
-            "type": "text",
-            "instructions": "",
-            "required": 0,
-            "conditional_logic": 0,
-            "wrapper": {
-                "width": "",
-                "class": "",
-                "id": ""
-            },
-            "default_value": "",
-            "maxlength": "",
-            "allow_in_bindings": 0,
-            "placeholder": "",
-            "prepend": "",
-            "append": ""
-        },
-        {
-            "key": "field_683a4d5d9e380",
-            "label": "OG Image",
-            "name": "og_image",
-            "aria-label": "",
-            "type": "image",
-            "instructions": "",
-            "required": 0,
-            "conditional_logic": 0,
-            "wrapper": {
-                "width": "",
-                "class": "",
-                "id": ""
-            },
-            "return_format": "url",
-            "library": "all",
-            "min_width": "",
-            "min_height": "",
-            "min_size": "",
-            "max_width": "",
-            "max_height": "",
-            "max_size": "",
-            "mime_types": "",
-            "allow_in_bindings": 0,
-            "preview_size": "medium"
-        },
-        {
             "key": "field_6840e5f5fe18c",
             "label": "Header Settings",
             "name": "",
@@ -84,68 +37,6 @@
             "placement": "top",
             "endpoint": 0,
             "selected": 0
-        },
-        {
-            "key": "field_68421b2263fa3",
-            "label": "Header Selector",
-            "name": "header_layout",
-            "aria-label": "",
-            "type": "select",
-            "instructions": "",
-            "required": 0,
-            "conditional_logic": 0,
-            "wrapper": {
-                "width": "",
-                "class": "",
-                "id": ""
-            },
-            "choices": {
-                "centerized-logo": "Header with Centerized Logo",
-                "minimalmenu": "Header Minimal",
-                "rightmenu": "Header Right Menu",
-                "with-announcement": "Header with Announcement Bar"
-            },
-            "default_value": "rightmenu",
-            "return_format": "value",
-            "multiple": 0,
-            "allow_null": 0,
-            "allow_in_bindings": 0,
-            "ui": 0,
-            "ajax": 0,
-            "placeholder": "",
-            "create_options": 0,
-            "save_options": 0
-        },
-        {
-            "key": "field_68421b2263fa3",
-            "label": "Header Selector",
-            "name": "header_layout",
-            "aria-label": "",
-            "type": "select",
-            "instructions": "",
-            "required": 0,
-            "conditional_logic": 0,
-            "wrapper": {
-                "width": "",
-                "class": "",
-                "id": ""
-            },
-            "choices": {
-                "centerized-logo": "Header with Centerized Logo",
-                "minimalmenu": "Header Minimal",
-                "rightmenu": "Header Right Menu",
-                "with-announcement": "Header with Announcement Bar"
-            },
-            "default_value": "rightmenu",
-            "return_format": "value",
-            "multiple": 0,
-            "allow_null": 0,
-            "allow_in_bindings": 0,
-            "ui": 0,
-            "ajax": 0,
-            "placeholder": "",
-            "create_options": 0,
-            "save_options": 0
         },
         {
             "key": "field_6840e603fe18d",
@@ -767,5 +658,6 @@
     "active": true,
     "description": "",
     "show_in_rest": 0,
-    "modified": 1761944138
+    "display_title": "",
+    "modified": 1775851626
 }

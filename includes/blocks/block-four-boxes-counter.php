@@ -1,7 +1,7 @@
-<?php if (!get_field('four_box-count')['disable_section'] ?? false): ?>
+<?php $section = get_field('four_box-count'); if (empty($section['disable_section'])): ?>
 <section class="four__boxes-counter" aria-label="Counter Box Number">
     <div class="container">
-        <?php render_section_header('four_box-count'); ?>
+        <?php render_section_header($section); ?>
         <div class="row">
             <div class="box col-lg-3 col-sm-3">
                 <div class="box__wrap">

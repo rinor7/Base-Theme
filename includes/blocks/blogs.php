@@ -1,8 +1,8 @@
-<?php if (!get_field('pt-blogs')['disable_section'] ?? false): ?>
+<?php $section = get_field('pt-blogs'); if (empty($section['disable_section'])): ?>
 <section class="blogs__section">
     <div class="container">
         
-        <?php render_section_header('pt-blogs'); ?>
+        <?php render_section_header($section); ?>
 
         <?php 
                 $args = array(

@@ -1,7 +1,4 @@
-<?php
-global $header_type; // required to access global variable
-include("includes/headers/{$header_type}.php"); 
-?>
+<?php get_header(); ?>
 
 <main id="primary" class="site-archive archive-page-main-posts">
 
@@ -39,4 +36,4 @@ include("includes/headers/{$header_type}.php");
     </div>
 </main>
 
-<?php include("includes/footers/default.php");  ?>
+<?php get_footer(); ?>

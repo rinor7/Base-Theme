@@ -114,6 +114,10 @@ h3 {
     display: flex;
     flex-direction: column;
     row-gap: 6px;
+    margin-bottom: var(--mb-desktop, 6px);
+    @include md {
+        margin-bottom: var(--mb-mobile, 6px);
+    }
     &-title {
         font-size: 24px;
         font-weight: 600;
@@ -124,21 +128,70 @@ h3 {
     }
 }
 
-.header-sticky {
-     &.body-on-scroll {
-         header {
-             width: 100%;
-             position: fixed;
-             top: 0;
-         }
-         #page {
-            // top: 70px;
-            position: relative;
-         }
-     }
- }
-
 #page {
     top: var(--header-height);
+}
+
+.wpcf7-form-control-wrap {
+    .codedropz-upload-wrapper {
+        margin: 20px 0;
+
+        .codedropz-upload-handler {
+            border-color: $black;
+        }
+
+        .dnd-upload-counter {
+            display: none;
+        }
+
+        h3 {
+            font-size: 22px;
+        }
+    }
+}
+
+form {
+
+    p {
+        margin-bottom: 8px;
+    }
+
+    label {
+        width: 100%;
+        font-size: 16px;
+
+        input,
+        textarea,
+        select {
+            width: 100%;
+            border-radius: 0;
+            border: 0;
+            border-bottom: 1px solid $black;
+            font-size: 16px;
+        }
+
+        textarea {
+            max-height: 120px;
+        }
+
+        // .wpcf7-not-valid-tip,
+        // .wpcf7-response-output {
+        //     display: none;
+        // }
+
+        .wpcf7-not-valid {
+            border-bottom: 1px solid $red;
+        }
+    }
+
+    .wpcf7-submit {
+        border: unset !important;
+        @include button;
+        margin-top: 20px;
+    }
+
+    .wpcf7-spinner {
+        display: none;
+    }
 }
 /* General style END*/

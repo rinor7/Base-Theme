@@ -1,7 +1,4 @@
-<?php
-global $header_type; // required to access global variable
-include("includes/headers/{$header_type}.php"); 
-?>
+<?php get_header(); ?>
 
 	<section id="primary" class="content-area">
 		<div class="container">
@@ -53,4 +50,4 @@ include("includes/headers/{$header_type}.php");
 		</div>
 	</section><!-- .content-area -->
     
-<?php include("includes/footers/default.php");  ?>
+<?php get_footer(); ?>

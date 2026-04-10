@@ -1,4 +1,4 @@
-<?php if (!get_field('quick-call-group')['disable_section'] ?? false): ?>
+<?php $section = get_field('quick-call-group'); if (empty($section['disable_section'])): ?>
 <section class="quick__section" aria-label="Quick Call to Action">
     <div class="container">
         <div class="side-wrapper">

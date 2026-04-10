@@ -3,15 +3,9 @@
 @import "other/fonts";
 @import "other/general";
 @import "layouts/error404";
-@import "headers/global-header-style";
-@import "headers/with-announcement";
-@import "headers/rightmenu";
-@import "headers/minimalmenu";
-@import "headers/centerized-logo";
+@import "layouts/header";
 @import "layouts/home";
-@import "footers/default"; 
-@import "contactform/contactform";
-@import "contactform/contactform-2";
+@import "layouts/footer"; 
 @import "layouts/singles";
 @import "layouts/archive";
 

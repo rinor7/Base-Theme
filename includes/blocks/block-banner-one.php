@@ -1,4 +1,4 @@
-<?php if (!get_field('group_banner')['disable_section'] ?? false): ?>
+<?php $section = get_field('group_banner'); if (empty($section['disable_section'])): ?>
 <section class="banner__section banner-one__section"
     style="background-image: url(<?php echo ( get_field('group_banner')['image'] );?>);" aria-label="Banner">
     <div class="container">
