@@ -21,6 +21,76 @@
             "selected": 0
         },
         {
+            "key": "field_69d986219f094",
+            "label": "Phone Number",
+            "name": "phone_number",
+            "aria-label": "",
+            "type": "text",
+            "instructions": "Use shortcode: [email]",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "default_value": "",
+            "maxlength": "",
+            "allow_in_bindings": 0,
+            "placeholder": "",
+            "prepend": "",
+            "append": ""
+        },
+        {
+            "key": "field_69d9881e4c15b",
+            "label": "Phone Display",
+            "name": "phone_display",
+            "aria-label": "",
+            "type": "text",
+            "instructions": "Optional: enter a custom display format for the phone number.",
+            "required": 0,
+            "conditional_logic": [
+                [
+                    {
+                        "field": "field_69d986219f094",
+                        "operator": "!=empty"
+                    }
+                ]
+            ],
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "default_value": "",
+            "maxlength": "",
+            "allow_in_bindings": 0,
+            "placeholder": "",
+            "prepend": "",
+            "append": ""
+        },
+        {
+            "key": "field_69d988da7d824",
+            "label": "Email Address",
+            "name": "email_address",
+            "aria-label": "",
+            "type": "text",
+            "instructions": "Use shortcode: [phone]",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "default_value": "",
+            "maxlength": "",
+            "allow_in_bindings": 0,
+            "placeholder": "",
+            "prepend": "",
+            "append": ""
+        },
+        {
             "key": "field_6840e5f5fe18c",
             "label": "Header Settings",
             "name": "",
@@ -659,5 +729,5 @@
     "description": "",
     "show_in_rest": 0,
     "display_title": "",
-    "modified": 1775851626
+    "modified": 1775865065
 }

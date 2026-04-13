@@ -1,6 +1,6 @@
 /* Text - Image style END */
 .two-side__section-text-image {
-    background-color: red;
+    background-color: var(--primary-color, $black-light);
     padding: 20px 0;
 
     .row {

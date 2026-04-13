@@ -20,6 +20,7 @@
 add_action( 'wp_enqueue_scripts', 'standard_scripts_and_style' );
 
 // Include files from the 'theme-options' directory
+require get_template_directory() . '/theme-options/global-colors.php';
 require get_template_directory() . '/theme-options/post-types.php';
 require get_template_directory() . '/theme-options/menus.php';
 require get_template_directory() . '/theme-options/site-identity.php';
@@ -31,3 +32,4 @@ require get_template_directory() . '/theme-options/container-admin-customize.php
 require get_template_directory() . '/theme-options/general-functions.php';
 require get_template_directory() . '/theme-options/taxonomies.php';
 require get_template_directory() . '/theme-options/update-alt-tags.php';
+require get_template_directory() . '/theme-options/global-email-phone.php';
