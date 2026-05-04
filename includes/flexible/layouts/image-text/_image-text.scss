@@ -1,0 +1,94 @@
+/* Image - Text style Start */
+.flex-image-text {
+    background-color: rgb(99, 73, 73);
+    padding: 20px 0;
+
+    .row {
+        row-gap: 40px;
+    }
+
+    &__media {
+        align-self: center;
+
+        .flex-image-text__image {
+            width: 100%;
+            height: 300px;
+            @include min-md { 
+                height: 400px;
+            }
+            img {
+                width: 100%;
+                height: 100%;
+                object-fit: cover;
+            }
+        }
+    }
+
+    &__content {
+        align-self: center;
+        .flex-image-text__buttons {
+            display: flex;
+            column-gap: 20px;
+            flex-wrap: wrap;
+            row-gap: 10px;
+            a {
+                @include button-2;
+            }
+            .two-btns {
+                display: flex;
+                flex-direction: column;
+                row-gap: 15px;
+            }
+        }
+    }
+}
+
+.image-no-container-left {
+    position: relative;
+
+    .row {
+        @include md {
+            row-gap: 20px;
+        }
+
+        @include xs {
+            row-gap: 0;
+        }
+    }
+
+    .flex-image-text__content {
+        padding-top: 60px;
+        padding-bottom: 60px;
+        margin-left: auto;
+    }
+
+    .flex-image-text__media {
+        flex: unset;
+        max-width: unset;
+        position: relative;
+        width: 100%;
+        left: 0;
+        height: 100%;
+        top: 0;
+        align-self: unset;
+
+        @include xs {
+            padding-right: 0;
+            padding-left: 0;
+        }
+
+        @include min-md {
+            width: 50%;
+            position: absolute;
+            padding-left: 0;
+        }
+
+        .flex-image-text__image {
+            @include min-xs {
+                height: 100%;
+            }
+        }
+    }
+}
+
+/* Image - Text style END */

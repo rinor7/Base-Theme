@@ -5,6 +5,8 @@ Example usage of colors from admin:
 
 background-color: var(--primary-color, $primary-color);
 background-color: var(--secondary-color, $secondary-color);
+color: var(--font-color, $secondary-color);
+
 
 - Uses WP admin value if available
 - Falls back to SCSS default ($primary-color)
@@ -21,6 +23,8 @@ $primary-color-light: coral;
 
 $secondary-color: #000;
 $secondary-color-light: #000000a4;
+
+$font-color: #0000;
 
 $grey-color: #666;
 

@@ -56,7 +56,7 @@ function images() {
 
 // Watch Files
 function watchFiles() {
-  gulp.watch("assets/scss/**/*.scss", styles);  // Watches all SCSS files in the assets/scss directory and subdirectories
+  gulp.watch(["assets/scss/**/*.scss", "includes/flexible/layouts/**/*.scss"], styles);  // Watches theme SCSS and flexible layout SCSS
   gulp.watch("assets/js/**/*.js", scripts);     // Watches all JS files in the assets/js directory and subdirectories
   gulp.watch("**/*.php", function(done) {       // Watches PHP files in the root directory
     done();
