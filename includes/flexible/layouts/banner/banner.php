@@ -118,7 +118,7 @@ if (empty($banner['disable_section'])):
                 <?php if ($has_btn_1 || $has_btn_2): ?>
                     <div class="buttons">
                         <?php if ($has_btn_1): ?>
-                            <div class="default-btn">
+                            <div class="default-btn"> 
                                 <a href="<?php echo esc_url($button_1['url']); ?>" class="link-btn"<?php if (!empty($button_1['target'])): ?> target="<?php echo esc_attr($button_1['target']); ?>"<?php endif; ?>>
                                     <?php echo esc_html($button_1['title']); ?>
                                 </a>
