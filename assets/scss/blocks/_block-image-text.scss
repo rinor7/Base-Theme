@@ -32,7 +32,7 @@
             flex-wrap: wrap;
             row-gap: 10px;
             a {
-                @include button-2;
+                @include btn-2;
             }
             .two-btns {
                 display: flex;

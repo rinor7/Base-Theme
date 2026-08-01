@@ -55,7 +55,7 @@
                 flex-wrap: wrap;
                 row-gap: 10px;
                 a {
-                    @include button;
+                    @include btn-1;
                 }
                 .two-btns {
                     display: flex;

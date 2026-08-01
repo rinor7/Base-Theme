@@ -1,5 +1,5 @@
 <?php
-/* Template Name: Flexible Content Work */
+/* Template Name: Frontpage */
 get_header(); ?>
 
 

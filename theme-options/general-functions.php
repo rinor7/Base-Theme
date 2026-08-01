@@ -49,6 +49,15 @@ function strip_outer_p_tags($content) {
     }
     return $content;
 }
+// Returns a 1-based counter per $key, incrementing on each call within the same request
+function get_next_instance_index($key) {
+    static $counts = array();
+    if (!isset($counts[$key])) {
+        $counts[$key] = 0;
+    }
+    $counts[$key]++;
+    return $counts[$key];
+}
 function render_section_header($input, $post_id = null) {
 
     // If string → fetch fields

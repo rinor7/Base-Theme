@@ -192,7 +192,7 @@ form {
 
     .wpcf7-submit {
         border: unset !important;
-        @include button;
+        @include btn-1;
         margin-top: 20px;
     }
 
