@@ -1,6 +1,10 @@
 .cta {
-    background-color: grey;
-    padding: 20px 0;
+    background-color: var(--section-bg-color);
+    padding: var(--section-padding-mobile, 20px) 0;
+
+    @include min-md {
+        padding: var(--section-padding-desktop, 20px) 0;
+    }
 
     .side-wrapper {
         justify-content: space-between;
@@ -38,7 +42,12 @@
                 flex-wrap: wrap;
                 row-gap: 10px;
                 a {
-                    @include btn-1;
+                    &.btn-style-1 {
+                        @include btn-1;
+                    }
+                    &.btn-style-2 {
+                        @include btn-2;
+                    }
                 }
                 .two-btns {
                     display: flex;

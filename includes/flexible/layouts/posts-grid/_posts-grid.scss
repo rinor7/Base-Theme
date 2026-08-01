@@ -1,6 +1,10 @@
 .posts-grid {
-    padding: 40px 0;
-    background-color: rgb(91, 70, 32);
+    padding: var(--section-padding-mobile, 40px) 0;
+    background-color: var(--section-bg-color, rgb(91, 70, 32));
+
+    @include min-md {
+        padding: var(--section-padding-desktop, 40px) 0;
+    }
 
     .row {
         row-gap: 40px;
@@ -12,16 +16,40 @@
         display: flex;
         text-align: center;
         align-items: center;
+        color: inherit;
+        text-decoration: none;
 
         .img {
-            width: 50px;
-            height: 50px;
+            width: 100%;
+            height: 180px;
+
+            @include min-md {
+                height: 220px;
+            }
 
             img {
                 width: 100%;
                 height: 100%;
                 object-fit: cover;
             }
+        }
+    }
+
+    &__slider.swiper {
+        --swiper-navigation-color: var(--primary-color, #000);
+        --swiper-scrollbar-drag-bg-color: var(--primary-color, #000);
+        padding-bottom: 30px;
+
+        .swiper-slide {
+            height: auto;
+
+            .box__wrapper {
+                height: 100%;
+            }
+        }
+
+        .swiper-scrollbar {
+            bottom: 0;
         }
     }
 }

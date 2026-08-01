@@ -96,16 +96,18 @@ function render_section_header($input, $post_id = null) {
 }
 
 // Shorten the WYSIWYG editor height for short title/subtitle fields (full height isn't needed, they just need bold/basic formatting)
+// Targets by field NAME (not key) so every flexible layout using this same title_section/subtitle_section
+// convention (counter-repeater, four-boxes, posts-grid, posts-slider, and any future one) is covered automatically.
 add_action('acf/input/admin_head', 'base_theme_shorten_wysiwyg_fields');
 function base_theme_shorten_wysiwyg_fields() {
-    $field_keys = array(
-        'field_69f647dc_counter_title_section',
-        'field_69f647dc_counter_subtitle_section',
+    $field_names = array(
+        'title_section',
+        'subtitle_section',
     );
     $selectors = array();
-    foreach ($field_keys as $key) {
-        $selectors[] = '.acf-field[data-key="' . $key . '"] .wp-editor-area';
-        $selectors[] = '.acf-field[data-key="' . $key . '"] iframe';
+    foreach ($field_names as $name) {
+        $selectors[] = '.acf-field[data-name="' . $name . '"] .wp-editor-area';
+        $selectors[] = '.acf-field[data-name="' . $name . '"] iframe';
     }
     ?>
     <style>
@@ -115,6 +117,22 @@ function base_theme_shorten_wysiwyg_fields() {
         }
     </style>
     <?php
+}
+
+// Populate the "Post Type" select on Posts Grid/Slider with the site's actual registered public post types,
+// instead of relying on an admin typing the slug by hand (typos silently returned zero results).
+add_filter('acf/load_field/key=field_69f647dc_posts_grid_post_type', 'base_theme_load_public_post_type_choices');
+function base_theme_load_public_post_type_choices($field) {
+    $post_types = get_post_types(array('public' => true), 'objects');
+    $choices = array();
+    foreach ($post_types as $post_type) {
+        if ($post_type->name === 'attachment') {
+            continue;
+        }
+        $choices[$post_type->name] = $post_type->label;
+    }
+    $field['choices'] = $choices;
+    return $field;
 }
 
 //Theme Settings Menu 

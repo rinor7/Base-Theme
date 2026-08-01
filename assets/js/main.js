@@ -94,6 +94,36 @@ var swiper = new Swiper(".mySwiper-boxes-section", {
   },
 });
 
+// Posts Grid slider mode (supports multiple independent instances per page)
+document.querySelectorAll('.posts-grid__slider').forEach(function (el) {
+  new Swiper(el, {
+    slidesPerView: 1,
+    spaceBetween: 16,
+    scrollbar: {
+      el: el.querySelector('.swiper-scrollbar'),
+      draggable: true,
+    },
+    navigation: {
+      nextEl: el.querySelector('.swiper-button-next'),
+      prevEl: el.querySelector('.swiper-button-prev'),
+    },
+    breakpoints: {
+      640: {
+        slidesPerView: 2,
+        spaceBetween: 16,
+      },
+      768: {
+        slidesPerView: 3,
+        spaceBetween: 16,
+      },
+      1024: {
+        slidesPerView: 4,
+        spaceBetween: 16,
+      },
+    },
+  });
+});
+
 // Calculate Header Height
 jQuery(document).ready(function($) {
     function adjustPageOffset() {
