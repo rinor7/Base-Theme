@@ -138,8 +138,8 @@ function base_theme_load_public_post_type_choices($field) {
 //Theme Settings Menu 
 if (function_exists('acf_add_options_page')) {
     acf_add_options_page(array(
-        'page_title'    => 'Global Settings',
-        'menu_title'    => 'Global Settings',
+        'page_title'    => 'Theme Settings',
+        'menu_title'    => 'Theme Settings',
         'menu_slug'     => 'global-settings',
         'capability'    => 'edit_posts',
         'redirect'      => false
