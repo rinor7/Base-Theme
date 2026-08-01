@@ -301,6 +301,26 @@
                                     "show_color_wheel": true
                                 },
                                 {
+                                    "key": "field_69f647dc_banner_overlay_bg_gradient",
+                                    "label": "Background Overlay Gradient",
+                                    "name": "background_overlay_gradient",
+                                    "aria-label": "",
+                                    "type": "textarea",
+                                    "instructions": "Optional. If filled, overrides the Background Overlay Color. Paste a full CSS gradient value, e.g. linear-gradient(180deg, rgba(0,0,0,0.6) 0%, rgba(0,0,0,0) 100%).",
+                                    "required": 0,
+                                    "conditional_logic": 0,
+                                    "wrapper": {
+                                        "width": "",
+                                        "class": "",
+                                        "id": ""
+                                    },
+                                    "default_value": "",
+                                    "placeholder": "linear-gradient(180deg, rgba(0,0,0,0.6) 0%, rgba(0,0,0,0) 100%)",
+                                    "maxlength": "",
+                                    "rows": 2,
+                                    "new_lines": ""
+                                },
+                                {
                                     "key": "field_69f647dc_banner_content_width",
                                     "label": "Content Width",
                                     "name": "content_width",
@@ -375,6 +395,89 @@
                                     "other_choice": 0,
                                     "layout": "vertical",
                                     "save_other_choice": 0
+                                },
+                                {
+                                    "key": "field_69f647dc_banner_reverse_layout",
+                                    "label": "Reverse Layout",
+                                    "name": "reverse_layout",
+                                    "aria-label": "",
+                                    "type": "true_false",
+                                    "instructions": "Show image on the left and content on the right (desktop only). Mobile order stays the same.",
+                                    "required": 0,
+                                    "conditional_logic": [
+                                        [
+                                            {
+                                                "field": "field_69f647dc_banner_content_width",
+                                                "operator": "==",
+                                                "value": "two_columns"
+                                            },
+                                            {
+                                                "field": "field_69f647dc_banner_right_image",
+                                                "operator": "!=empty"
+                                            }
+                                        ],
+                                        [
+                                            {
+                                                "field": "field_69f647dc_banner_content_width",
+                                                "operator": "==",
+                                                "value": "wide"
+                                            },
+                                            {
+                                                "field": "field_69f647dc_banner_right_image",
+                                                "operator": "!=empty"
+                                            }
+                                        ]
+                                    ],
+                                    "wrapper": {
+                                        "width": "",
+                                        "class": "",
+                                        "id": ""
+                                    },
+                                    "message": "",
+                                    "default_value": 0,
+                                    "ui": 1,
+                                    "ui_on_text": "",
+                                    "ui_off_text": ""
+                                },
+                                {
+                                    "key": "field_69f647dc_banner_right_image",
+                                    "label": "Right Side Image",
+                                    "name": "right_image",
+                                    "aria-label": "",
+                                    "type": "image",
+                                    "instructions": "Shown next to the content when Content Width is 50% or 75%.",
+                                    "required": 0,
+                                    "conditional_logic": [
+                                        [
+                                            {
+                                                "field": "field_69f647dc_banner_content_width",
+                                                "operator": "==",
+                                                "value": "two_columns"
+                                            }
+                                        ],
+                                        [
+                                            {
+                                                "field": "field_69f647dc_banner_content_width",
+                                                "operator": "==",
+                                                "value": "wide"
+                                            }
+                                        ]
+                                    ],
+                                    "wrapper": {
+                                        "width": "",
+                                        "class": "",
+                                        "id": ""
+                                    },
+                                    "return_format": "url",
+                                    "library": "all",
+                                    "min_width": "",
+                                    "min_height": "",
+                                    "min_size": "",
+                                    "max_width": "",
+                                    "max_height": "",
+                                    "max_size": "",
+                                    "mime_types": "",
+                                    "preview_size": "medium"
                                 },
                                 {
                                     "key": "field_69f647dc_banner_font_color",
@@ -1466,7 +1569,7 @@
                                 "class": "",
                                 "id": ""
                             },
-                            "layout": "block",
+                            "layout": "row",
                             "sub_fields": [
                                 {
                                     "key": "field_69f647dc_four_boxes_disable",
@@ -1642,13 +1745,17 @@
                                     "instructions": "How many boxes per row on desktop. Mobile stacks automatically.",
                                     "required": 0,
                                     "conditional_logic": 0,
-                                    "wrapper": {"width": "50", "class": "", "id": ""},
+                                    "wrapper": {
+                                        "width": "50",
+                                        "class": "",
+                                        "id": ""
+                                    },
                                     "choices": {
                                         "2": "2 per row",
                                         "3": "3 per row",
                                         "4": "4 per row"
                                     },
-                                    "default_value": "4",
+                                    "default_value": 4,
                                     "return_format": "value",
                                     "multiple": 0,
                                     "allow_null": 0,
@@ -1672,7 +1779,7 @@
                                         "class": "",
                                         "id": ""
                                     },
-                                    "layout": "block",
+                                    "layout": "table",
                                     "pagination": 0,
                                     "min": 2,
                                     "max": 8,
@@ -2532,5 +2639,7 @@
     "description": "",
     "show_in_rest": 0,
     "display_title": "",
-    "modified": 1777900230
+    "allow_ai_access": false,
+    "ai_description": "",
+    "modified": 1781390677
 }

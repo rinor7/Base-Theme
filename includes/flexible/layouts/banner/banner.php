@@ -5,6 +5,10 @@ if (empty($banner['disable_section'])):
     $image_url = $banner['image'] ?? '';
     $overlay_color = $banner['video_overlay_color'] ?? '#000000a1';
     $bg_overlay_color = $banner['background_overlay_color'] ?? '#000000a1';
+    $bg_overlay_gradient = trim($banner['background_overlay_gradient'] ?? '');
+    $bg_overlay_style = $bg_overlay_gradient
+        ? 'background: ' . $bg_overlay_gradient . ';'
+        : 'background-color: ' . $bg_overlay_color . ';';
 
     // Handle height logic
     $min_height = $banner['min_height_desktop'] ?? '';
@@ -37,26 +41,40 @@ if (empty($banner['disable_section'])):
             <div class="overlay" style="background-color: <?php echo esc_attr( $overlay_color ); ?>;"></div>
         </div>
     <?php else: ?>
-        <div class="image-overlay" style="background-color: <?php echo esc_attr( $bg_overlay_color ); ?>;"></div>
+        <div class="image-overlay" style="<?php echo esc_attr($bg_overlay_style); ?>"></div>
     <?php endif; ?>
 
-    <div class="container">
-        <div class="row">
-           <?php
-            $content_width = $banner['content_width'] ?? 'two_columns';
+    <?php
+    $content_width = $banner['content_width'] ?? 'two_columns';
+    $right_image   = $banner['right_image'] ?? '';
+    $right_col_class = '';
 
-            switch ($content_width) {
-                case 'two_columns':
-                    $col_class = 'col-lg-6';
-                    break;
-                case 'wide':
-                    $col_class = 'col-lg-7';
-                    break;
-                case 'full_width':
-                default:
-                    $col_class = 'col-lg-12';
-                    break;
-            }
+    switch ($content_width) {
+        case 'narrow':
+            $col_class = 'col-lg-5';
+            $right_col_class = 'col-lg-7';
+            break;
+        case 'two_columns':
+            $col_class = 'col-lg-6';
+            $right_col_class = 'col-lg-6';
+            break;
+        case 'wide':
+            $col_class = 'col-lg-7';
+            $right_col_class = 'col-lg-5';
+            break;
+        case 'full_width':
+        default:
+            $col_class = 'col-lg-12';
+            break;
+    }
+
+    $has_right_image = $right_col_class && !empty($right_image);
+    $reverse_layout  = $has_right_image && !empty($banner['reverse_layout']);
+    $row_class       = 'row' . ($reverse_layout ? ' flex-lg-row-reverse' : '');
+    ?>
+    <div class="container">
+        <div class="<?php echo esc_attr($row_class); ?>">
+           <?php
 
             // Desktop alignment only for full width
             $alignment_desktop = $banner['content_alignment'] ?? 'center'; // left | center
@@ -99,8 +117,19 @@ if (empty($banner['disable_section'])):
             } elseif (!empty($font_color_key) && isset($font_color_map[$font_color_key])) {
                 $heading_style_attr = ' style="color:' . esc_attr($font_color_map[$font_color_key]) . ';"';
             }
+
+            $row_gap_desktop = $banner['row_gap_desktop'] ?? '';
+            $row_gap_mobile  = $banner['row_gap_mobile'] ?? '';
+            $lefts_style = '';
+            if ($row_gap_desktop !== '') {
+                $lefts_style .= '--row-gap-desktop:' . intval($row_gap_desktop) . 'px;';
+            }
+            if ($row_gap_mobile !== '') {
+                $lefts_style .= '--row-gap-mobile:' . intval($row_gap_mobile) . 'px;';
+            }
+            $lefts_style_attr = $lefts_style ? ' style="' . esc_attr($lefts_style) . '"' : '';
             ?>
-            <div class="lefts <?php echo esc_attr($col_class . ' ' . $alignment_class); ?>">
+            <div class="lefts <?php echo esc_attr($col_class . ' ' . $alignment_class); ?>"<?php echo $lefts_style_attr; ?>>
                 <?php if (!empty($banner['title'])): ?>
                     <<?php echo esc_attr($title_tag); ?><?php echo $heading_style_attr; ?>><?php echo esc_html($banner['title']); ?></<?php echo esc_attr($title_tag); ?>>
                 <?php endif; ?>
@@ -135,6 +164,12 @@ if (empty($banner['disable_section'])):
                     </div>
                 <?php endif; ?>
             </div>
+
+            <?php if ($has_right_image): ?>
+                <div class="rights <?php echo esc_attr($right_col_class); ?>">
+                    <img src="<?php echo esc_url($right_image); ?>" alt="">
+                </div>
+            <?php endif; ?>
         </div>
     </div>
 </section>

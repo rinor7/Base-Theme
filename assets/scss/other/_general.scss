@@ -67,7 +67,10 @@ body {
 p,
 h2,
 h1,
-h3 {
+h3,
+h4,
+h5,
+h6 {
     margin-bottom: 0;
 }
 
@@ -113,7 +116,10 @@ h3 {
     text-align: center;
     display: flex;
     flex-direction: column;
-    row-gap: 6px;
+    row-gap: var(--header-gap-desktop, 6px);
+    @include md {
+        row-gap: var(--header-gap-mobile, 6px);
+    }
     margin-bottom: var(--mb-desktop, 6px);
     @include md {
         margin-bottom: var(--mb-mobile, 6px);

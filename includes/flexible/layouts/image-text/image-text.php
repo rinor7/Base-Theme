@@ -5,11 +5,26 @@ if (empty($section['disable_section'])):
     $image_url = $section['image'] ?? '';
     $button_1 = $section['button_1'] ?? null;
     $button_2 = $section['button_2'] ?? null;
-    $section_classes = 'flex-image-text';
+    $image_position = ($section['image_position'] ?? 'left') === 'right' ? 'right' : 'left';
 
-    if (!empty($section['image_no_container_left'])) {
-        $section_classes .= ' image-no-container-left';
+    $section_classes = 'flex-image-text image-position-' . $image_position;
+
+    if (!empty($section['image_no_container'])) {
+        $section_classes .= ' image-no-container-' . $image_position;
     }
+
+    $row_class = 'row' . ($image_position === 'right' ? ' flex-lg-row-reverse' : '');
+
+    $row_gap_desktop = $section['row_gap_desktop'] ?? '';
+    $row_gap_mobile  = $section['row_gap_mobile'] ?? '';
+    $content_style = '';
+    if ($row_gap_desktop !== '') {
+        $content_style .= '--row-gap-desktop:' . intval($row_gap_desktop) . 'px;';
+    }
+    if ($row_gap_mobile !== '') {
+        $content_style .= '--row-gap-mobile:' . intval($row_gap_mobile) . 'px;';
+    }
+    $content_style_attr = $content_style ? ' style="' . esc_attr($content_style) . '"' : '';
 
     $allowed_tags = array('h1', 'h2', 'h3', 'h4', 'h5', 'h6', 'p');
     $title_1_tag = $section['titleh1_tag'] ?? 'h2';
@@ -46,7 +61,7 @@ if (empty($section['disable_section'])):
 ?>
 <section class="<?php echo esc_attr($section_classes); ?>">
     <div class="container">
-        <div class="row">
+        <div class="<?php echo esc_attr($row_class); ?>">
             <div class="flex-image-text__media col-lg-6">
                 <?php if (!empty($image_url)): ?>
                     <div class="flex-image-text__image">
@@ -54,7 +69,7 @@ if (empty($section['disable_section'])):
                     </div>
                 <?php endif; ?>
             </div>
-            <div class="flex-image-text__content col-lg-6">
+            <div class="flex-image-text__content col-lg-6"<?php echo $content_style_attr; ?>>
                 <?php if (!empty($section['titleh1'])): ?>
                     <<?php echo esc_attr($title_1_tag); ?><?php echo $heading_style_attr; ?>><?php echo esc_html($section['titleh1']); ?></<?php echo esc_attr($title_1_tag); ?>>
                 <?php endif; ?>

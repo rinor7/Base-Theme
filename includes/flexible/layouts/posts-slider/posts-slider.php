@@ -32,6 +32,14 @@ if (empty($section['disable_section'])):
         ? (int)$section['margin_bottom_mobile'] . 'px'
         : $margin_desktop;
 
+    $header_style = '--mb-desktop:' . $margin_desktop . ';--mb-mobile:' . $margin_mobile . ';';
+    if (!empty($section['header_row_gap_desktop'])) {
+        $header_style .= '--header-gap-desktop:' . intval($section['header_row_gap_desktop']) . 'px;';
+    }
+    if (!empty($section['header_row_gap_mobile'])) {
+        $header_style .= '--header-gap-mobile:' . intval($section['header_row_gap_mobile']) . 'px;';
+    }
+
     $loop = new WP_Query(array(
         'post_type'      => $post_type,
         'posts_per_page' => $posts_per_page,
@@ -43,7 +51,7 @@ if (empty($section['disable_section'])):
 <section class="posts-slider">
     <div class="container">
         <?php if ($title_section || $subtitle_section): ?>
-            <div class="section-header" style="--mb-desktop:<?php echo esc_attr($margin_desktop); ?>;--mb-mobile:<?php echo esc_attr($margin_mobile); ?>;">
+            <div class="section-header" style="<?php echo esc_attr($header_style); ?>">
                 <?php if ($title_section): ?>
                     <div class="section-header-title"<?php echo $heading_style_attr; ?>><?php echo wp_kses_post(strip_outer_p_tags($title_section)); ?></div>
                 <?php endif; ?>
