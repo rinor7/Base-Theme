@@ -96,29 +96,32 @@ var swiper = new Swiper(".mySwiper-boxes-section", {
 
 // Posts Grid slider mode (supports multiple independent instances per page)
 document.querySelectorAll('.posts-grid__slider').forEach(function (el) {
+  var outer = el.closest('.posts-grid__slider-outer') || el;
+  var gapMobile = parseInt(el.dataset.gapMobile, 10) || 16;
+  var gapDesktop = parseInt(el.dataset.gapDesktop, 10) || 16;
   new Swiper(el, {
     slidesPerView: 1,
-    spaceBetween: 16,
+    spaceBetween: gapMobile,
     scrollbar: {
       el: el.querySelector('.swiper-scrollbar'),
       draggable: true,
     },
     navigation: {
-      nextEl: el.querySelector('.swiper-button-next'),
-      prevEl: el.querySelector('.swiper-button-prev'),
+      nextEl: outer.querySelector('.swiper-button-next'),
+      prevEl: outer.querySelector('.swiper-button-prev'),
     },
     breakpoints: {
       640: {
         slidesPerView: 2,
-        spaceBetween: 16,
+        spaceBetween: gapMobile,
       },
       768: {
         slidesPerView: 3,
-        spaceBetween: 16,
+        spaceBetween: gapDesktop,
       },
       1024: {
         slidesPerView: 4,
-        spaceBetween: 16,
+        spaceBetween: gapDesktop,
       },
     },
   });

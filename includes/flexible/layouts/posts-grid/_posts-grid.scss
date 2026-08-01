@@ -1,13 +1,19 @@
 .posts-grid {
     padding: var(--section-padding-mobile, 40px) 0;
-    background-color: var(--section-bg-color, rgb(91, 70, 32));
+    background-color: var(--section-bg-color);
 
     @include min-md {
         padding: var(--section-padding-desktop, 40px) 0;
     }
 
     .row {
-        row-gap: 40px;
+        --bs-gutter-x: var(--posts-grid-gap-mobile, 1.5rem);
+        --bs-gutter-y: var(--posts-grid-gap-mobile, 40px);
+
+        @include min-md {
+            --bs-gutter-x: var(--posts-grid-gap-desktop, 1.5rem);
+            --bs-gutter-y: var(--posts-grid-gap-desktop, 40px);
+        }
     }
 
     .box__wrapper {
@@ -21,23 +27,71 @@
 
         .img {
             width: 100%;
-            height: 180px;
+            height: var(--posts-grid-image-height-mobile, 180px);
 
             @include min-md {
-                height: 220px;
+                height: var(--posts-grid-image-height-desktop, 220px);
             }
 
             img {
                 width: 100%;
                 height: 100%;
                 object-fit: cover;
+                border-radius: min(var(--posts-grid-image-border-radius, 0px), 50%);
+            }
+        }
+    }
+
+    &.image-fit-contain .box__wrapper .img img {
+        object-fit: contain;
+    }
+
+    &__slider-outer {
+        position: relative;
+        --swiper-navigation-color: var(--primary-color, #000);
+        --swiper-scrollbar-drag-bg-color: var(--primary-color, #000);
+
+        &.has-arrows {
+            padding-left: 56px;
+            padding-right: 56px;
+
+            .swiper-button-prev {
+                left: 6px;
+            }
+
+            .swiper-button-next {
+                right: 6px;
+            }
+        }
+
+        .swiper-button-next,
+        .swiper-button-prev {
+            width: 44px;
+            height: 44px;
+            margin-top: -22px;
+            background-color: #fff;
+            border-radius: 50%;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, .15);
+            transition: background-color .25s ease, transform .25s ease;
+
+            &::after {
+                font-size: 16px;
+                font-weight: 700;
+                transition: color .25s ease;
+            }
+
+            &:hover {
+                background-color: var(--primary-color, #000);
+                transform: scale(1.06);
+
+                &::after {
+                    color: #fff;
+                }
             }
         }
     }
 
     &__slider.swiper {
-        --swiper-navigation-color: var(--primary-color, #000);
-        --swiper-scrollbar-drag-bg-color: var(--primary-color, #000);
         padding-bottom: 30px;
 
         .swiper-slide {

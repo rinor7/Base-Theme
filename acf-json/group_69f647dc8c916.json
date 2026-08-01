@@ -3268,6 +3268,23 @@
                             "layout": "block",
                             "sub_fields": [
                                 {
+                                    "key": "field_69f647dc_posts_grid_tab_general",
+                                    "label": "General",
+                                    "name": "tab_general",
+                                    "aria-label": "",
+                                    "type": "tab",
+                                    "instructions": "",
+                                    "required": 0,
+                                    "conditional_logic": 0,
+                                    "wrapper": {
+                                        "width": "",
+                                        "class": "",
+                                        "id": ""
+                                    },
+                                    "placement": "top",
+                                    "endpoint": 0
+                                },
+                                {
                                     "key": "field_69f647dc_posts_grid_disable",
                                     "label": "Disable Section",
                                     "name": "disable_section",
@@ -3367,6 +3384,23 @@
                                     "placeholder": "",
                                     "prepend": "",
                                     "append": ""
+                                },
+                                {
+                                    "key": "field_69f647dc_posts_grid_tab_header",
+                                    "label": "Header",
+                                    "name": "tab_header",
+                                    "aria-label": "",
+                                    "type": "tab",
+                                    "instructions": "",
+                                    "required": 0,
+                                    "conditional_logic": 0,
+                                    "wrapper": {
+                                        "width": "",
+                                        "class": "",
+                                        "id": ""
+                                    },
+                                    "placement": "top",
+                                    "endpoint": 0
                                 },
                                 {
                                     "key": "field_69f647dc_posts_grid_title_section",
@@ -3637,6 +3671,23 @@
                                     "step": ""
                                 },
                                 {
+                                    "key": "field_69f647dc_posts_grid_tab_query",
+                                    "label": "Query",
+                                    "name": "tab_query",
+                                    "aria-label": "",
+                                    "type": "tab",
+                                    "instructions": "",
+                                    "required": 0,
+                                    "conditional_logic": 0,
+                                    "wrapper": {
+                                        "width": "",
+                                        "class": "",
+                                        "id": ""
+                                    },
+                                    "placement": "top",
+                                    "endpoint": 0
+                                },
+                                {
                                     "key": "field_69f647dc_posts_grid_post_type",
                                     "label": "Post Type",
                                     "name": "post_type",
@@ -3684,6 +3735,45 @@
                                     "step": "",
                                     "prepend": "",
                                     "append": ""
+                                },
+                                {
+                                    "key": "field_69f647dc_posts_grid_excerpt_length",
+                                    "label": "Excerpt Word Count",
+                                    "name": "excerpt_length",
+                                    "aria-label": "",
+                                    "type": "number",
+                                    "instructions": "Max words shown under each title, regardless of how long the post's own excerpt/content is. Leave empty to use the default (20).",
+                                    "required": 0,
+                                    "conditional_logic": 0,
+                                    "wrapper": {
+                                        "width": "50",
+                                        "class": "",
+                                        "id": ""
+                                    },
+                                    "default_value": 20,
+                                    "min": 0,
+                                    "max": "",
+                                    "placeholder": "20",
+                                    "step": "",
+                                    "prepend": "",
+                                    "append": ""
+                                },
+                                {
+                                    "key": "field_69f647dc_posts_grid_tab_post_style",
+                                    "label": "Post Style",
+                                    "name": "tab_post_style",
+                                    "aria-label": "",
+                                    "type": "tab",
+                                    "instructions": "",
+                                    "required": 0,
+                                    "conditional_logic": 0,
+                                    "wrapper": {
+                                        "width": "",
+                                        "class": "",
+                                        "id": ""
+                                    },
+                                    "placement": "top",
+                                    "endpoint": 0
                                 },
                                 {
                                     "key": "field_69f647dc_posts_grid_post_title_color",
@@ -3806,6 +3896,151 @@
                                     "custom_palette_source": "",
                                     "palette_colors": "",
                                     "show_color_wheel": true
+                                },
+                                {
+                                    "key": "field_69f647dc_posts_grid_image_height_desktop",
+                                    "label": "Image Height Desktop (px)",
+                                    "name": "image_height_desktop",
+                                    "aria-label": "",
+                                    "type": "number",
+                                    "instructions": "Leave empty to use the default (220px).",
+                                    "required": 0,
+                                    "conditional_logic": 0,
+                                    "wrapper": {
+                                        "width": "50",
+                                        "class": "",
+                                        "id": ""
+                                    },
+                                    "default_value": "",
+                                    "min": 0,
+                                    "max": "",
+                                    "placeholder": "220",
+                                    "step": ""
+                                },
+                                {
+                                    "key": "field_69f647dc_posts_grid_image_height_mobile",
+                                    "label": "Image Height Mobile (px)",
+                                    "name": "image_height_mobile",
+                                    "aria-label": "",
+                                    "type": "number",
+                                    "instructions": "Leave empty to use the default (180px).",
+                                    "required": 0,
+                                    "conditional_logic": 0,
+                                    "wrapper": {
+                                        "width": "50",
+                                        "class": "",
+                                        "id": ""
+                                    },
+                                    "default_value": "",
+                                    "min": 0,
+                                    "max": "",
+                                    "placeholder": "180",
+                                    "step": ""
+                                },
+                                {
+                                    "key": "field_69f647dc_posts_grid_image_fit",
+                                    "label": "Image Fit",
+                                    "name": "image_fit",
+                                    "aria-label": "",
+                                    "type": "select",
+                                    "instructions": "How each post thumbnail fills its box.",
+                                    "required": 0,
+                                    "conditional_logic": 0,
+                                    "wrapper": {
+                                        "width": "",
+                                        "class": "",
+                                        "id": ""
+                                    },
+                                    "choices": {
+                                        "cover": "Cover (crop to fill)",
+                                        "contain": "Contain (fit whole image)"
+                                    },
+                                    "default_value": "cover",
+                                    "return_format": "value",
+                                    "multiple": 0,
+                                    "allow_null": 0,
+                                    "ui": 0,
+                                    "ajax": 0,
+                                    "placeholder": "",
+                                    "create_options": 0,
+                                    "save_options": 0
+                                },
+                                {
+                                    "key": "field_69f647dc_posts_grid_image_border_radius",
+                                    "label": "Image Border Radius (px)",
+                                    "name": "image_border_radius",
+                                    "aria-label": "",
+                                    "type": "number",
+                                    "instructions": "e.g. 10 for a 10px border radius. Leave empty for square corners.",
+                                    "required": 0,
+                                    "conditional_logic": 0,
+                                    "wrapper": {
+                                        "width": "",
+                                        "class": "",
+                                        "id": ""
+                                    },
+                                    "default_value": "",
+                                    "min": 0,
+                                    "max": "",
+                                    "placeholder": "0",
+                                    "step": ""
+                                },
+                                {
+                                    "key": "field_69f647dc_posts_grid_tab_slider",
+                                    "label": "Slider",
+                                    "name": "tab_slider",
+                                    "aria-label": "",
+                                    "type": "tab",
+                                    "instructions": "",
+                                    "required": 0,
+                                    "conditional_logic": 0,
+                                    "wrapper": {
+                                        "width": "",
+                                        "class": "",
+                                        "id": ""
+                                    },
+                                    "placement": "top",
+                                    "endpoint": 0
+                                },
+                                {
+                                    "key": "field_69f647dc_posts_grid_items_gap_desktop",
+                                    "label": "Items Gap Desktop (px)",
+                                    "name": "items_gap_desktop",
+                                    "aria-label": "",
+                                    "type": "number",
+                                    "instructions": "Space between boxes on desktop, in both grid and slider mode. Leave empty to use the default (40px).",
+                                    "required": 0,
+                                    "conditional_logic": 0,
+                                    "wrapper": {
+                                        "width": "50",
+                                        "class": "",
+                                        "id": ""
+                                    },
+                                    "default_value": "",
+                                    "min": 0,
+                                    "max": "",
+                                    "placeholder": "40",
+                                    "step": ""
+                                },
+                                {
+                                    "key": "field_69f647dc_posts_grid_items_gap_mobile",
+                                    "label": "Items Gap Mobile (px)",
+                                    "name": "items_gap_mobile",
+                                    "aria-label": "",
+                                    "type": "number",
+                                    "instructions": "Space between boxes on mobile, in both grid and slider mode. Leave empty to use the default (16px).",
+                                    "required": 0,
+                                    "conditional_logic": 0,
+                                    "wrapper": {
+                                        "width": "50",
+                                        "class": "",
+                                        "id": ""
+                                    },
+                                    "default_value": "",
+                                    "min": 0,
+                                    "max": "",
+                                    "placeholder": "16",
+                                    "step": ""
                                 },
                                 {
                                     "key": "field_69f647dc_posts_grid_enable_slider",
@@ -4369,5 +4604,5 @@
     "display_title": "",
     "allow_ai_access": false,
     "ai_description": "",
-    "modified": 1785622987
+    "modified": 1785623990
 }
