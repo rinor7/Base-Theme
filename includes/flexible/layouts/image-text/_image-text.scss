@@ -17,7 +17,7 @@
         .flex-image-text__image {
             width: 100%;
             height: var(--image-height-mobile, 300px);
-            border-radius: var(--image-border-radius, 0);
+            border-radius: min(var(--image-border-radius, 0px), 50%);
             overflow: hidden;
             @include min-md {
                 height: var(--image-height-desktop, 400px);

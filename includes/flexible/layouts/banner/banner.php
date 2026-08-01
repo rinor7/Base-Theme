@@ -10,26 +10,40 @@ if (empty($banner['disable_section'])):
         ? 'background: ' . $bg_overlay_gradient . ';'
         : 'background-color: ' . $bg_overlay_color . ';';
 
-    // Handle height logic
-    $min_height = $banner['min_height_desktop'] ?? '';
-    if (wp_is_mobile() && !empty($banner['min_height_mobile'])) {
-        $min_height = $banner['min_height_mobile'];
-    }
-    if (is_numeric($min_height)) {
-        $min_height .= 'px';
+    // Height, padding and gap are set as CSS custom properties so they respond to
+    // the actual viewport (min-md breakpoint) instead of server-side UA sniffing.
+    $min_height_desktop = $banner['min_height_desktop'] ?? '';
+    $min_height_mobile  = $banner['min_height_mobile'] ?? '';
+    $padding_desktop    = $banner['padding_desktop'] ?? '';
+    $padding_mobile     = $banner['padding_mobile'] ?? '';
+
+    $instance_index = get_next_instance_index('banner');
+    $section_classes = 'banner__section banner__section-index-' . $instance_index;
+
+    $custom_class = trim($banner['custom_class'] ?? '');
+    if ($custom_class !== '') {
+        $section_classes .= ' ' . sanitize_text_field($custom_class);
     }
 
-    // Build style attribute for section
     $inline_style = '';
-    if (!empty($min_height)) {
-        $inline_style .= 'height:' . esc_attr($min_height) . ';';
+    if ($min_height_desktop !== '') {
+        $inline_style .= '--banner-height-desktop:' . intval($min_height_desktop) . 'px;';
+    }
+    if ($min_height_mobile !== '') {
+        $inline_style .= '--banner-height-mobile:' . intval($min_height_mobile) . 'px;';
+    }
+    if ($padding_desktop !== '') {
+        $inline_style .= '--banner-padding-desktop:' . intval($padding_desktop) . 'px;';
+    }
+    if ($padding_mobile !== '') {
+        $inline_style .= '--banner-padding-mobile:' . intval($padding_mobile) . 'px;';
     }
     if (!$video_url && $image_url) {
         $inline_style .= 'background-image:url(' . esc_url($image_url) . ');';
     }
 ?>
-<section class="banner__section"
-    <?php if (!empty($inline_style)): ?>style="<?php echo $inline_style; ?>"<?php endif; ?>
+<section class="<?php echo esc_attr($section_classes); ?>"
+    <?php if (!empty($inline_style)): ?>style="<?php echo esc_attr($inline_style); ?>"<?php endif; ?>
     aria-label="Banner">
 
     <?php if ($video_url): ?>
@@ -45,8 +59,33 @@ if (empty($banner['disable_section'])):
     <?php endif; ?>
 
     <?php
-    $content_width = $banner['content_width'] ?? 'two_columns';
-    $right_image   = $banner['right_image'] ?? '';
+    $content_width   = $banner['content_width'] ?? 'two_columns';
+    $right_image_field = $banner['right_image'] ?? null;
+    $right_image     = $right_image_field['url'] ?? '';
+    $right_image_alt = trim($right_image_field['alt'] ?? '');
+    if ($right_image_alt === '') {
+        if (!empty($banner['title'])) {
+            $right_image_alt = wp_strip_all_tags($banner['title']);
+        } elseif (!empty($banner['subtitle'])) {
+            $right_image_alt = wp_strip_all_tags($banner['subtitle']);
+        }
+    }
+    $right_image_radius = $banner['right_image_border_radius'] ?? '';
+    $right_image_height_desktop = $banner['right_image_height_desktop'] ?? '';
+    $right_image_height_mobile  = $banner['right_image_height_mobile'] ?? '';
+    $right_image_fit = ($banner['right_image_fit'] ?? 'cover') === 'contain' ? 'contain' : 'cover';
+    $right_image_class = 'rights image-fit-' . $right_image_fit;
+    $right_image_style = '';
+    if ($right_image_radius !== '') {
+        $right_image_style .= '--right-image-border-radius:' . intval($right_image_radius) . 'px;';
+    }
+    if ($right_image_height_desktop !== '') {
+        $right_image_style .= '--right-image-height-desktop:' . intval($right_image_height_desktop) . 'px;';
+    }
+    if ($right_image_height_mobile !== '') {
+        $right_image_style .= '--right-image-height-mobile:' . intval($right_image_height_mobile) . 'px;';
+    }
+    $right_image_style_attr = $right_image_style ? ' style="' . esc_attr($right_image_style) . '"' : '';
     $right_col_class = '';
 
     switch ($content_width) {
@@ -107,16 +146,20 @@ if (empty($banner['disable_section'])):
                 'white'     => 'var(--white)',
                 'black'     => 'var(--black)',
             );
-            $font_color_key = $banner['font_color'] ?? '';
-            $heading_style_attr = '';
-            if ($font_color_key === 'custom') {
-                $custom_color = $banner['font_color_custom'] ?? '';
-                if (!empty($custom_color)) {
-                    $heading_style_attr = ' style="color:' . esc_attr($custom_color) . ';"';
+            $build_heading_style_attr = function ($color_key, $custom_color) use ($font_color_map) {
+                if ($color_key === 'custom') {
+                    if (!empty($custom_color)) {
+                        return ' style="color:' . esc_attr($custom_color) . ';"';
+                    }
+                    return '';
                 }
-            } elseif (!empty($font_color_key) && isset($font_color_map[$font_color_key])) {
-                $heading_style_attr = ' style="color:' . esc_attr($font_color_map[$font_color_key]) . ';"';
-            }
+                if (!empty($color_key) && isset($font_color_map[$color_key])) {
+                    return ' style="color:' . esc_attr($font_color_map[$color_key]) . ';"';
+                }
+                return '';
+            };
+            $title_style_attr = $build_heading_style_attr($banner['title_color'] ?? '', $banner['title_color_custom'] ?? '');
+            $subtitle_style_attr = $build_heading_style_attr($banner['subtitle_color'] ?? '', $banner['subtitle_color_custom'] ?? '');
 
             $row_gap_desktop = $banner['row_gap_desktop'] ?? '';
             $row_gap_mobile  = $banner['row_gap_mobile'] ?? '';
@@ -131,11 +174,11 @@ if (empty($banner['disable_section'])):
             ?>
             <div class="lefts <?php echo esc_attr($col_class . ' ' . $alignment_class); ?>"<?php echo $lefts_style_attr; ?>>
                 <?php if (!empty($banner['title'])): ?>
-                    <<?php echo esc_attr($title_tag); ?><?php echo $heading_style_attr; ?>><?php echo esc_html($banner['title']); ?></<?php echo esc_attr($title_tag); ?>>
+                    <<?php echo esc_attr($title_tag); ?><?php echo $title_style_attr; ?>><?php echo esc_html($banner['title']); ?></<?php echo esc_attr($title_tag); ?>>
                 <?php endif; ?>
 
                 <?php if (!empty($banner['subtitle'])): ?>
-                    <<?php echo esc_attr($subtitle_tag); ?><?php echo $heading_style_attr; ?>><?php echo esc_html($banner['subtitle']); ?></<?php echo esc_attr($subtitle_tag); ?>>
+                    <<?php echo esc_attr($subtitle_tag); ?><?php echo $subtitle_style_attr; ?>><?php echo esc_html($banner['subtitle']); ?></<?php echo esc_attr($subtitle_tag); ?>>
                 <?php endif; ?>
 
                 <?php
@@ -143,12 +186,14 @@ if (empty($banner['disable_section'])):
                 $button_2 = $banner['button_2'] ?? '';
                 $has_btn_1 = is_array($button_1) && !empty($button_1['url']) && !empty($button_1['title']);
                 $has_btn_2 = is_array($button_2) && !empty($button_2['url']) && !empty($button_2['title']);
+                $button_1_style = ($banner['button_1_style'] ?? 'btn-1') === 'btn-2' ? 'btn-style-2' : 'btn-style-1';
+                $button_2_style = ($banner['button_2_style'] ?? 'btn-1') === 'btn-2' ? 'btn-style-2' : 'btn-style-1';
                 ?>
                 <?php if ($has_btn_1 || $has_btn_2): ?>
                     <div class="buttons">
                         <?php if ($has_btn_1): ?>
-                            <div class="default-btn"> 
-                                <a href="<?php echo esc_url($button_1['url']); ?>" class="link-btn"<?php if (!empty($button_1['target'])): ?> target="<?php echo esc_attr($button_1['target']); ?>"<?php endif; ?>>
+                            <div class="default-btn">
+                                <a href="<?php echo esc_url($button_1['url']); ?>" class="link-btn <?php echo esc_attr($button_1_style); ?>"<?php if (!empty($button_1['target'])): ?> target="<?php echo esc_attr($button_1['target']); ?>"<?php endif; ?>>
                                     <?php echo esc_html($button_1['title']); ?>
                                 </a>
                             </div>
@@ -156,7 +201,7 @@ if (empty($banner['disable_section'])):
 
                         <?php if ($has_btn_2): ?>
                             <div class="default-btn two-btns">
-                                <a href="<?php echo esc_url($button_2['url']); ?>" class="link-btn"<?php if (!empty($button_2['target'])): ?> target="<?php echo esc_attr($button_2['target']); ?>"<?php endif; ?>>
+                                <a href="<?php echo esc_url($button_2['url']); ?>" class="link-btn <?php echo esc_attr($button_2_style); ?>"<?php if (!empty($button_2['target'])): ?> target="<?php echo esc_attr($button_2['target']); ?>"<?php endif; ?>>
                                     <?php echo esc_html($button_2['title']); ?>
                                 </a>
                             </div>
@@ -166,8 +211,8 @@ if (empty($banner['disable_section'])):
             </div>
 
             <?php if ($has_right_image): ?>
-                <div class="rights <?php echo esc_attr($right_col_class); ?>">
-                    <img src="<?php echo esc_url($right_image); ?>" alt="">
+                <div class="<?php echo esc_attr($right_image_class . ' ' . $right_col_class); ?>"<?php echo $right_image_style_attr; ?>>
+                    <img src="<?php echo esc_url($right_image); ?>" alt="<?php echo esc_attr($right_image_alt); ?>">
                 </div>
             <?php endif; ?>
         </div>

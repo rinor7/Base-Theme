@@ -1,14 +1,21 @@
 .banner__section {
     display: flex;
     align-items: center;
-    min-height: 300px;
+    min-height: var(--banner-height-mobile, 300px);
     background-repeat: no-repeat;
     background-size: cover;
     position: relative;
     z-index: 1;
+    @include min-md {
+        min-height: var(--banner-height-desktop, 300px);
+    }
     .container {
-        padding-top: 40px;
-        padding-bottom: 40px;
+        padding-top: var(--banner-padding-mobile, 40px);
+        padding-bottom: var(--banner-padding-mobile, 40px);
+        @include min-md {
+            padding-top: var(--banner-padding-desktop, 40px);
+            padding-bottom: var(--banner-padding-desktop, 40px);
+        }
     }
     .image-overlay {
         position: absolute;
@@ -64,7 +71,12 @@
             row-gap: 10px;
             // justify-content: center;
             a {
-                @include btn-1;
+                &.btn-style-1 {
+                    @include btn-1;
+                }
+                &.btn-style-2 {
+                    @include btn-2;
+                }
             }
             .two-btns {
                 display: flex;
@@ -91,7 +103,17 @@
     .rights {
         img {
             width: 100%;
-            height: 100%;
+            height: var(--right-image-height-mobile, 100%);
+            max-height: var(--banner-height-mobile, 100%);
+            object-fit: cover;
+            border-radius: min(var(--right-image-border-radius, 0px), 50%);
+            @include min-md {
+                height: var(--right-image-height-desktop, 100%);
+                max-height: var(--banner-height-desktop, 100%);
+            }
+        }
+        &.image-fit-contain img {
+            object-fit: contain;
         }
     }
 }

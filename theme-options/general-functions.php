@@ -95,6 +95,28 @@ function render_section_header($input, $post_id = null) {
     echo '</div>';
 }
 
+// Shorten the WYSIWYG editor height for short title/subtitle fields (full height isn't needed, they just need bold/basic formatting)
+add_action('acf/input/admin_head', 'base_theme_shorten_wysiwyg_fields');
+function base_theme_shorten_wysiwyg_fields() {
+    $field_keys = array(
+        'field_69f647dc_counter_title_section',
+        'field_69f647dc_counter_subtitle_section',
+    );
+    $selectors = array();
+    foreach ($field_keys as $key) {
+        $selectors[] = '.acf-field[data-key="' . $key . '"] .wp-editor-area';
+        $selectors[] = '.acf-field[data-key="' . $key . '"] iframe';
+    }
+    ?>
+    <style>
+        <?php echo implode(",\n", $selectors); ?> {
+            height: 100px !important;
+            min-height: 100px !important;
+        }
+    </style>
+    <?php
+}
+
 //Theme Settings Menu 
 if (function_exists('acf_add_options_page')) {
     acf_add_options_page(array(

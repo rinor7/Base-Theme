@@ -1,6 +1,10 @@
 .counter-repeater {
-    padding: 40px 0;
-    background-color: rgb(134, 118, 87);
+    padding: var(--section-padding-mobile, 40px) 0;
+    background-color: var(--section-bg-color);
+
+    @include min-md {
+        padding: var(--section-padding-desktop, 40px) 0;
+    }
 
     .row {
         row-gap: 20px;
@@ -13,17 +17,6 @@
             align-items: center;
             text-align: center;
             justify-content: center;
-
-            .img {
-                width: 50px;
-                height: 50px;
-
-                img {
-                    width: 100%;
-                    height: 100%;
-                    object-fit: contain;
-                }
-            }
         }
     }
 }

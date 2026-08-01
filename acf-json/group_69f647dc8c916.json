@@ -40,6 +40,23 @@
                             "layout": "block",
                             "sub_fields": [
                                 {
+                                    "key": "field_69f647dc_banner_tab_general",
+                                    "label": "General",
+                                    "name": "tab_general",
+                                    "aria-label": "",
+                                    "type": "tab",
+                                    "instructions": "",
+                                    "required": 0,
+                                    "conditional_logic": 0,
+                                    "wrapper": {
+                                        "width": "",
+                                        "class": "",
+                                        "id": ""
+                                    },
+                                    "placement": "top",
+                                    "endpoint": 0
+                                },
+                                {
                                     "key": "field_69f647dc_banner_disable",
                                     "label": "Disable Section",
                                     "name": "disable_section",
@@ -60,113 +77,206 @@
                                     "ui_off_text": ""
                                 },
                                 {
-                                    "key": "field_69f647dc_banner_title",
-                                    "label": "Title",
-                                    "name": "title",
+                                    "key": "field_69f647dc_banner_content_width",
+                                    "label": "Content Width",
+                                    "name": "content_width",
                                     "aria-label": "",
-                                    "type": "text",
-                                    "instructions": "Choose title",
+                                    "type": "radio",
+                                    "instructions": "",
                                     "required": 0,
                                     "conditional_logic": 0,
                                     "wrapper": {
-                                        "width": "70",
+                                        "width": "",
+                                        "class": "",
+                                        "id": ""
+                                    },
+                                    "choices": {
+                                        "narrow": "05/12 (42%)",
+                                        "two_columns": "06/12 (50%)",
+                                        "wide": "07/12 (75%)",
+                                        "full_width": "12/12 (100%)"
+                                    },
+                                    "default_value": "two_columns",
+                                    "return_format": "value",
+                                    "allow_null": 0,
+                                    "other_choice": 0,
+                                    "layout": "vertical",
+                                    "save_other_choice": 0
+                                },
+                                {
+                                    "key": "field_69f647dc_banner_align_desktop",
+                                    "label": "Content Alignment (Desktop)",
+                                    "name": "content_alignment",
+                                    "aria-label": "",
+                                    "type": "radio",
+                                    "instructions": "",
+                                    "required": 0,
+                                    "conditional_logic": [
+                                        [
+                                            {
+                                                "field": "field_69f647dc_banner_content_width",
+                                                "operator": "==",
+                                                "value": "full_width"
+                                            }
+                                        ]
+                                    ],
+                                    "wrapper": {
+                                        "width": "50",
+                                        "class": "",
+                                        "id": ""
+                                    },
+                                    "choices": {
+                                        "left": "Left",
+                                        "center": "Center"
+                                    },
+                                    "default_value": "left",
+                                    "return_format": "value",
+                                    "allow_null": 0,
+                                    "other_choice": 0,
+                                    "layout": "vertical",
+                                    "save_other_choice": 0
+                                },
+                                {
+                                    "key": "field_69f647dc_banner_align_mobile",
+                                    "label": "Content Alignment (Mobile)",
+                                    "name": "content_alignment_mobile",
+                                    "aria-label": "",
+                                    "type": "radio",
+                                    "instructions": "",
+                                    "required": 0,
+                                    "conditional_logic": 0,
+                                    "wrapper": {
+                                        "width": "50",
+                                        "class": "",
+                                        "id": ""
+                                    },
+                                    "choices": {
+                                        "left": "Left",
+                                        "center": "Center"
+                                    },
+                                    "default_value": "left",
+                                    "return_format": "value",
+                                    "allow_null": 0,
+                                    "other_choice": 0,
+                                    "layout": "vertical",
+                                    "save_other_choice": 0
+                                },
+                                {
+                                    "key": "field_69f647dc_banner_padding_desktop",
+                                    "label": "Section Padding Desktop (px)",
+                                    "name": "padding_desktop",
+                                    "aria-label": "",
+                                    "type": "number",
+                                    "instructions": "Leave empty to use the default (40px).",
+                                    "required": 0,
+                                    "conditional_logic": 0,
+                                    "wrapper": {
+                                        "width": "50",
+                                        "class": "",
+                                        "id": ""
+                                    },
+                                    "default_value": "",
+                                    "min": 0,
+                                    "max": "",
+                                    "placeholder": "40",
+                                    "step": ""
+                                },
+                                {
+                                    "key": "field_69f647dc_banner_padding_mobile",
+                                    "label": "Section Padding Mobile (px)",
+                                    "name": "padding_mobile",
+                                    "aria-label": "",
+                                    "type": "number",
+                                    "instructions": "Leave empty to use the default (40px).",
+                                    "required": 0,
+                                    "conditional_logic": 0,
+                                    "wrapper": {
+                                        "width": "50",
+                                        "class": "",
+                                        "id": ""
+                                    },
+                                    "default_value": "",
+                                    "min": 0,
+                                    "max": "",
+                                    "placeholder": "40",
+                                    "step": ""
+                                },
+                                {
+                                    "key": "field_69f647dc_banner_row_gap_desktop",
+                                    "label": "Content Row Gap Desktop (px)",
+                                    "name": "row_gap_desktop",
+                                    "aria-label": "",
+                                    "type": "number",
+                                    "instructions": "Gap between title/subtitle/buttons on desktop. Leave empty to keep the current style default (16px).",
+                                    "required": 0,
+                                    "conditional_logic": 0,
+                                    "wrapper": {
+                                        "width": "50",
+                                        "class": "",
+                                        "id": ""
+                                    },
+                                    "default_value": "",
+                                    "min": 0,
+                                    "max": "",
+                                    "placeholder": "16",
+                                    "step": ""
+                                },
+                                {
+                                    "key": "field_69f647dc_banner_row_gap_mobile",
+                                    "label": "Content Row Gap Mobile (px)",
+                                    "name": "row_gap_mobile",
+                                    "aria-label": "",
+                                    "type": "number",
+                                    "instructions": "Gap between title/subtitle/buttons on mobile. Leave empty to keep the current style default (8px).",
+                                    "required": 0,
+                                    "conditional_logic": 0,
+                                    "wrapper": {
+                                        "width": "50",
+                                        "class": "",
+                                        "id": ""
+                                    },
+                                    "default_value": "",
+                                    "min": 0,
+                                    "max": "",
+                                    "placeholder": "8",
+                                    "step": ""
+                                },
+                                {
+                                    "key": "field_69f647dc_banner_custom_class",
+                                    "label": "Custom CSS Class",
+                                    "name": "custom_class",
+                                    "aria-label": "",
+                                    "type": "text",
+                                    "instructions": "Added to the section's outer wrapper. Use this to target the section with your own custom CSS. Separate multiple classes with a space.",
+                                    "required": 0,
+                                    "conditional_logic": 0,
+                                    "wrapper": {
+                                        "width": "",
                                         "class": "",
                                         "id": ""
                                     },
                                     "default_value": "",
                                     "maxlength": "",
-                                    "allow_in_bindings": 1,
                                     "placeholder": "",
                                     "prepend": "",
                                     "append": ""
                                 },
                                 {
-                                    "key": "field_69f647dc_banner_title_tag",
-                                    "label": "Title Tag",
-                                    "name": "title_tag",
+                                    "key": "field_69f647dc_banner_tab_background",
+                                    "label": "Background",
+                                    "name": "tab_background",
                                     "aria-label": "",
-                                    "type": "select",
-                                    "instructions": "Choose the semantic tag for the title.",
-                                    "required": 0,
-                                    "conditional_logic": 0,
-                                    "wrapper": {
-                                        "width": "30",
-                                        "class": "",
-                                        "id": ""
-                                    },
-                                    "choices": {
-                                        "h1": "H1",
-                                        "h2": "H2",
-                                        "h3": "H3",
-                                        "h4": "H4",
-                                        "h5": "H5",
-                                        "h6": "H6",
-                                        "p": "Paragraph (p)"
-                                    },
-                                    "default_value": "h2",
-                                    "return_format": "value",
-                                    "multiple": 0,
-                                    "allow_null": 0,
-                                    "allow_in_bindings": 1,
-                                    "ui": 0,
-                                    "ajax": 0,
-                                    "placeholder": "",
-                                    "create_options": 0,
-                                    "save_options": 0
-                                },
-                                {
-                                    "key": "field_69f647dc_banner_subtitle",
-                                    "label": "Subtitle",
-                                    "name": "subtitle",
-                                    "aria-label": "",
-                                    "type": "textarea",
+                                    "type": "tab",
                                     "instructions": "",
                                     "required": 0,
                                     "conditional_logic": 0,
                                     "wrapper": {
-                                        "width": "70",
+                                        "width": "",
                                         "class": "",
                                         "id": ""
                                     },
-                                    "default_value": "",
-                                    "maxlength": "",
-                                    "rows": 4,
-                                    "placeholder": "",
-                                    "new_lines": ""
-                                },
-                                {
-                                    "key": "field_69f647dc_banner_subtitle_tag",
-                                    "label": "Subtitle Tag",
-                                    "name": "subtitle_tag",
-                                    "aria-label": "",
-                                    "type": "select",
-                                    "instructions": "Choose the semantic tag for the subtitle.",
-                                    "required": 0,
-                                    "conditional_logic": 0,
-                                    "wrapper": {
-                                        "width": "30",
-                                        "class": "",
-                                        "id": ""
-                                    },
-                                    "choices": {
-                                        "h1": "H1",
-                                        "h2": "H2",
-                                        "h3": "H3",
-                                        "h4": "H4",
-                                        "h5": "H5",
-                                        "h6": "H6",
-                                        "p": "Paragraph (p)"
-                                    },
-                                    "default_value": "p",
-                                    "return_format": "value",
-                                    "multiple": 0,
-                                    "allow_null": 0,
-                                    "allow_in_bindings": 1,
-                                    "ui": 0,
-                                    "ajax": 0,
-                                    "placeholder": "",
-                                    "create_options": 0,
-                                    "save_options": 0
+                                    "placement": "top",
+                                    "endpoint": 0
                                 },
                                 {
                                     "key": "field_69f647dc_banner_image",
@@ -321,11 +431,11 @@
                                     "new_lines": ""
                                 },
                                 {
-                                    "key": "field_69f647dc_banner_content_width",
-                                    "label": "Content Width",
-                                    "name": "content_width",
+                                    "key": "field_69f647dc_banner_tab_content",
+                                    "label": "Content",
+                                    "name": "tab_content",
                                     "aria-label": "",
-                                    "type": "radio",
+                                    "type": "tab",
                                     "instructions": "",
                                     "required": 0,
                                     "conditional_logic": 0,
@@ -334,67 +444,278 @@
                                         "class": "",
                                         "id": ""
                                     },
-                                    "choices": {
-                                        "two_columns": "06/12 (50%)",
-                                        "wide": "07/12 (75%)",
-                                        "full_width": "12/12 (100%)"
-                                    },
-                                    "default_value": "two_columns",
-                                    "return_format": "value",
-                                    "allow_null": 0,
-                                    "other_choice": 0,
-                                    "layout": "vertical",
-                                    "save_other_choice": 0
+                                    "placement": "top",
+                                    "endpoint": 0
                                 },
                                 {
-                                    "key": "field_69f647dc_banner_align_desktop",
-                                    "label": "Content Alignment (Desktop)",
-                                    "name": "content_alignment",
+                                    "key": "field_69f647dc_banner_title",
+                                    "label": "Title",
+                                    "name": "title",
                                     "aria-label": "",
-                                    "type": "radio",
-                                    "instructions": "",
+                                    "type": "text",
+                                    "instructions": "Choose title",
                                     "required": 0,
                                     "conditional_logic": 0,
                                     "wrapper": {
-                                        "width": "50",
+                                        "width": "70",
+                                        "class": "",
+                                        "id": ""
+                                    },
+                                    "default_value": "",
+                                    "maxlength": "",
+                                    "allow_in_bindings": 1,
+                                    "placeholder": "",
+                                    "prepend": "",
+                                    "append": ""
+                                },
+                                {
+                                    "key": "field_69f647dc_banner_title_tag",
+                                    "label": "Title Tag",
+                                    "name": "title_tag",
+                                    "aria-label": "",
+                                    "type": "select",
+                                    "instructions": "Choose the semantic tag for the title.",
+                                    "required": 0,
+                                    "conditional_logic": 0,
+                                    "wrapper": {
+                                        "width": "30",
                                         "class": "",
                                         "id": ""
                                     },
                                     "choices": {
-                                        "left": "Left",
-                                        "center": "Center"
+                                        "h1": "H1",
+                                        "h2": "H2",
+                                        "h3": "H3",
+                                        "h4": "H4",
+                                        "h5": "H5",
+                                        "h6": "H6",
+                                        "p": "Paragraph (p)"
                                     },
-                                    "default_value": "left",
+                                    "default_value": "h2",
                                     "return_format": "value",
+                                    "multiple": 0,
                                     "allow_null": 0,
-                                    "other_choice": 0,
-                                    "layout": "vertical",
-                                    "save_other_choice": 0
+                                    "allow_in_bindings": 1,
+                                    "ui": 0,
+                                    "ajax": 0,
+                                    "placeholder": "",
+                                    "create_options": 0,
+                                    "save_options": 0
                                 },
                                 {
-                                    "key": "field_69f647dc_banner_align_mobile",
-                                    "label": "Content Alignment (Mobile)",
-                                    "name": "content_alignment_mobile",
+                                    "key": "field_69f647dc_banner_title_color",
+                                    "label": "Title Color",
+                                    "name": "title_color",
                                     "aria-label": "",
-                                    "type": "radio",
-                                    "instructions": "",
+                                    "type": "select",
+                                    "instructions": "Leave empty to use the default theme style.",
                                     "required": 0,
-                                    "conditional_logic": 0,
+                                    "conditional_logic": [
+                                        [
+                                            {
+                                                "field": "field_69f647dc_banner_title",
+                                                "operator": "!=empty"
+                                            }
+                                        ]
+                                    ],
                                     "wrapper": {
-                                        "width": "50",
+                                        "width": "",
                                         "class": "",
                                         "id": ""
                                     },
                                     "choices": {
-                                        "left": "Left",
-                                        "center": "Center"
+                                        "primary": "Primary",
+                                        "secondary": "Secondary",
+                                        "font": "Font Color Variable",
+                                        "white": "White",
+                                        "black": "Black",
+                                        "custom": "Custom"
                                     },
-                                    "default_value": "left",
+                                    "default_value": false,
                                     "return_format": "value",
+                                    "multiple": 0,
+                                    "allow_null": 1,
+                                    "ui": 1,
+                                    "ajax": 0,
+                                    "placeholder": "Default (theme style)",
+                                    "create_options": 0,
+                                    "save_options": 0
+                                },
+                                {
+                                    "key": "field_69f647dc_banner_title_color_custom",
+                                    "label": "Title Custom Color",
+                                    "name": "title_color_custom",
+                                    "aria-label": "",
+                                    "type": "color_picker",
+                                    "instructions": "",
+                                    "required": 0,
+                                    "conditional_logic": [
+                                        [
+                                            {
+                                                "field": "field_69f647dc_banner_title",
+                                                "operator": "!=empty"
+                                            },
+                                            {
+                                                "field": "field_69f647dc_banner_title_color",
+                                                "operator": "==",
+                                                "value": "custom"
+                                            }
+                                        ]
+                                    ],
+                                    "wrapper": {
+                                        "width": "",
+                                        "class": "",
+                                        "id": ""
+                                    },
+                                    "default_value": "",
+                                    "enable_opacity": 0,
+                                    "return_format": "string",
+                                    "custom_palette_source": "",
+                                    "palette_colors": "",
+                                    "show_color_wheel": true
+                                },
+                                {
+                                    "key": "field_69f647dc_banner_subtitle",
+                                    "label": "Subtitle",
+                                    "name": "subtitle",
+                                    "aria-label": "",
+                                    "type": "textarea",
+                                    "instructions": "",
+                                    "required": 0,
+                                    "conditional_logic": 0,
+                                    "wrapper": {
+                                        "width": "70",
+                                        "class": "",
+                                        "id": ""
+                                    },
+                                    "default_value": "",
+                                    "maxlength": "",
+                                    "rows": 4,
+                                    "placeholder": "",
+                                    "new_lines": ""
+                                },
+                                {
+                                    "key": "field_69f647dc_banner_subtitle_tag",
+                                    "label": "Subtitle Tag",
+                                    "name": "subtitle_tag",
+                                    "aria-label": "",
+                                    "type": "select",
+                                    "instructions": "Choose the semantic tag for the subtitle.",
+                                    "required": 0,
+                                    "conditional_logic": 0,
+                                    "wrapper": {
+                                        "width": "30",
+                                        "class": "",
+                                        "id": ""
+                                    },
+                                    "choices": {
+                                        "h1": "H1",
+                                        "h2": "H2",
+                                        "h3": "H3",
+                                        "h4": "H4",
+                                        "h5": "H5",
+                                        "h6": "H6",
+                                        "p": "Paragraph (p)"
+                                    },
+                                    "default_value": "p",
+                                    "return_format": "value",
+                                    "multiple": 0,
                                     "allow_null": 0,
-                                    "other_choice": 0,
-                                    "layout": "vertical",
-                                    "save_other_choice": 0
+                                    "allow_in_bindings": 1,
+                                    "ui": 0,
+                                    "ajax": 0,
+                                    "placeholder": "",
+                                    "create_options": 0,
+                                    "save_options": 0
+                                },
+                                {
+                                    "key": "field_69f647dc_banner_subtitle_color",
+                                    "label": "Subtitle Color",
+                                    "name": "subtitle_color",
+                                    "aria-label": "",
+                                    "type": "select",
+                                    "instructions": "Leave empty to use the default theme style.",
+                                    "required": 0,
+                                    "conditional_logic": [
+                                        [
+                                            {
+                                                "field": "field_69f647dc_banner_subtitle",
+                                                "operator": "!=empty"
+                                            }
+                                        ]
+                                    ],
+                                    "wrapper": {
+                                        "width": "",
+                                        "class": "",
+                                        "id": ""
+                                    },
+                                    "choices": {
+                                        "primary": "Primary",
+                                        "secondary": "Secondary",
+                                        "font": "Font Color Variable",
+                                        "white": "White",
+                                        "black": "Black",
+                                        "custom": "Custom"
+                                    },
+                                    "default_value": false,
+                                    "return_format": "value",
+                                    "multiple": 0,
+                                    "allow_null": 1,
+                                    "ui": 1,
+                                    "ajax": 0,
+                                    "placeholder": "Default (theme style)",
+                                    "create_options": 0,
+                                    "save_options": 0
+                                },
+                                {
+                                    "key": "field_69f647dc_banner_subtitle_color_custom",
+                                    "label": "Subtitle Custom Color",
+                                    "name": "subtitle_color_custom",
+                                    "aria-label": "",
+                                    "type": "color_picker",
+                                    "instructions": "",
+                                    "required": 0,
+                                    "conditional_logic": [
+                                        [
+                                            {
+                                                "field": "field_69f647dc_banner_subtitle",
+                                                "operator": "!=empty"
+                                            },
+                                            {
+                                                "field": "field_69f647dc_banner_subtitle_color",
+                                                "operator": "==",
+                                                "value": "custom"
+                                            }
+                                        ]
+                                    ],
+                                    "wrapper": {
+                                        "width": "",
+                                        "class": "",
+                                        "id": ""
+                                    },
+                                    "default_value": "",
+                                    "enable_opacity": 0,
+                                    "return_format": "string",
+                                    "custom_palette_source": "",
+                                    "palette_colors": "",
+                                    "show_color_wheel": true
+                                },
+                                {
+                                    "key": "field_69f647dc_banner_tab_right_image",
+                                    "label": "Right Image",
+                                    "name": "tab_right_image",
+                                    "aria-label": "",
+                                    "type": "tab",
+                                    "instructions": "",
+                                    "required": 0,
+                                    "conditional_logic": 0,
+                                    "wrapper": {
+                                        "width": "",
+                                        "class": "",
+                                        "id": ""
+                                    },
+                                    "placement": "top",
+                                    "endpoint": 0
                                 },
                                 {
                                     "key": "field_69f647dc_banner_reverse_layout",
@@ -421,6 +742,17 @@
                                                 "field": "field_69f647dc_banner_content_width",
                                                 "operator": "==",
                                                 "value": "wide"
+                                            },
+                                            {
+                                                "field": "field_69f647dc_banner_right_image",
+                                                "operator": "!=empty"
+                                            }
+                                        ],
+                                        [
+                                            {
+                                                "field": "field_69f647dc_banner_content_width",
+                                                "operator": "==",
+                                                "value": "narrow"
                                             },
                                             {
                                                 "field": "field_69f647dc_banner_right_image",
@@ -461,6 +793,13 @@
                                                 "operator": "==",
                                                 "value": "wide"
                                             }
+                                        ],
+                                        [
+                                            {
+                                                "field": "field_69f647dc_banner_content_width",
+                                                "operator": "==",
+                                                "value": "narrow"
+                                            }
                                         ]
                                     ],
                                     "wrapper": {
@@ -468,7 +807,7 @@
                                         "class": "",
                                         "id": ""
                                     },
-                                    "return_format": "url",
+                                    "return_format": "array",
                                     "library": "all",
                                     "min_width": "",
                                     "min_height": "",
@@ -480,51 +819,18 @@
                                     "preview_size": "medium"
                                 },
                                 {
-                                    "key": "field_69f647dc_banner_font_color",
-                                    "label": "Content Font Color",
-                                    "name": "font_color",
+                                    "key": "field_69f647dc_banner_right_image_radius",
+                                    "label": "Right Image Border Radius (px)",
+                                    "name": "right_image_border_radius",
                                     "aria-label": "",
-                                    "type": "select",
-                                    "instructions": "Leave empty to use the default theme style.",
-                                    "required": 0,
-                                    "conditional_logic": 0,
-                                    "wrapper": {
-                                        "width": "",
-                                        "class": "",
-                                        "id": ""
-                                    },
-                                    "choices": {
-                                        "primary": "Primary",
-                                        "secondary": "Secondary",
-                                        "font": "Font Color Variable",
-                                        "white": "White",
-                                        "black": "Black",
-                                        "custom": "Custom"
-                                    },
-                                    "default_value": false,
-                                    "return_format": "value",
-                                    "multiple": 0,
-                                    "allow_null": 1,
-                                    "ui": 1,
-                                    "ajax": 0,
-                                    "placeholder": "Default (theme style)",
-                                    "create_options": 0,
-                                    "save_options": 0
-                                },
-                                {
-                                    "key": "field_69f647dc_banner_font_color_custom",
-                                    "label": "Custom Font Color",
-                                    "name": "font_color_custom",
-                                    "aria-label": "",
-                                    "type": "color_picker",
-                                    "instructions": "",
+                                    "type": "number",
+                                    "instructions": "e.g. 10 for a 10px border radius. Leave empty for square corners.",
                                     "required": 0,
                                     "conditional_logic": [
                                         [
                                             {
-                                                "field": "field_69f647dc_banner_font_color",
-                                                "operator": "==",
-                                                "value": "custom"
+                                                "field": "field_69f647dc_banner_right_image",
+                                                "operator": "!=empty"
                                             }
                                         ]
                                     ],
@@ -534,11 +840,116 @@
                                         "id": ""
                                     },
                                     "default_value": "",
-                                    "enable_opacity": 0,
-                                    "return_format": "string",
-                                    "custom_palette_source": "",
-                                    "palette_colors": "",
-                                    "show_color_wheel": true
+                                    "min": 0,
+                                    "max": "",
+                                    "placeholder": "0",
+                                    "step": ""
+                                },
+                                {
+                                    "key": "field_69f647dc_banner_right_image_height_desktop",
+                                    "label": "Right Image Height Desktop (px)",
+                                    "name": "right_image_height_desktop",
+                                    "aria-label": "",
+                                    "type": "number",
+                                    "instructions": "Leave empty to fill its column. Capped automatically at the banner's own Height Desktop \u2014 it will never grow taller than the banner.",
+                                    "required": 0,
+                                    "conditional_logic": [
+                                        [
+                                            {
+                                                "field": "field_69f647dc_banner_right_image",
+                                                "operator": "!=empty"
+                                            }
+                                        ]
+                                    ],
+                                    "wrapper": {
+                                        "width": "50",
+                                        "class": "",
+                                        "id": ""
+                                    },
+                                    "default_value": "",
+                                    "min": 0,
+                                    "max": "",
+                                    "placeholder": "",
+                                    "step": ""
+                                },
+                                {
+                                    "key": "field_69f647dc_banner_right_image_height_mobile",
+                                    "label": "Right Image Height Mobile (px)",
+                                    "name": "right_image_height_mobile",
+                                    "aria-label": "",
+                                    "type": "number",
+                                    "instructions": "Leave empty to fill its column. Capped automatically at the banner's own Height Mobile \u2014 it will never grow taller than the banner.",
+                                    "required": 0,
+                                    "conditional_logic": [
+                                        [
+                                            {
+                                                "field": "field_69f647dc_banner_right_image",
+                                                "operator": "!=empty"
+                                            }
+                                        ]
+                                    ],
+                                    "wrapper": {
+                                        "width": "50",
+                                        "class": "",
+                                        "id": ""
+                                    },
+                                    "default_value": "",
+                                    "min": 0,
+                                    "max": "",
+                                    "placeholder": "",
+                                    "step": ""
+                                },
+                                {
+                                    "key": "field_69f647dc_banner_right_image_fit",
+                                    "label": "Right Image Fit",
+                                    "name": "right_image_fit",
+                                    "aria-label": "",
+                                    "type": "select",
+                                    "instructions": "How the image fills its box.",
+                                    "required": 0,
+                                    "conditional_logic": [
+                                        [
+                                            {
+                                                "field": "field_69f647dc_banner_right_image",
+                                                "operator": "!=empty"
+                                            }
+                                        ]
+                                    ],
+                                    "wrapper": {
+                                        "width": "",
+                                        "class": "",
+                                        "id": ""
+                                    },
+                                    "choices": {
+                                        "cover": "Cover (crop to fill)",
+                                        "contain": "Contain (fit whole image)"
+                                    },
+                                    "default_value": "cover",
+                                    "return_format": "value",
+                                    "multiple": 0,
+                                    "allow_null": 0,
+                                    "ui": 0,
+                                    "ajax": 0,
+                                    "placeholder": "",
+                                    "create_options": 0,
+                                    "save_options": 0
+                                },
+                                {
+                                    "key": "field_69f647dc_banner_tab_buttons",
+                                    "label": "Buttons",
+                                    "name": "tab_buttons",
+                                    "aria-label": "",
+                                    "type": "tab",
+                                    "instructions": "",
+                                    "required": 0,
+                                    "conditional_logic": 0,
+                                    "wrapper": {
+                                        "width": "",
+                                        "class": "",
+                                        "id": ""
+                                    },
+                                    "placement": "top",
+                                    "endpoint": 0
                                 },
                                 {
                                     "key": "field_69f647dc_banner_btn1_link",
@@ -557,6 +968,41 @@
                                     "return_format": "array"
                                 },
                                 {
+                                    "key": "field_69f647dc_banner_btn1_style",
+                                    "label": "Button 1 Style",
+                                    "name": "button_1_style",
+                                    "aria-label": "",
+                                    "type": "select",
+                                    "instructions": "",
+                                    "required": 0,
+                                    "conditional_logic": [
+                                        [
+                                            {
+                                                "field": "field_69f647dc_banner_btn1_link",
+                                                "operator": "!=empty"
+                                            }
+                                        ]
+                                    ],
+                                    "wrapper": {
+                                        "width": "",
+                                        "class": "",
+                                        "id": ""
+                                    },
+                                    "choices": {
+                                        "btn-1": "Button Style 1",
+                                        "btn-2": "Button Style 2"
+                                    },
+                                    "default_value": "btn-1",
+                                    "return_format": "value",
+                                    "multiple": 0,
+                                    "allow_null": 0,
+                                    "ui": 0,
+                                    "ajax": 0,
+                                    "placeholder": "",
+                                    "create_options": 0,
+                                    "save_options": 0
+                                },
+                                {
                                     "key": "field_69f647dc_banner_btn2_link",
                                     "label": "Button 2",
                                     "name": "button_2",
@@ -571,6 +1017,41 @@
                                         "id": ""
                                     },
                                     "return_format": "array"
+                                },
+                                {
+                                    "key": "field_69f647dc_banner_btn2_style",
+                                    "label": "Button 2 Style",
+                                    "name": "button_2_style",
+                                    "aria-label": "",
+                                    "type": "select",
+                                    "instructions": "",
+                                    "required": 0,
+                                    "conditional_logic": [
+                                        [
+                                            {
+                                                "field": "field_69f647dc_banner_btn2_link",
+                                                "operator": "!=empty"
+                                            }
+                                        ]
+                                    ],
+                                    "wrapper": {
+                                        "width": "",
+                                        "class": "",
+                                        "id": ""
+                                    },
+                                    "choices": {
+                                        "btn-1": "Button Style 1",
+                                        "btn-2": "Button Style 2"
+                                    },
+                                    "default_value": "btn-1",
+                                    "return_format": "value",
+                                    "multiple": 0,
+                                    "allow_null": 0,
+                                    "ui": 0,
+                                    "ajax": 0,
+                                    "placeholder": "",
+                                    "create_options": 0,
+                                    "save_options": 0
                                 }
                             ]
                         }
@@ -1526,6 +2007,87 @@
                                     "ui_off_text": ""
                                 },
                                 {
+                                    "key": "field_69f647dc_counter_background_color",
+                                    "label": "Background Color",
+                                    "name": "background_color",
+                                    "aria-label": "",
+                                    "type": "color_picker",
+                                    "instructions": "Leave empty to use the default background color.",
+                                    "required": 0,
+                                    "conditional_logic": 0,
+                                    "wrapper": {
+                                        "width": "",
+                                        "class": "",
+                                        "id": ""
+                                    },
+                                    "default_value": "",
+                                    "enable_opacity": 0,
+                                    "return_format": "string",
+                                    "custom_palette_source": "",
+                                    "palette_colors": "",
+                                    "show_color_wheel": true
+                                },
+                                {
+                                    "key": "field_69f647dc_counter_padding_desktop",
+                                    "label": "Section Padding Desktop (px)",
+                                    "name": "padding_desktop",
+                                    "aria-label": "",
+                                    "type": "number",
+                                    "instructions": "Leave empty to use the default (40px).",
+                                    "required": 0,
+                                    "conditional_logic": 0,
+                                    "wrapper": {
+                                        "width": "50",
+                                        "class": "",
+                                        "id": ""
+                                    },
+                                    "default_value": "",
+                                    "min": 0,
+                                    "max": "",
+                                    "placeholder": "40",
+                                    "step": ""
+                                },
+                                {
+                                    "key": "field_69f647dc_counter_padding_mobile",
+                                    "label": "Section Padding Mobile (px)",
+                                    "name": "padding_mobile",
+                                    "aria-label": "",
+                                    "type": "number",
+                                    "instructions": "Leave empty to use the default (40px).",
+                                    "required": 0,
+                                    "conditional_logic": 0,
+                                    "wrapper": {
+                                        "width": "50",
+                                        "class": "",
+                                        "id": ""
+                                    },
+                                    "default_value": "",
+                                    "min": 0,
+                                    "max": "",
+                                    "placeholder": "40",
+                                    "step": ""
+                                },
+                                {
+                                    "key": "field_69f647dc_counter_custom_class",
+                                    "label": "Custom CSS Class",
+                                    "name": "custom_class",
+                                    "aria-label": "",
+                                    "type": "text",
+                                    "instructions": "Added to the section's outer wrapper. Use this to target the section with your own custom CSS. Separate multiple classes with a space.",
+                                    "required": 0,
+                                    "conditional_logic": 0,
+                                    "wrapper": {
+                                        "width": "",
+                                        "class": "",
+                                        "id": ""
+                                    },
+                                    "default_value": "",
+                                    "maxlength": "",
+                                    "placeholder": "",
+                                    "prepend": "",
+                                    "append": ""
+                                },
+                                {
                                     "key": "field_69f647dc_counter_title_section",
                                     "label": "Title Section",
                                     "name": "title_section",
@@ -1546,34 +2108,21 @@
                                     "delay": 0
                                 },
                                 {
-                                    "key": "field_69f647dc_counter_subtitle_section",
-                                    "label": "Subtitle Section",
-                                    "name": "subtitle_section",
-                                    "aria-label": "",
-                                    "type": "wysiwyg",
-                                    "instructions": "",
-                                    "required": 0,
-                                    "conditional_logic": 0,
-                                    "wrapper": {
-                                        "width": "",
-                                        "class": "",
-                                        "id": ""
-                                    },
-                                    "default_value": "",
-                                    "tabs": "all",
-                                    "toolbar": "basic",
-                                    "media_upload": 0,
-                                    "delay": 0
-                                },
-                                {
-                                    "key": "field_69f647dc_counter_font_color",
-                                    "label": "Content Font Color",
-                                    "name": "font_color",
+                                    "key": "field_69f647dc_counter_title_color",
+                                    "label": "Title Color",
+                                    "name": "title_color",
                                     "aria-label": "",
                                     "type": "select",
                                     "instructions": "Leave empty to use the default theme style.",
                                     "required": 0,
-                                    "conditional_logic": 0,
+                                    "conditional_logic": [
+                                        [
+                                            {
+                                                "field": "field_69f647dc_counter_title_section",
+                                                "operator": "!=empty"
+                                            }
+                                        ]
+                                    ],
                                     "wrapper": {
                                         "width": "",
                                         "class": "",
@@ -1598,9 +2147,9 @@
                                     "save_options": 0
                                 },
                                 {
-                                    "key": "field_69f647dc_counter_font_color_custom",
-                                    "label": "Custom Font Color",
-                                    "name": "font_color_custom",
+                                    "key": "field_69f647dc_counter_title_color_custom",
+                                    "label": "Title Custom Color",
+                                    "name": "title_color_custom",
                                     "aria-label": "",
                                     "type": "color_picker",
                                     "instructions": "",
@@ -1608,7 +2157,103 @@
                                     "conditional_logic": [
                                         [
                                             {
-                                                "field": "field_69f647dc_counter_font_color",
+                                                "field": "field_69f647dc_counter_title_section",
+                                                "operator": "!=empty"
+                                            },
+                                            {
+                                                "field": "field_69f647dc_counter_title_color",
+                                                "operator": "==",
+                                                "value": "custom"
+                                            }
+                                        ]
+                                    ],
+                                    "wrapper": {
+                                        "width": "",
+                                        "class": "",
+                                        "id": ""
+                                    },
+                                    "default_value": "",
+                                    "enable_opacity": 0,
+                                    "return_format": "string",
+                                    "custom_palette_source": "",
+                                    "palette_colors": "",
+                                    "show_color_wheel": true
+                                },
+                                {
+                                    "key": "field_69f647dc_counter_subtitle_section",
+                                    "label": "Subtitle Section",
+                                    "name": "subtitle_section",
+                                    "aria-label": "",
+                                    "type": "wysiwyg",
+                                    "instructions": "",
+                                    "required": 0,
+                                    "conditional_logic": 0,
+                                    "wrapper": {
+                                        "width": "",
+                                        "class": "",
+                                        "id": ""
+                                    },
+                                    "default_value": "",
+                                    "tabs": "all",
+                                    "toolbar": "basic",
+                                    "media_upload": 0,
+                                    "delay": 0
+                                },
+                                {
+                                    "key": "field_69f647dc_counter_subtitle_color",
+                                    "label": "Subtitle Color",
+                                    "name": "subtitle_color",
+                                    "aria-label": "",
+                                    "type": "select",
+                                    "instructions": "Leave empty to use the default theme style.",
+                                    "required": 0,
+                                    "conditional_logic": [
+                                        [
+                                            {
+                                                "field": "field_69f647dc_counter_subtitle_section",
+                                                "operator": "!=empty"
+                                            }
+                                        ]
+                                    ],
+                                    "wrapper": {
+                                        "width": "",
+                                        "class": "",
+                                        "id": ""
+                                    },
+                                    "choices": {
+                                        "primary": "Primary",
+                                        "secondary": "Secondary",
+                                        "font": "Font Color Variable",
+                                        "white": "White",
+                                        "black": "Black",
+                                        "custom": "Custom"
+                                    },
+                                    "default_value": false,
+                                    "return_format": "value",
+                                    "multiple": 0,
+                                    "allow_null": 1,
+                                    "ui": 1,
+                                    "ajax": 0,
+                                    "placeholder": "Default (theme style)",
+                                    "create_options": 0,
+                                    "save_options": 0
+                                },
+                                {
+                                    "key": "field_69f647dc_counter_subtitle_color_custom",
+                                    "label": "Subtitle Custom Color",
+                                    "name": "subtitle_color_custom",
+                                    "aria-label": "",
+                                    "type": "color_picker",
+                                    "instructions": "",
+                                    "required": 0,
+                                    "conditional_logic": [
+                                        [
+                                            {
+                                                "field": "field_69f647dc_counter_subtitle_section",
+                                                "operator": "!=empty"
+                                            },
+                                            {
+                                                "field": "field_69f647dc_counter_subtitle_color",
                                                 "operator": "==",
                                                 "value": "custom"
                                             }
@@ -1669,6 +2314,168 @@
                                     "step": "",
                                     "prepend": "",
                                     "append": "px"
+                                },
+                                {
+                                    "key": "field_69f647dc_counter_header_gap_desktop",
+                                    "label": "Header Row Gap Desktop (px)",
+                                    "name": "header_row_gap_desktop",
+                                    "aria-label": "",
+                                    "type": "number",
+                                    "instructions": "Gap between title and subtitle on desktop. Leave empty to keep the current style default (6px).",
+                                    "required": 0,
+                                    "conditional_logic": 0,
+                                    "wrapper": {
+                                        "width": "50",
+                                        "class": "",
+                                        "id": ""
+                                    },
+                                    "default_value": "",
+                                    "min": 0,
+                                    "max": "",
+                                    "placeholder": "6",
+                                    "step": ""
+                                },
+                                {
+                                    "key": "field_69f647dc_counter_header_gap_mobile",
+                                    "label": "Header Row Gap Mobile (px)",
+                                    "name": "header_row_gap_mobile",
+                                    "aria-label": "",
+                                    "type": "number",
+                                    "instructions": "Gap between title and subtitle on mobile. Leave empty to keep the current style default (6px).",
+                                    "required": 0,
+                                    "conditional_logic": 0,
+                                    "wrapper": {
+                                        "width": "50",
+                                        "class": "",
+                                        "id": ""
+                                    },
+                                    "default_value": "",
+                                    "min": 0,
+                                    "max": "",
+                                    "placeholder": "6",
+                                    "step": ""
+                                },
+                                {
+                                    "key": "field_69f647dc_counter_number_color",
+                                    "label": "Target Number Color",
+                                    "name": "number_color",
+                                    "aria-label": "",
+                                    "type": "select",
+                                    "instructions": "Applies to every counter number. Leave empty to use the default theme style.",
+                                    "required": 0,
+                                    "conditional_logic": 0,
+                                    "wrapper": {
+                                        "width": "",
+                                        "class": "",
+                                        "id": ""
+                                    },
+                                    "choices": {
+                                        "primary": "Primary",
+                                        "secondary": "Secondary",
+                                        "font": "Font Color Variable",
+                                        "white": "White",
+                                        "black": "Black",
+                                        "custom": "Custom"
+                                    },
+                                    "default_value": false,
+                                    "return_format": "value",
+                                    "multiple": 0,
+                                    "allow_null": 1,
+                                    "ui": 1,
+                                    "ajax": 0,
+                                    "placeholder": "Default (theme style)",
+                                    "create_options": 0,
+                                    "save_options": 0
+                                },
+                                {
+                                    "key": "field_69f647dc_counter_number_color_custom",
+                                    "label": "Target Number Custom Color",
+                                    "name": "number_color_custom",
+                                    "aria-label": "",
+                                    "type": "color_picker",
+                                    "instructions": "",
+                                    "required": 0,
+                                    "conditional_logic": [
+                                        [
+                                            {
+                                                "field": "field_69f647dc_counter_number_color",
+                                                "operator": "==",
+                                                "value": "custom"
+                                            }
+                                        ]
+                                    ],
+                                    "wrapper": {
+                                        "width": "",
+                                        "class": "",
+                                        "id": ""
+                                    },
+                                    "default_value": "",
+                                    "enable_opacity": 0,
+                                    "return_format": "string",
+                                    "custom_palette_source": "",
+                                    "palette_colors": "",
+                                    "show_color_wheel": true
+                                },
+                                {
+                                    "key": "field_69f647dc_counter_label_color",
+                                    "label": "Label Color",
+                                    "name": "label_color",
+                                    "aria-label": "",
+                                    "type": "select",
+                                    "instructions": "Applies to every counter label. Leave empty to use the default theme style.",
+                                    "required": 0,
+                                    "conditional_logic": 0,
+                                    "wrapper": {
+                                        "width": "",
+                                        "class": "",
+                                        "id": ""
+                                    },
+                                    "choices": {
+                                        "primary": "Primary",
+                                        "secondary": "Secondary",
+                                        "font": "Font Color Variable",
+                                        "white": "White",
+                                        "black": "Black",
+                                        "custom": "Custom"
+                                    },
+                                    "default_value": false,
+                                    "return_format": "value",
+                                    "multiple": 0,
+                                    "allow_null": 1,
+                                    "ui": 1,
+                                    "ajax": 0,
+                                    "placeholder": "Default (theme style)",
+                                    "create_options": 0,
+                                    "save_options": 0
+                                },
+                                {
+                                    "key": "field_69f647dc_counter_label_color_custom",
+                                    "label": "Label Custom Color",
+                                    "name": "label_color_custom",
+                                    "aria-label": "",
+                                    "type": "color_picker",
+                                    "instructions": "",
+                                    "required": 0,
+                                    "conditional_logic": [
+                                        [
+                                            {
+                                                "field": "field_69f647dc_counter_label_color",
+                                                "operator": "==",
+                                                "value": "custom"
+                                            }
+                                        ]
+                                    ],
+                                    "wrapper": {
+                                        "width": "",
+                                        "class": "",
+                                        "id": ""
+                                    },
+                                    "default_value": "",
+                                    "enable_opacity": 0,
+                                    "return_format": "string",
+                                    "custom_palette_source": "",
+                                    "palette_colors": "",
+                                    "show_color_wheel": true
                                 },
                                 {
                                     "key": "field_69f647dc_counter_items",
@@ -2856,5 +3663,5 @@
     "display_title": "",
     "allow_ai_access": false,
     "ai_description": "",
-    "modified": 1785619533
+    "modified": 1785621553
 }
