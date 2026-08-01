@@ -2,9 +2,33 @@
 /**
  * @package Base Theme
  */
+$footer_color_map = array(
+    'primary'   => 'var(--primary-color)',
+    'secondary' => 'var(--secondary-color)',
+    'font'      => 'var(--font-color)',
+    'white'     => 'var(--white)',
+    'black'     => 'var(--black)',
+);
+$footer_bg_type = get_field('footer_background_color', 'option') ?: '';
+$footer_bg_custom = get_field('footer_background_color_custom', 'option') ?: '';
+$footer_bg_gradient = get_field('footer_background_gradient', 'option') ?: '';
+$footer_style = '';
+if ($footer_bg_type === 'gradient') {
+    $footer_bg_gradient = trim($footer_bg_gradient);
+    if ($footer_bg_gradient !== '') {
+        $footer_style = 'background:' . $footer_bg_gradient . ';';
+    }
+} elseif ($footer_bg_type === 'custom') {
+    if (!empty($footer_bg_custom)) {
+        $footer_style = 'background-color:' . $footer_bg_custom . ';';
+    }
+} elseif (!empty($footer_bg_type) && isset($footer_color_map[$footer_bg_type])) {
+    $footer_style = 'background-color:' . $footer_color_map[$footer_bg_type] . ';';
+}
+$footer_style_attr = $footer_style ? ' style="' . esc_attr($footer_style) . '"' : '';
 ?>
 
-<footer id="footer-site" class="site-footer">
+<footer id="footer-site" class="site-footer"<?php echo $footer_style_attr; ?>>
     <div class="footer-columns">
         <div class="container">
             <div class="row">

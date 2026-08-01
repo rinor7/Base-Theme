@@ -1,6 +1,5 @@
 .counter-repeater {
     padding: var(--section-padding-mobile, 40px) 0;
-    background-color: var(--section-bg-color);
 
     @include min-md {
         padding: var(--section-padding-desktop, 40px) 0;

@@ -1163,10 +1163,51 @@
                                     "label": "Background Color",
                                     "name": "background_color",
                                     "aria-label": "",
-                                    "type": "color_picker",
-                                    "instructions": "Leave empty to use the default background color.",
+                                    "type": "select",
+                                    "instructions": "Choose a theme color, a custom solid color, or a linear gradient. Leave empty to use the default background.",
                                     "required": 0,
                                     "conditional_logic": 0,
+                                    "wrapper": {
+                                        "width": "",
+                                        "class": "",
+                                        "id": ""
+                                    },
+                                    "choices": {
+                                        "primary": "Primary",
+                                        "secondary": "Secondary",
+                                        "font": "Font Color Variable",
+                                        "white": "White",
+                                        "black": "Black",
+                                        "custom": "Custom",
+                                        "gradient": "Linear Gradient"
+                                    },
+                                    "default_value": false,
+                                    "return_format": "value",
+                                    "multiple": 0,
+                                    "allow_null": 1,
+                                    "ui": 1,
+                                    "ajax": 0,
+                                    "placeholder": "Default (theme style)",
+                                    "create_options": 0,
+                                    "save_options": 0
+                                },
+                                {
+                                    "key": "field_69f647dc_image_text_bg_color_custom",
+                                    "label": "Custom Background Color",
+                                    "name": "background_color_custom",
+                                    "aria-label": "",
+                                    "type": "color_picker",
+                                    "instructions": "",
+                                    "required": 0,
+                                    "conditional_logic": [
+                                        [
+                                            {
+                                                "field": "field_69f647dc_image_text_bg_color",
+                                                "operator": "==",
+                                                "value": "custom"
+                                            }
+                                        ]
+                                    ],
                                     "wrapper": {
                                         "width": "",
                                         "class": "",
@@ -1178,6 +1219,34 @@
                                     "custom_palette_source": "",
                                     "palette_colors": "",
                                     "show_color_wheel": true
+                                },
+                                {
+                                    "key": "field_69f647dc_image_text_bg_color_gradient",
+                                    "label": "Background Gradient",
+                                    "name": "background_gradient",
+                                    "aria-label": "",
+                                    "type": "textarea",
+                                    "instructions": "Paste a full CSS gradient value, e.g. linear-gradient(180deg, #000000 0%, #ffffff 100%).",
+                                    "required": 0,
+                                    "conditional_logic": [
+                                        [
+                                            {
+                                                "field": "field_69f647dc_image_text_bg_color",
+                                                "operator": "==",
+                                                "value": "gradient"
+                                            }
+                                        ]
+                                    ],
+                                    "wrapper": {
+                                        "width": "",
+                                        "class": "",
+                                        "id": ""
+                                    },
+                                    "default_value": "",
+                                    "placeholder": "linear-gradient(180deg, #000000 0%, #ffffff 100%)",
+                                    "maxlength": "",
+                                    "rows": 2,
+                                    "new_lines": ""
                                 },
                                 {
                                     "key": "field_69f647dc_image_text_padding_desktop",
@@ -1327,13 +1396,18 @@
                                     "name": "image_border_radius",
                                     "aria-label": "",
                                     "type": "number",
-                                    "instructions": "e.g. 10 for a 10px border radius. Leave empty for square corners.",
+                                    "instructions": "e.g. 10 for a 10px border radius. Leave empty for square corners. Not available when Image Outside Container is enabled.",
                                     "required": 0,
                                     "conditional_logic": [
                                         [
                                             {
                                                 "field": "field_69f647dc_image_text_image",
                                                 "operator": "!=empty"
+                                            },
+                                            {
+                                                "field": "field_69f647dc_image_text_outside_container",
+                                                "operator": "!=",
+                                                "value": "1"
                                             }
                                         ]
                                     ],
@@ -2011,10 +2085,51 @@
                                     "label": "Background Color",
                                     "name": "background_color",
                                     "aria-label": "",
-                                    "type": "color_picker",
-                                    "instructions": "Leave empty to use the default background color.",
+                                    "type": "select",
+                                    "instructions": "Choose a theme color, a custom solid color, or a linear gradient. Leave empty to use the default background.",
                                     "required": 0,
                                     "conditional_logic": 0,
+                                    "wrapper": {
+                                        "width": "",
+                                        "class": "",
+                                        "id": ""
+                                    },
+                                    "choices": {
+                                        "primary": "Primary",
+                                        "secondary": "Secondary",
+                                        "font": "Font Color Variable",
+                                        "white": "White",
+                                        "black": "Black",
+                                        "custom": "Custom",
+                                        "gradient": "Linear Gradient"
+                                    },
+                                    "default_value": false,
+                                    "return_format": "value",
+                                    "multiple": 0,
+                                    "allow_null": 1,
+                                    "ui": 1,
+                                    "ajax": 0,
+                                    "placeholder": "Default (theme style)",
+                                    "create_options": 0,
+                                    "save_options": 0
+                                },
+                                {
+                                    "key": "field_69f647dc_counter_background_color_custom",
+                                    "label": "Custom Background Color",
+                                    "name": "background_color_custom",
+                                    "aria-label": "",
+                                    "type": "color_picker",
+                                    "instructions": "",
+                                    "required": 0,
+                                    "conditional_logic": [
+                                        [
+                                            {
+                                                "field": "field_69f647dc_counter_background_color",
+                                                "operator": "==",
+                                                "value": "custom"
+                                            }
+                                        ]
+                                    ],
                                     "wrapper": {
                                         "width": "",
                                         "class": "",
@@ -2026,6 +2141,34 @@
                                     "custom_palette_source": "",
                                     "palette_colors": "",
                                     "show_color_wheel": true
+                                },
+                                {
+                                    "key": "field_69f647dc_counter_background_color_gradient",
+                                    "label": "Background Gradient",
+                                    "name": "background_gradient",
+                                    "aria-label": "",
+                                    "type": "textarea",
+                                    "instructions": "Paste a full CSS gradient value, e.g. linear-gradient(180deg, #000000 0%, #ffffff 100%).",
+                                    "required": 0,
+                                    "conditional_logic": [
+                                        [
+                                            {
+                                                "field": "field_69f647dc_counter_background_color",
+                                                "operator": "==",
+                                                "value": "gradient"
+                                            }
+                                        ]
+                                    ],
+                                    "wrapper": {
+                                        "width": "",
+                                        "class": "",
+                                        "id": ""
+                                    },
+                                    "default_value": "",
+                                    "placeholder": "linear-gradient(180deg, #000000 0%, #ffffff 100%)",
+                                    "maxlength": "",
+                                    "rows": 2,
+                                    "new_lines": ""
                                 },
                                 {
                                     "key": "field_69f647dc_counter_padding_desktop",
@@ -2618,10 +2761,51 @@
                                     "label": "Background Color",
                                     "name": "background_color",
                                     "aria-label": "",
-                                    "type": "color_picker",
-                                    "instructions": "Leave empty to use the default background color.",
+                                    "type": "select",
+                                    "instructions": "Choose a theme color, a custom solid color, or a linear gradient. Leave empty to use the default background.",
                                     "required": 0,
                                     "conditional_logic": 0,
+                                    "wrapper": {
+                                        "width": "",
+                                        "class": "",
+                                        "id": ""
+                                    },
+                                    "choices": {
+                                        "primary": "Primary",
+                                        "secondary": "Secondary",
+                                        "font": "Font Color Variable",
+                                        "white": "White",
+                                        "black": "Black",
+                                        "custom": "Custom",
+                                        "gradient": "Linear Gradient"
+                                    },
+                                    "default_value": false,
+                                    "return_format": "value",
+                                    "multiple": 0,
+                                    "allow_null": 1,
+                                    "ui": 1,
+                                    "ajax": 0,
+                                    "placeholder": "Default (theme style)",
+                                    "create_options": 0,
+                                    "save_options": 0
+                                },
+                                {
+                                    "key": "field_69f647dc_four_boxes_background_color_custom",
+                                    "label": "Custom Background Color",
+                                    "name": "background_color_custom",
+                                    "aria-label": "",
+                                    "type": "color_picker",
+                                    "instructions": "",
+                                    "required": 0,
+                                    "conditional_logic": [
+                                        [
+                                            {
+                                                "field": "field_69f647dc_four_boxes_background_color",
+                                                "operator": "==",
+                                                "value": "custom"
+                                            }
+                                        ]
+                                    ],
                                     "wrapper": {
                                         "width": "",
                                         "class": "",
@@ -2633,6 +2817,34 @@
                                     "custom_palette_source": "",
                                     "palette_colors": "",
                                     "show_color_wheel": true
+                                },
+                                {
+                                    "key": "field_69f647dc_four_boxes_background_color_gradient",
+                                    "label": "Background Gradient",
+                                    "name": "background_gradient",
+                                    "aria-label": "",
+                                    "type": "textarea",
+                                    "instructions": "Paste a full CSS gradient value, e.g. linear-gradient(180deg, #000000 0%, #ffffff 100%).",
+                                    "required": 0,
+                                    "conditional_logic": [
+                                        [
+                                            {
+                                                "field": "field_69f647dc_four_boxes_background_color",
+                                                "operator": "==",
+                                                "value": "gradient"
+                                            }
+                                        ]
+                                    ],
+                                    "wrapper": {
+                                        "width": "",
+                                        "class": "",
+                                        "id": ""
+                                    },
+                                    "default_value": "",
+                                    "placeholder": "linear-gradient(180deg, #000000 0%, #ffffff 100%)",
+                                    "maxlength": "",
+                                    "rows": 2,
+                                    "new_lines": ""
                                 },
                                 {
                                     "key": "field_69f647dc_four_boxes_padding_desktop",
@@ -3309,10 +3521,51 @@
                                     "label": "Background Color",
                                     "name": "background_color",
                                     "aria-label": "",
-                                    "type": "color_picker",
-                                    "instructions": "Leave empty to use the default background color.",
+                                    "type": "select",
+                                    "instructions": "Choose a theme color, a custom solid color, or a linear gradient. Leave empty to use the default background.",
                                     "required": 0,
                                     "conditional_logic": 0,
+                                    "wrapper": {
+                                        "width": "",
+                                        "class": "",
+                                        "id": ""
+                                    },
+                                    "choices": {
+                                        "primary": "Primary",
+                                        "secondary": "Secondary",
+                                        "font": "Font Color Variable",
+                                        "white": "White",
+                                        "black": "Black",
+                                        "custom": "Custom",
+                                        "gradient": "Linear Gradient"
+                                    },
+                                    "default_value": false,
+                                    "return_format": "value",
+                                    "multiple": 0,
+                                    "allow_null": 1,
+                                    "ui": 1,
+                                    "ajax": 0,
+                                    "placeholder": "Default (theme style)",
+                                    "create_options": 0,
+                                    "save_options": 0
+                                },
+                                {
+                                    "key": "field_69f647dc_posts_grid_background_color_custom",
+                                    "label": "Custom Background Color",
+                                    "name": "background_color_custom",
+                                    "aria-label": "",
+                                    "type": "color_picker",
+                                    "instructions": "",
+                                    "required": 0,
+                                    "conditional_logic": [
+                                        [
+                                            {
+                                                "field": "field_69f647dc_posts_grid_background_color",
+                                                "operator": "==",
+                                                "value": "custom"
+                                            }
+                                        ]
+                                    ],
                                     "wrapper": {
                                         "width": "",
                                         "class": "",
@@ -3324,6 +3577,34 @@
                                     "custom_palette_source": "",
                                     "palette_colors": "",
                                     "show_color_wheel": true
+                                },
+                                {
+                                    "key": "field_69f647dc_posts_grid_background_color_gradient",
+                                    "label": "Background Gradient",
+                                    "name": "background_gradient",
+                                    "aria-label": "",
+                                    "type": "textarea",
+                                    "instructions": "Paste a full CSS gradient value, e.g. linear-gradient(180deg, #000000 0%, #ffffff 100%).",
+                                    "required": 0,
+                                    "conditional_logic": [
+                                        [
+                                            {
+                                                "field": "field_69f647dc_posts_grid_background_color",
+                                                "operator": "==",
+                                                "value": "gradient"
+                                            }
+                                        ]
+                                    ],
+                                    "wrapper": {
+                                        "width": "",
+                                        "class": "",
+                                        "id": ""
+                                    },
+                                    "default_value": "",
+                                    "placeholder": "linear-gradient(180deg, #000000 0%, #ffffff 100%)",
+                                    "maxlength": "",
+                                    "rows": 2,
+                                    "new_lines": ""
                                 },
                                 {
                                     "key": "field_69f647dc_posts_grid_padding_desktop",
@@ -4143,10 +4424,51 @@
                                     "label": "Background Color",
                                     "name": "background_color",
                                     "aria-label": "",
-                                    "type": "color_picker",
-                                    "instructions": "Leave empty to use the default background color.",
+                                    "type": "select",
+                                    "instructions": "Choose a theme color, a custom solid color, or a linear gradient. Leave empty to use the default background.",
                                     "required": 0,
                                     "conditional_logic": 0,
+                                    "wrapper": {
+                                        "width": "",
+                                        "class": "",
+                                        "id": ""
+                                    },
+                                    "choices": {
+                                        "primary": "Primary",
+                                        "secondary": "Secondary",
+                                        "font": "Font Color Variable",
+                                        "white": "White",
+                                        "black": "Black",
+                                        "custom": "Custom",
+                                        "gradient": "Linear Gradient"
+                                    },
+                                    "default_value": false,
+                                    "return_format": "value",
+                                    "multiple": 0,
+                                    "allow_null": 1,
+                                    "ui": 1,
+                                    "ajax": 0,
+                                    "placeholder": "Default (theme style)",
+                                    "create_options": 0,
+                                    "save_options": 0
+                                },
+                                {
+                                    "key": "field_69f647dc_cta_background_color_custom",
+                                    "label": "Custom Background Color",
+                                    "name": "background_color_custom",
+                                    "aria-label": "",
+                                    "type": "color_picker",
+                                    "instructions": "",
+                                    "required": 0,
+                                    "conditional_logic": [
+                                        [
+                                            {
+                                                "field": "field_69f647dc_cta_background_color",
+                                                "operator": "==",
+                                                "value": "custom"
+                                            }
+                                        ]
+                                    ],
                                     "wrapper": {
                                         "width": "",
                                         "class": "",
@@ -4158,6 +4480,34 @@
                                     "custom_palette_source": "",
                                     "palette_colors": "",
                                     "show_color_wheel": true
+                                },
+                                {
+                                    "key": "field_69f647dc_cta_background_color_gradient",
+                                    "label": "Background Gradient",
+                                    "name": "background_gradient",
+                                    "aria-label": "",
+                                    "type": "textarea",
+                                    "instructions": "Paste a full CSS gradient value, e.g. linear-gradient(180deg, #000000 0%, #ffffff 100%).",
+                                    "required": 0,
+                                    "conditional_logic": [
+                                        [
+                                            {
+                                                "field": "field_69f647dc_cta_background_color",
+                                                "operator": "==",
+                                                "value": "gradient"
+                                            }
+                                        ]
+                                    ],
+                                    "wrapper": {
+                                        "width": "",
+                                        "class": "",
+                                        "id": ""
+                                    },
+                                    "default_value": "",
+                                    "placeholder": "linear-gradient(180deg, #000000 0%, #ffffff 100%)",
+                                    "maxlength": "",
+                                    "rows": 2,
+                                    "new_lines": ""
                                 },
                                 {
                                     "key": "field_69f647dc_cta_padding_desktop",
@@ -4604,5 +4954,5 @@
     "display_title": "",
     "allow_ai_access": false,
     "ai_description": "",
-    "modified": 1785623990
+    "modified": 1785624713
 }

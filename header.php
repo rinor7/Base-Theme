@@ -39,7 +39,33 @@
             elseif (is_404()) echo '404-header'; 
             else echo 'default-header'; 
             ?>">
-            <div class="headerbar" id="headerbar">
+            <?php
+            $header_color_map = array(
+                'primary'   => 'var(--primary-color)',
+                'secondary' => 'var(--secondary-color)',
+                'font'      => 'var(--font-color)',
+                'white'     => 'var(--white)',
+                'black'     => 'var(--black)',
+            );
+            $header_bg_type = get_field('header_background_color', 'option') ?: '';
+            $header_bg_custom = get_field('header_background_color_custom', 'option') ?: '';
+            $header_bg_gradient = get_field('header_background_gradient', 'option') ?: '';
+            $header_bg_style = '';
+            if ($header_bg_type === 'gradient') {
+                $header_bg_gradient = trim($header_bg_gradient);
+                if ($header_bg_gradient !== '') {
+                    $header_bg_style = 'background:' . $header_bg_gradient . ';';
+                }
+            } elseif ($header_bg_type === 'custom') {
+                if (!empty($header_bg_custom)) {
+                    $header_bg_style = 'background-color:' . $header_bg_custom . ';';
+                }
+            } elseif (!empty($header_bg_type) && isset($header_color_map[$header_bg_type])) {
+                $header_bg_style = 'background-color:' . $header_color_map[$header_bg_type] . ';';
+            }
+            $header_bg_style_attr = $header_bg_style ? ' style="' . esc_attr($header_bg_style) . '"' : '';
+            ?>
+            <div class="headerbar" id="headerbar"<?php echo $header_bg_style_attr; ?>>
                 <div class="container">
                     <div class="menu-here">
                         <nav class="navbar navbar-expand-lg navbar-light navbar-center">
@@ -76,9 +102,9 @@
                             ?>
 
                             <div class="right-widget d-none-mobile">
-                                <?php if(is_active_sidebar('widget-6') ) { ?>
+                                <?php if(is_active_sidebar('widget-1') ) { ?>
                                 <ul>
-                                    <?php dynamic_sidebar('widget-6');?>
+                                    <?php dynamic_sidebar('widget-1');?>
                                 </ul>
                                 <?php } ?>
                             </div>

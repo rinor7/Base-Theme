@@ -34,13 +34,30 @@ if (empty($section['disable_section'])):
 
     $row_class = 'row' . ($image_position === 'right' ? ' flex-lg-row-reverse' : '');
 
-    $bg_color = $section['background_color'] ?? '';
+    $font_color_map = array(
+        'primary'   => 'var(--primary-color)',
+        'secondary' => 'var(--secondary-color)',
+        'font'      => 'var(--font-color)',
+        'white'     => 'var(--white)',
+        'black'     => 'var(--black)',
+    );
+    $build_background_style = function ($type, $custom_color, $gradient) use ($font_color_map) {
+        if ($type === 'gradient') {
+            $gradient = trim($gradient);
+            return $gradient !== '' ? 'background:' . $gradient . ';' : '';
+        }
+        if ($type === 'custom') {
+            return !empty($custom_color) ? 'background-color:' . $custom_color . ';' : '';
+        }
+        if (!empty($type) && isset($font_color_map[$type])) {
+            return 'background-color:' . $font_color_map[$type] . ';';
+        }
+        return '';
+    };
+
     $padding_desktop = $section['padding_desktop'] ?? '';
     $padding_mobile  = $section['padding_mobile'] ?? '';
-    $section_style = '';
-    if (!empty($bg_color)) {
-        $section_style .= '--section-bg-color:' . $bg_color . ';';
-    }
+    $section_style = $build_background_style($section['background_color'] ?? '', $section['background_color_custom'] ?? '', $section['background_gradient'] ?? '');
     if ($padding_desktop !== '') {
         $section_style .= '--section-padding-desktop:' . intval($padding_desktop) . 'px;';
     }
@@ -93,13 +110,6 @@ if (empty($section['disable_section'])):
         $title_3_tag = 'p';
     }
 
-    $font_color_map = array(
-        'primary'   => 'var(--primary-color)',
-        'secondary' => 'var(--secondary-color)',
-        'font'      => 'var(--font-color)',
-        'white'     => 'var(--white)',
-        'black'     => 'var(--black)',
-    );
     $build_heading_style_attr = function ($color_key, $custom_color) use ($font_color_map) {
         if ($color_key === 'custom') {
             if (!empty($custom_color)) {

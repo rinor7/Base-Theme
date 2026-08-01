@@ -30,13 +30,23 @@ if (empty($section['disable_section'])):
         $number_style_attr = $build_heading_style_attr($section['number_color'] ?? '', $section['number_color_custom'] ?? '');
         $label_style_attr = $build_heading_style_attr($section['label_color'] ?? '', $section['label_color_custom'] ?? '');
 
-        $bg_color = $section['background_color'] ?? '';
+        $build_background_style = function ($type, $custom_color, $gradient) use ($font_color_map) {
+            if ($type === 'gradient') {
+                $gradient = trim($gradient);
+                return $gradient !== '' ? 'background:' . $gradient . ';' : '';
+            }
+            if ($type === 'custom') {
+                return !empty($custom_color) ? 'background-color:' . $custom_color . ';' : '';
+            }
+            if (!empty($type) && isset($font_color_map[$type])) {
+                return 'background-color:' . $font_color_map[$type] . ';';
+            }
+            return '';
+        };
+
         $padding_desktop = $section['padding_desktop'] ?? '';
         $padding_mobile  = $section['padding_mobile'] ?? '';
-        $section_style = '';
-        if (!empty($bg_color)) {
-            $section_style .= '--section-bg-color:' . $bg_color . ';';
-        }
+        $section_style = $build_background_style($section['background_color'] ?? '', $section['background_color_custom'] ?? '', $section['background_gradient'] ?? '');
         if ($padding_desktop !== '') {
             $section_style .= '--section-padding-desktop:' . intval($padding_desktop) . 'px;';
         }
