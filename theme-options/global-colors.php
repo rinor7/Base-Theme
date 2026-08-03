@@ -6,6 +6,7 @@ function my_theme_color_settings($wp_customize) {
     $wp_customize->add_section('theme_colors_section', [
         'title' => 'Theme Colors',
         'priority' => 30,
+        'description' => 'These colors are available everywhere on the site as CSS variables — including in any "Custom CSS Class" field. There are also two fixed variables always available: var(--white) and var(--black).',
     ]);
 
     // PRIMARY COLOR
@@ -19,6 +20,7 @@ function my_theme_color_settings($wp_customize) {
             'primary_color',
             [
                 'label' => 'Primary Color',
+                'description' => 'CSS variable: var(--primary-color)',
                 'section' => 'theme_colors_section',
             ]
         )
@@ -35,6 +37,7 @@ function my_theme_color_settings($wp_customize) {
             'secondary_color',
             [
                 'label' => 'Secondary Color',
+                'description' => 'CSS variable: var(--secondary-color)',
                 'section' => 'theme_colors_section',
             ]
         )
@@ -51,6 +54,7 @@ function my_theme_color_settings($wp_customize) {
             'font_color',
             [
                 'label' => 'Font Color',
+                'description' => 'CSS variable: var(--font-color)',
                 'section' => 'theme_colors_section',
             ]
         )

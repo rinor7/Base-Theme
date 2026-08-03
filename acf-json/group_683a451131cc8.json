@@ -4,7 +4,7 @@
     "fields": [
         {
             "key": "field_683a444c2a239",
-            "label": "Theme Settings",
+            "label": "Global Settings",
             "name": "",
             "aria-label": "",
             "type": "tab",
@@ -92,7 +92,7 @@
         },
         {
             "key": "field_6840e5f5fe18c",
-            "label": "Header",
+            "label": "Header Settings",
             "name": "",
             "aria-label": "",
             "type": "tab",
@@ -133,204 +133,6 @@
             "toggle": 0,
             "save_custom": 0,
             "custom_choice_button_text": "Add new choice"
-        },
-        {
-            "key": "field_6840e6a0fe18e",
-            "label": "Header Background Color",
-            "name": "header_background_color",
-            "aria-label": "",
-            "type": "select",
-            "instructions": "Choose a theme color, a custom solid color, or a linear gradient. Leave empty to use the default background.",
-            "required": 0,
-            "conditional_logic": 0,
-            "wrapper": {
-                "width": "",
-                "class": "",
-                "id": ""
-            },
-            "choices": {
-                "primary": "Primary",
-                "secondary": "Secondary",
-                "font": "Font Color Variable",
-                "white": "White",
-                "black": "Black",
-                "custom": "Custom",
-                "gradient": "Linear Gradient"
-            },
-            "default_value": false,
-            "return_format": "value",
-            "multiple": 0,
-            "allow_null": 1,
-            "ui": 1,
-            "ajax": 0,
-            "placeholder": "Default (theme style)",
-            "create_options": 0,
-            "save_options": 0
-        },
-        {
-            "key": "field_6840e6a1fe18f",
-            "label": "Header Custom Background Color",
-            "name": "header_background_color_custom",
-            "aria-label": "",
-            "type": "color_picker",
-            "instructions": "",
-            "required": 0,
-            "conditional_logic": [
-                [
-                    {
-                        "field": "field_6840e6a0fe18e",
-                        "operator": "==",
-                        "value": "custom"
-                    }
-                ]
-            ],
-            "wrapper": {
-                "width": "",
-                "class": "",
-                "id": ""
-            },
-            "default_value": "",
-            "enable_opacity": 0,
-            "return_format": "string",
-            "custom_palette_source": "",
-            "palette_colors": "",
-            "show_color_wheel": true
-        },
-        {
-            "key": "field_6840e6a2fe1a0",
-            "label": "Header Background Gradient",
-            "name": "header_background_gradient",
-            "aria-label": "",
-            "type": "textarea",
-            "instructions": "Paste a full CSS gradient value, e.g. linear-gradient(180deg, #000000 0%, #333333 100%).",
-            "required": 0,
-            "conditional_logic": [
-                [
-                    {
-                        "field": "field_6840e6a0fe18e",
-                        "operator": "==",
-                        "value": "gradient"
-                    }
-                ]
-            ],
-            "wrapper": {
-                "width": "",
-                "class": "",
-                "id": ""
-            },
-            "default_value": "",
-            "placeholder": "linear-gradient(180deg, #000000 0%, #333333 100%)",
-            "maxlength": "",
-            "rows": 2,
-            "new_lines": ""
-        },
-        {
-            "key": "field_6840e7a0fe190",
-            "label": "Footer",
-            "name": "",
-            "aria-label": "",
-            "type": "tab",
-            "instructions": "",
-            "required": 0,
-            "conditional_logic": 0,
-            "wrapper": {
-                "width": "",
-                "class": "",
-                "id": ""
-            },
-            "placement": "top",
-            "endpoint": 0,
-            "selected": 0
-        },
-        {
-            "key": "field_6840e7a1fe191",
-            "label": "Footer Background Color",
-            "name": "footer_background_color",
-            "aria-label": "",
-            "type": "select",
-            "instructions": "Choose a theme color, a custom solid color, or a linear gradient. Leave empty to keep the default (black).",
-            "required": 0,
-            "conditional_logic": 0,
-            "wrapper": {
-                "width": "",
-                "class": "",
-                "id": ""
-            },
-            "choices": {
-                "primary": "Primary",
-                "secondary": "Secondary",
-                "font": "Font Color Variable",
-                "white": "White",
-                "black": "Black",
-                "custom": "Custom",
-                "gradient": "Linear Gradient"
-            },
-            "default_value": false,
-            "return_format": "value",
-            "multiple": 0,
-            "allow_null": 1,
-            "ui": 1,
-            "ajax": 0,
-            "placeholder": "Default (black)",
-            "create_options": 0,
-            "save_options": 0
-        },
-        {
-            "key": "field_6840e7a2fe192",
-            "label": "Footer Custom Background Color",
-            "name": "footer_background_color_custom",
-            "aria-label": "",
-            "type": "color_picker",
-            "instructions": "",
-            "required": 0,
-            "conditional_logic": [
-                [
-                    {
-                        "field": "field_6840e7a1fe191",
-                        "operator": "==",
-                        "value": "custom"
-                    }
-                ]
-            ],
-            "wrapper": {
-                "width": "",
-                "class": "",
-                "id": ""
-            },
-            "default_value": "",
-            "enable_opacity": 0,
-            "return_format": "string",
-            "custom_palette_source": "",
-            "palette_colors": "",
-            "show_color_wheel": true
-        },
-        {
-            "key": "field_6840e7a3fe193",
-            "label": "Footer Background Gradient",
-            "name": "footer_background_gradient",
-            "aria-label": "",
-            "type": "textarea",
-            "instructions": "Paste a full CSS gradient value, e.g. linear-gradient(180deg, #000000 0%, #333333 100%).",
-            "required": 0,
-            "conditional_logic": [
-                [
-                    {
-                        "field": "field_6840e7a1fe191",
-                        "operator": "==",
-                        "value": "gradient"
-                    }
-                ]
-            ],
-            "wrapper": {
-                "width": "",
-                "class": "",
-                "id": ""
-            },
-            "default_value": "",
-            "placeholder": "linear-gradient(180deg, #000000 0%, #333333 100%)",
-            "maxlength": "",
-            "rows": 2,
-            "new_lines": ""
         },
         {
             "key": "field_68cf20a7f5214",
@@ -927,5 +729,7 @@
     "description": "",
     "show_in_rest": 0,
     "display_title": "",
-    "modified": 1785625050
+    "allow_ai_access": false,
+    "ai_description": "",
+    "modified": 1785797154
 }

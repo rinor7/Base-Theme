@@ -149,7 +149,59 @@ function base_theme_load_public_post_type_choices($field) {
     return $field;
 }
 
-//Theme Settings Menu 
+// Reuse the same dynamic post type choices on the Theme Settings "Per Post Type Banners" repeater.
+add_filter('acf/load_field/key=field_683a4511_hero_ptset_post_type', 'base_theme_load_public_post_type_choices');
+
+// Returns the enabled Hero row (from Theme Settings > hero_banners > hero_post_type_settings)
+// for a given post type, or null if Hero isn't enabled for it. Shared by the admin field
+// visibility filter below and by includes/flexible/layouts/hero/hero.php + includes/blocks/hero.php.
+function base_theme_get_post_type_hero_settings($post_type) {
+    static $cache = array();
+    if (array_key_exists($post_type, $cache)) {
+        return $cache[$post_type];
+    }
+    $rows = get_field('hero_banners', 'option')['hero_post_type_settings'] ?? [];
+    $result = null;
+    foreach ($rows as $row) {
+        if (($row['post_type'] ?? '') === $post_type && !empty($row['enable_hero'])) {
+            $result = $row;
+            break;
+        }
+    }
+    $cache[$post_type] = $result;
+    return $result;
+}
+
+// Only show the per-post "Hero Override" fields when Hero is actually enabled for that post's type.
+add_filter('acf/prepare_field/key=field_690b1a2c_hero_override_image', 'base_theme_hide_hero_override_if_disabled');
+add_filter('acf/prepare_field/key=field_690b1a2c_hero_override_content_type', 'base_theme_hide_hero_override_if_disabled');
+function base_theme_hide_hero_override_if_disabled($field) {
+    global $post;
+    if (!$post || !base_theme_get_post_type_hero_settings(get_post_type($post))) {
+        return false;
+    }
+    return $field;
+}
+
+// Hide the "Hero" flexible content layout on the Frontpage template — that template
+// never renders a hero, so it shouldn't be offered as a section choice there.
+// ACF location rules only gate whole field groups, not individual layouts, so this
+// has to be done by filtering the layout list itself.
+add_filter('acf/prepare_field/key=field_69f647dc_flex_sections', 'base_theme_hide_hero_layout_on_frontpage');
+function base_theme_hide_hero_layout_on_frontpage($field) {
+    global $post;
+    if (empty($field['layouts']) || !$post || get_page_template_slug($post) !== 'flexible-content-work.php') {
+        return $field;
+    }
+    foreach ($field['layouts'] as $i => $layout) {
+        if (($layout['name'] ?? '') === 'hero') {
+            unset($field['layouts'][$i]);
+        }
+    }
+    return $field;
+}
+
+//Theme Settings Menu
 if (function_exists('acf_add_options_page')) {
     acf_add_options_page(array(
         'page_title'    => 'Theme Settings',
