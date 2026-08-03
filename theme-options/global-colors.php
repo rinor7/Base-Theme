@@ -11,6 +11,7 @@ function my_theme_color_settings($wp_customize) {
     // PRIMARY COLOR
     $wp_customize->add_setting('primary_color', [
         'transport' => 'refresh',
+        'sanitize_callback' => 'sanitize_hex_color',
     ]);
     $wp_customize->add_control(
         new WP_Customize_Color_Control(
@@ -26,6 +27,7 @@ function my_theme_color_settings($wp_customize) {
     // SECONDARY COLOR
     $wp_customize->add_setting('secondary_color', [
         'transport' => 'refresh',
+        'sanitize_callback' => 'sanitize_hex_color',
     ]);
     $wp_customize->add_control(
         new WP_Customize_Color_Control(
@@ -41,6 +43,7 @@ function my_theme_color_settings($wp_customize) {
     // FONT COLOR
     $wp_customize->add_setting('font_color', [
         'transport' => 'refresh',
+        'sanitize_callback' => 'sanitize_hex_color',
     ]);
     $wp_customize->add_control(
         new WP_Customize_Color_Control(

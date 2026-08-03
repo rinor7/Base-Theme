@@ -4,7 +4,7 @@ add_action('after_setup_theme', 'create_acf_json_dir');
 function create_acf_json_dir() {
     $dir = get_template_directory() . '/acf-json';
     if (!is_dir($dir)) {
-        mkdir($dir);
+        wp_mkdir_p($dir);
     }
 }
 

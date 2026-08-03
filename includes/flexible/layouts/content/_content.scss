@@ -1,0 +1,7 @@
+.flex-content {
+    padding: var(--section-padding-mobile, 20px) 0;
+
+    @include min-md {
+        padding: var(--section-padding-desktop, 20px) 0;
+    }
+}

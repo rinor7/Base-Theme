@@ -13,9 +13,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta http-equiv="X-UA-Compatible" content="ie=edge" />
 
-    <!-- Change this to "noindex, nofollow" when you go live -->
-    <meta name="robots" content="noindex, nofollow"> 
-
     <!-- Profile link for XFN (XHTML Friends Network), used for linking to profiles -->
     <link rel="profile" href="https://gmpg.org/xfn/11">
 
@@ -29,7 +26,7 @@
     <?php wp_head(); ?>
 </head>
 
-<body <?php $filename = basename(__FILE__, '.php'); body_class( array( wp_is_mobile() ? 'wp-is-mobile' : 'wp-is-desktop', get_field('sticky', 'option') ? 'header-sticky' : '', $filename ) ); ?>>
+<body <?php body_class( array( wp_is_mobile() ? 'wp-is-mobile' : 'wp-is-desktop', get_field('sticky', 'option') ? 'header-sticky' : '' ) ); ?>>
     <div id="page" class="site">
 
         <!-- Header Righside Menu -->

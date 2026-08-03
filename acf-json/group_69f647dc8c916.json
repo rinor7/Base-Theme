@@ -4926,6 +4926,74 @@
                     ],
                     "min": "",
                     "max": ""
+                },
+                {
+                    "key": "layout_69f647dc_content",
+                    "name": "content",
+                    "label": "Content",
+                    "display": "block",
+                    "sub_fields": [
+                        {
+                            "key": "field_69f647dc_content_group",
+                            "label": "Content Settings",
+                            "name": "group_content",
+                            "aria-label": "",
+                            "type": "group",
+                            "instructions": "Renders this page's main editor content (the block editor content above). Use this section once per page.",
+                            "required": 0,
+                            "conditional_logic": 0,
+                            "wrapper": {
+                                "width": "",
+                                "class": "",
+                                "id": ""
+                            },
+                            "layout": "block",
+                            "sub_fields": [
+                                {
+                                    "key": "field_69f647dc_content_disable",
+                                    "label": "Disable Section",
+                                    "name": "disable_section",
+                                    "aria-label": "",
+                                    "type": "true_false",
+                                    "instructions": "",
+                                    "required": 0,
+                                    "conditional_logic": 0,
+                                    "wrapper": {
+                                        "width": "",
+                                        "class": "",
+                                        "id": ""
+                                    },
+                                    "message": "Hide this section on frontend",
+                                    "default_value": 0,
+                                    "ui": 1,
+                                    "ui_on_text": "",
+                                    "ui_off_text": ""
+                                },
+                                {
+                                    "key": "field_69f647dc_content_custom_class",
+                                    "label": "Custom CSS Class",
+                                    "name": "custom_class",
+                                    "aria-label": "",
+                                    "type": "text",
+                                    "instructions": "Added to the section's outer wrapper. Use this to target the section with your own custom CSS. Separate multiple classes with a space.",
+                                    "required": 0,
+                                    "conditional_logic": 0,
+                                    "wrapper": {
+                                        "width": "",
+                                        "class": "",
+                                        "id": ""
+                                    },
+                                    "default_value": "",
+                                    "maxlength": "",
+                                    "placeholder": "",
+                                    "prepend": "",
+                                    "append": ""
+                                }
+                            ]
+                        }
+                    ],
+                    "min": "",
+                    "max": "1"
                 }
             ],
             "min": "",
@@ -4954,5 +5022,5 @@
     "display_title": "",
     "allow_ai_access": false,
     "ai_description": "",
-    "modified": 1785624713
+    "modified": 1785794250
 }

@@ -11,15 +11,19 @@ function theme_customizer_register($wp_customize) {
     // Register setting for each media query
     $wp_customize->add_setting('container_max_width_large_setting', array(
         'default' => 1140,
+        'sanitize_callback' => 'absint',
     ));
     $wp_customize->add_setting('container_max_width_medium_setting', array(
         'default' => 960,
+        'sanitize_callback' => 'absint',
     ));
     $wp_customize->add_setting('container_max_width_small_setting', array(
         'default' => 720,
+        'sanitize_callback' => 'absint',
     ));
     $wp_customize->add_setting('container_max_width_extra_small_setting', array(
         'default' => 540,
+        'sanitize_callback' => 'absint',
     ));
 
     // Step 3: Add Control for each media query
@@ -76,22 +80,22 @@ function theme_custom_css() {
     <style>
        @media (min-width: 576px) {
             .container {
-                max-width: <?php echo get_theme_mod('container_max_width_extra_small_setting', 540); ?>px;
+                max-width: <?php echo absint(get_theme_mod('container_max_width_extra_small_setting', 540)); ?>px;
             }
         }
 		@media (min-width: 768px) {
             .container {
-                max-width: <?php echo get_theme_mod('container_max_width_small_setting', 720); ?>px;
+                max-width: <?php echo absint(get_theme_mod('container_max_width_small_setting', 720)); ?>px;
             }
         }
 		@media (min-width: 992px) {
             .container {
-                max-width: <?php echo get_theme_mod('container_max_width_medium_setting', 960); ?>px;
+                max-width: <?php echo absint(get_theme_mod('container_max_width_medium_setting', 960)); ?>px;
             }
         }
         @media (min-width: 1200px) {
             .container {
-                max-width: <?php echo get_theme_mod('container_max_width_large_setting', 1140); ?>px;
+                max-width: <?php echo absint(get_theme_mod('container_max_width_large_setting', 1140)); ?>px;
             }
         }
     </style>

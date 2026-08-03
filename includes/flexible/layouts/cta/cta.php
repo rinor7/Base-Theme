@@ -91,12 +91,12 @@ if (empty($section['disable_section'])):
                     <div class="buttons">
                         <?php if ($has_btn_1): ?>
                             <div class="default-btn">
-                                <a href="<?php echo esc_url($button_1['url']); ?>"<?php echo !empty($button_1['target']) ? ' target="' . esc_attr($button_1['target']) . '"' : ''; ?> class="link-btn <?php echo esc_attr($button_1_style); ?>"><?php echo esc_html($button_1['title']); ?></a>
+                                <a href="<?php echo esc_url($button_1['url']); ?>"<?php echo !empty($button_1['target']) ? ' target="' . esc_attr($button_1['target']) . '" rel="noopener noreferrer"' : ''; ?> class="link-btn <?php echo esc_attr($button_1_style); ?>"><?php echo esc_html($button_1['title']); ?></a>
                             </div>
                         <?php endif; ?>
                         <?php if ($has_btn_2): ?>
                             <div class="default-btn two-btns">
-                                <a href="<?php echo esc_url($button_2['url']); ?>"<?php echo !empty($button_2['target']) ? ' target="' . esc_attr($button_2['target']) . '"' : ''; ?> class="link-btn <?php echo esc_attr($button_2_style); ?>"><?php echo esc_html($button_2['title']); ?></a>
+                                <a href="<?php echo esc_url($button_2['url']); ?>"<?php echo !empty($button_2['target']) ? ' target="' . esc_attr($button_2['target']) . '" rel="noopener noreferrer"' : ''; ?> class="link-btn <?php echo esc_attr($button_2_style); ?>"><?php echo esc_html($button_2['title']); ?></a>
                             </div>
                         <?php endif; ?>
                     </div>

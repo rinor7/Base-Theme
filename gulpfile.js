@@ -3,7 +3,6 @@ const sass = require("gulp-sass")(require("sass"));
 const autoprefixer = require("gulp-autoprefixer");
 const cleanCSS = require("gulp-clean-css");
 const uglify = require("gulp-uglify");
-const concat = require("gulp-concat");
 const imagemin = require("gulp-imagemin");
 const webp = require("gulp-webp");
 const plumber = require("gulp-plumber");
@@ -16,8 +15,8 @@ const paths = {
   css: "assets/css/", // Compiled CSS output
   js: "assets/js/main.js", // Main JS file
   jsDest: "assets/js/", // Minified JS output
-  images: "assets/images/**/*.{png,jpg,jpeg,gif,svg}",
-  imagesDest: "assets/images/",
+  images: "assets/img/**/*.{png,jpg,jpeg,gif,svg}",
+  imagesDest: "assets/img/",
 };
 
 // Compile SCSS

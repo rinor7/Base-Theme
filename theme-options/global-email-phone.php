@@ -30,7 +30,7 @@ function get_phone_link() {
 
     if (!$display || !$clean) return '';
 
-    return '<a href="tel:' . esc_attr($clean) . '" class="phone-link" class="phone-link">' . esc_html($display) . '</a>';
+    return '<a href="tel:' . esc_attr($clean) . '" class="phone-link">' . esc_html($display) . '</a>';
 }
 
 // ==============================

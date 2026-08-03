@@ -38,7 +38,9 @@ add_action('after_setup_theme', 'site_identity_setup');
 
 // Add Footer Logo Option to Customizer
 add_action('customize_register', function($wp_customize) {
-    $wp_customize->add_setting('footer_logo');
+    $wp_customize->add_setting('footer_logo', [
+        'sanitize_callback' => 'esc_url_raw',
+    ]);
     $wp_customize->add_control(new WP_Customize_Image_Control(
         $wp_customize,
         'footer_logo',

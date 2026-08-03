@@ -1,5 +1,19 @@
-<?php 
-//Remove Comments Option from Admin Menu 
+<?php
+// Warn admins on every wp-admin screen if the site is currently blocked from
+// search engines, so it can't be forgotten silently at launch like a code
+// comment can. Search-engine visibility itself is controlled the standard
+// WordPress way: Settings > Reading > "Discourage search engines from
+// indexing this site" (core already emits the noindex tag for us via
+// wp_no_robots() when that box is checked).
+function base_theme_noindex_admin_notice() {
+    if (!current_user_can('manage_options') || get_option('blog_public')) {
+        return;
+    }
+    echo '<div class="notice notice-warning"><p><strong>Search engines are currently blocked from indexing this site.</strong> If this site is live, go to <a href="' . esc_url(admin_url('options-reading.php')) . '">Settings &rarr; Reading</a> and uncheck "Discourage search engines from indexing this site".</p></div>';
+}
+add_action('admin_notices', 'base_theme_noindex_admin_notice');
+
+//Remove Comments Option from Admin Menu
 function df_disable_comments_admin_menu() {
     remove_menu_page('edit-comments.php');
 }

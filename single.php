@@ -6,9 +6,11 @@
 
 
 	
+	<?php if (has_post_thumbnail()) : ?>
 	<div class="intro">
-		<img src="<?php the_post_thumbnail_url();?>" alt="">
+		<img src="<?php echo esc_url(get_the_post_thumbnail_url(null, 'full')); ?>" alt="<?php echo esc_attr(get_the_title()); ?>">
 	</div>
+	<?php endif; ?>
 	
 	<div class="container">
 		<div class="content">
