@@ -1,10 +1,13 @@
 //Hero'S Styles
 .block-hero {
-    min-height: 300px;
+    min-height: var(--hero-min-height-mobile, 300px);
     display: flex;
     align-items: center;
     overflow: hidden;
     position: relative;
+    @include min-md {
+        min-height: var(--hero-min-height-desktop, 300px);
+    }
     // background-repeat: no-repeat;
     background-size: cover;
     // &:before {

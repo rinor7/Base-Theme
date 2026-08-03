@@ -135,6 +135,204 @@
             "custom_choice_button_text": "Add new choice"
         },
         {
+            "key": "field_6840e6a0fe18e",
+            "label": "Header Background Color",
+            "name": "header_background_color",
+            "aria-label": "",
+            "type": "select",
+            "instructions": "Choose a theme color, a custom solid color, or a linear gradient. Leave empty to use the default background.",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "choices": {
+                "primary": "Primary",
+                "secondary": "Secondary",
+                "font": "Font Color Variable",
+                "white": "White",
+                "black": "Black",
+                "custom": "Custom",
+                "gradient": "Linear Gradient"
+            },
+            "default_value": false,
+            "return_format": "value",
+            "multiple": 0,
+            "allow_null": 1,
+            "ui": 1,
+            "ajax": 0,
+            "placeholder": "Default (theme style)",
+            "create_options": 0,
+            "save_options": 0
+        },
+        {
+            "key": "field_6840e6a1fe18f",
+            "label": "Header Custom Background Color",
+            "name": "header_background_color_custom",
+            "aria-label": "",
+            "type": "color_picker",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": [
+                [
+                    {
+                        "field": "field_6840e6a0fe18e",
+                        "operator": "==",
+                        "value": "custom"
+                    }
+                ]
+            ],
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "default_value": "",
+            "enable_opacity": 0,
+            "return_format": "string",
+            "custom_palette_source": "",
+            "palette_colors": "",
+            "show_color_wheel": true
+        },
+        {
+            "key": "field_6840e6a2fe1a0",
+            "label": "Header Background Gradient",
+            "name": "header_background_gradient",
+            "aria-label": "",
+            "type": "textarea",
+            "instructions": "Paste a full CSS gradient value, e.g. linear-gradient(180deg, #000000 0%, #333333 100%).",
+            "required": 0,
+            "conditional_logic": [
+                [
+                    {
+                        "field": "field_6840e6a0fe18e",
+                        "operator": "==",
+                        "value": "gradient"
+                    }
+                ]
+            ],
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "default_value": "",
+            "placeholder": "linear-gradient(180deg, #000000 0%, #333333 100%)",
+            "maxlength": "",
+            "rows": 2,
+            "new_lines": ""
+        },
+        {
+            "key": "field_6840e7a0fe190",
+            "label": "Footer",
+            "name": "",
+            "aria-label": "",
+            "type": "tab",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "placement": "top",
+            "endpoint": 0,
+            "selected": 0
+        },
+        {
+            "key": "field_6840e7a1fe191",
+            "label": "Footer Background Color",
+            "name": "footer_background_color",
+            "aria-label": "",
+            "type": "select",
+            "instructions": "Choose a theme color, a custom solid color, or a linear gradient. Leave empty to keep the default (black).",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "choices": {
+                "primary": "Primary",
+                "secondary": "Secondary",
+                "font": "Font Color Variable",
+                "white": "White",
+                "black": "Black",
+                "custom": "Custom",
+                "gradient": "Linear Gradient"
+            },
+            "default_value": false,
+            "return_format": "value",
+            "multiple": 0,
+            "allow_null": 1,
+            "ui": 1,
+            "ajax": 0,
+            "placeholder": "Default (black)",
+            "create_options": 0,
+            "save_options": 0
+        },
+        {
+            "key": "field_6840e7a2fe192",
+            "label": "Footer Custom Background Color",
+            "name": "footer_background_color_custom",
+            "aria-label": "",
+            "type": "color_picker",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": [
+                [
+                    {
+                        "field": "field_6840e7a1fe191",
+                        "operator": "==",
+                        "value": "custom"
+                    }
+                ]
+            ],
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "default_value": "",
+            "enable_opacity": 0,
+            "return_format": "string",
+            "custom_palette_source": "",
+            "palette_colors": "",
+            "show_color_wheel": true
+        },
+        {
+            "key": "field_6840e7a3fe193",
+            "label": "Footer Background Gradient",
+            "name": "footer_background_gradient",
+            "aria-label": "",
+            "type": "textarea",
+            "instructions": "Paste a full CSS gradient value, e.g. linear-gradient(180deg, #000000 0%, #333333 100%).",
+            "required": 0,
+            "conditional_logic": [
+                [
+                    {
+                        "field": "field_6840e7a1fe191",
+                        "operator": "==",
+                        "value": "gradient"
+                    }
+                ]
+            ],
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "default_value": "",
+            "placeholder": "linear-gradient(180deg, #000000 0%, #333333 100%)",
+            "maxlength": "",
+            "rows": 2,
+            "new_lines": ""
+        },
+        {
             "key": "field_68cf20a7f5214",
             "label": "Banners",
             "name": "",
@@ -158,7 +356,7 @@
             "name": "hero_banners",
             "aria-label": "",
             "type": "group",
-            "instructions": "When a specific Hero is set, it will overwrite the default Hero.",
+            "instructions": "Site-wide hero fallbacks. Per-post-type rows let you enable Hero for any post type (including future ones) without touching code. A post's own Hero Override (if set) always wins over these defaults.",
             "required": 0,
             "conditional_logic": 0,
             "wrapper": {
@@ -169,8 +367,8 @@
             "layout": "block",
             "sub_fields": [
                 {
-                    "key": "field_68cf20f8f5216",
-                    "label": "Default Single Posts Banner",
+                    "key": "field_683a4511_hero_default_tab",
+                    "label": "Site-wide Default Banners",
                     "name": "",
                     "aria-label": "",
                     "type": "tab",
@@ -187,14 +385,102 @@
                     "selected": 0
                 },
                 {
+                    "key": "field_683a4511_hero_min_height_desktop",
+                    "label": "Minimum Height Desktop (px)",
+                    "name": "min_height_desktop",
+                    "aria-label": "",
+                    "type": "number",
+                    "instructions": "Applies to every hero site-wide \u2014 Theme Settings and the flexible content Hero module alike. Leave empty for the default (300px).",
+                    "required": 0,
+                    "conditional_logic": 0,
+                    "wrapper": {
+                        "width": "50",
+                        "class": "",
+                        "id": ""
+                    },
+                    "default_value": "",
+                    "min": 0,
+                    "max": "",
+                    "placeholder": "300",
+                    "step": ""
+                },
+                {
+                    "key": "field_683a4511_hero_min_height_mobile",
+                    "label": "Minimum Height Mobile (px)",
+                    "name": "min_height_mobile",
+                    "aria-label": "",
+                    "type": "number",
+                    "instructions": "Leave empty for the default (300px).",
+                    "required": 0,
+                    "conditional_logic": 0,
+                    "wrapper": {
+                        "width": "50",
+                        "class": "",
+                        "id": ""
+                    },
+                    "default_value": "",
+                    "min": 0,
+                    "max": "",
+                    "placeholder": "300",
+                    "step": ""
+                },
+                {
+                    "key": "field_683a4511_single_bgtype",
+                    "label": "Background Type",
+                    "name": "default_single_background_type",
+                    "aria-label": "",
+                    "type": "select",
+                    "instructions": "",
+                    "required": 0,
+                    "conditional_logic": 0,
+                    "wrapper": {
+                        "width": "",
+                        "class": "",
+                        "id": ""
+                    },
+                    "choices": {
+                        "image": "Image",
+                        "primary": "Primary Color",
+                        "secondary": "Secondary Color",
+                        "font": "Font Color Variable",
+                        "white": "White",
+                        "black": "Black",
+                        "custom": "Custom Color",
+                        "gradient": "Linear Gradient"
+                    },
+                    "default_value": "image",
+                    "return_format": "value",
+                    "multiple": 0,
+                    "allow_null": 0,
+                    "ui": 0,
+                    "ajax": 0,
+                    "placeholder": "",
+                    "create_options": 0,
+                    "save_options": 0
+                },
+                {
                     "key": "field_68cf2108f5217",
-                    "label": "Background",
+                    "label": "Default Singular Image (all types)",
                     "name": "default_single_hero",
                     "aria-label": "",
                     "type": "image",
                     "instructions": "",
                     "required": 0,
-                    "conditional_logic": 0,
+                    "conditional_logic": [
+                        [
+                            {
+                                "field": "field_683a4511_single_bgtype",
+                                "operator": "==",
+                                "value": "image"
+                            }
+                        ],
+                        [
+                            {
+                                "field": "field_683a4511_single_bgtype",
+                                "operator": "==empty"
+                            }
+                        ]
+                    ],
                     "wrapper": {
                         "width": "",
                         "class": "",
@@ -213,8 +499,65 @@
                     "preview_size": "medium"
                 },
                 {
+                    "key": "field_683a4511_single_bgcolor",
+                    "label": "Custom Color",
+                    "name": "default_single_background_color",
+                    "aria-label": "",
+                    "type": "color_picker",
+                    "instructions": "",
+                    "required": 0,
+                    "conditional_logic": [
+                        [
+                            {
+                                "field": "field_683a4511_single_bgtype",
+                                "operator": "==",
+                                "value": "custom"
+                            }
+                        ]
+                    ],
+                    "wrapper": {
+                        "width": "",
+                        "class": "",
+                        "id": ""
+                    },
+                    "default_value": "",
+                    "enable_opacity": 0,
+                    "return_format": "string",
+                    "custom_palette_source": "",
+                    "palette_colors": "",
+                    "show_color_wheel": true
+                },
+                {
+                    "key": "field_683a4511_single_bggradient",
+                    "label": "Gradient",
+                    "name": "default_single_background_gradient",
+                    "aria-label": "",
+                    "type": "textarea",
+                    "instructions": "Paste a full CSS gradient value, e.g. linear-gradient(180deg, #000000 0%, #333333 100%).",
+                    "required": 1,
+                    "conditional_logic": [
+                        [
+                            {
+                                "field": "field_683a4511_single_bgtype",
+                                "operator": "==",
+                                "value": "gradient"
+                            }
+                        ]
+                    ],
+                    "wrapper": {
+                        "width": "",
+                        "class": "",
+                        "id": ""
+                    },
+                    "default_value": "",
+                    "placeholder": "linear-gradient(180deg, #000000 0%, #333333 100%)",
+                    "maxlength": "",
+                    "rows": 2,
+                    "new_lines": ""
+                },
+                {
                     "key": "field_68cf2e69be307",
-                    "label": "Content Color",
+                    "label": "Default Singular Content Color (all types)",
                     "name": "default_single_hero_content_type",
                     "aria-label": "",
                     "type": "radio",
@@ -223,7 +566,7 @@
                     "conditional_logic": [
                         [
                             {
-                                "field": "field_68cf2108f5217",
+                                "field": "field_683a4511_single_bgtype",
                                 "operator": "!=empty"
                             }
                         ]
@@ -246,109 +589,62 @@
                     "save_other_choice": 0
                 },
                 {
-                    "key": "field_68cf2128f5218",
-                    "label": "Banner for PT 'posttype'",
-                    "name": "",
+                    "key": "field_683a4511_archive_bgtype",
+                    "label": "Background Type",
+                    "name": "default_archive_background_type",
                     "aria-label": "",
-                    "type": "tab",
+                    "type": "select",
                     "instructions": "",
                     "required": 0,
                     "conditional_logic": 0,
-                    "wrapper": {
-                        "width": "",
-                        "class": "",
-                        "id": ""
-                    },
-                    "placement": "top",
-                    "endpoint": 0,
-                    "selected": 0
-                },
-                {
-                    "key": "field_68cf213ef5219",
-                    "label": "Background",
-                    "name": "hero_posttype",
-                    "aria-label": "",
-                    "type": "image",
-                    "instructions": "",
-                    "required": 0,
-                    "conditional_logic": 0,
-                    "wrapper": {
-                        "width": "",
-                        "class": "",
-                        "id": ""
-                    },
-                    "return_format": "url",
-                    "library": "all",
-                    "min_width": "",
-                    "min_height": "",
-                    "min_size": "",
-                    "max_width": "",
-                    "max_height": "",
-                    "max_size": "",
-                    "mime_types": "",
-                    "allow_in_bindings": 0,
-                    "preview_size": "medium"
-                },
-                {
-                    "key": "field_68cf2e90be308",
-                    "label": "Content Color",
-                    "name": "hero_posttype_content_type",
-                    "aria-label": "",
-                    "type": "radio",
-                    "instructions": "",
-                    "required": 0,
-                    "conditional_logic": [
-                        [
-                            {
-                                "field": "field_68cf213ef5219",
-                                "operator": "!=empty"
-                            }
-                        ]
-                    ],
                     "wrapper": {
                         "width": "",
                         "class": "",
                         "id": ""
                     },
                     "choices": {
-                        "light-content": "Light Content",
-                        "dark-content": "Dark Content"
+                        "image": "Image",
+                        "primary": "Primary Color",
+                        "secondary": "Secondary Color",
+                        "font": "Font Color Variable",
+                        "white": "White",
+                        "black": "Black",
+                        "custom": "Custom Color",
+                        "gradient": "Linear Gradient"
                     },
-                    "default_value": "",
+                    "default_value": "image",
                     "return_format": "value",
-                    "allow_null": 1,
-                    "other_choice": 0,
-                    "allow_in_bindings": 0,
-                    "layout": "vertical",
-                    "save_other_choice": 0
-                },
-                {
-                    "key": "field_68cf22fa3b800",
-                    "label": "Default Archives Banner",
-                    "name": "",
-                    "aria-label": "",
-                    "type": "tab",
-                    "instructions": "",
-                    "required": 0,
-                    "conditional_logic": 0,
-                    "wrapper": {
-                        "width": "",
-                        "class": "",
-                        "id": ""
-                    },
-                    "placement": "top",
-                    "endpoint": 0,
-                    "selected": 0
+                    "multiple": 0,
+                    "allow_null": 0,
+                    "ui": 0,
+                    "ajax": 0,
+                    "placeholder": "",
+                    "create_options": 0,
+                    "save_options": 0
                 },
                 {
                     "key": "field_68cf22fe3b801",
-                    "label": "Background",
+                    "label": "Default Archive Image",
                     "name": "default_archive_hero",
                     "aria-label": "",
                     "type": "image",
                     "instructions": "",
                     "required": 0,
-                    "conditional_logic": 0,
+                    "conditional_logic": [
+                        [
+                            {
+                                "field": "field_683a4511_archive_bgtype",
+                                "operator": "==",
+                                "value": "image"
+                            }
+                        ],
+                        [
+                            {
+                                "field": "field_683a4511_archive_bgtype",
+                                "operator": "==empty"
+                            }
+                        ]
+                    ],
                     "wrapper": {
                         "width": "",
                         "class": "",
@@ -365,11 +661,68 @@
                     "mime_types": "",
                     "allow_in_bindings": 0,
                     "preview_size": "medium"
+                },
+                {
+                    "key": "field_683a4511_archive_bgcolor",
+                    "label": "Custom Color",
+                    "name": "default_archive_background_color",
+                    "aria-label": "",
+                    "type": "color_picker",
+                    "instructions": "",
+                    "required": 0,
+                    "conditional_logic": [
+                        [
+                            {
+                                "field": "field_683a4511_archive_bgtype",
+                                "operator": "==",
+                                "value": "custom"
+                            }
+                        ]
+                    ],
+                    "wrapper": {
+                        "width": "",
+                        "class": "",
+                        "id": ""
+                    },
+                    "default_value": "",
+                    "enable_opacity": 0,
+                    "return_format": "string",
+                    "custom_palette_source": "",
+                    "palette_colors": "",
+                    "show_color_wheel": true
+                },
+                {
+                    "key": "field_683a4511_archive_bggradient",
+                    "label": "Gradient",
+                    "name": "default_archive_background_gradient",
+                    "aria-label": "",
+                    "type": "textarea",
+                    "instructions": "Paste a full CSS gradient value, e.g. linear-gradient(180deg, #000000 0%, #333333 100%).",
+                    "required": 1,
+                    "conditional_logic": [
+                        [
+                            {
+                                "field": "field_683a4511_archive_bgtype",
+                                "operator": "==",
+                                "value": "gradient"
+                            }
+                        ]
+                    ],
+                    "wrapper": {
+                        "width": "",
+                        "class": "",
+                        "id": ""
+                    },
+                    "default_value": "",
+                    "placeholder": "linear-gradient(180deg, #000000 0%, #333333 100%)",
+                    "maxlength": "",
+                    "rows": 2,
+                    "new_lines": ""
                 },
                 {
                     "key": "field_68cf30ee01ac3",
-                    "label": "Content Color",
-                    "name": "default_archive__content_type",
+                    "label": "Default Archive Content Color",
+                    "name": "default_archive_hero_content_type",
                     "aria-label": "",
                     "type": "radio",
                     "instructions": "",
@@ -377,7 +730,7 @@
                     "conditional_logic": [
                         [
                             {
-                                "field": "field_68cf22fe3b801",
+                                "field": "field_683a4511_archive_bgtype",
                                 "operator": "!=empty"
                             }
                         ]
@@ -400,186 +753,62 @@
                     "save_other_choice": 0
                 },
                 {
-                    "key": "field_68cf23ba74074",
-                    "label": "Banner for Archive 'posttype'",
-                    "name": "",
+                    "key": "field_683a4511_taxdef_bgtype",
+                    "label": "Background Type",
+                    "name": "default_taxonomy_background_type",
                     "aria-label": "",
-                    "type": "tab",
+                    "type": "select",
                     "instructions": "",
                     "required": 0,
                     "conditional_logic": 0,
-                    "wrapper": {
-                        "width": "",
-                        "class": "",
-                        "id": ""
-                    },
-                    "placement": "top",
-                    "endpoint": 0,
-                    "selected": 0
-                },
-                {
-                    "key": "field_68cf23be74075",
-                    "label": "Background",
-                    "name": "archive_hero_posttype",
-                    "aria-label": "",
-                    "type": "image",
-                    "instructions": "",
-                    "required": 0,
-                    "conditional_logic": 0,
-                    "wrapper": {
-                        "width": "",
-                        "class": "",
-                        "id": ""
-                    },
-                    "return_format": "url",
-                    "library": "all",
-                    "min_width": "",
-                    "min_height": "",
-                    "min_size": "",
-                    "max_width": "",
-                    "max_height": "",
-                    "max_size": "",
-                    "mime_types": "",
-                    "allow_in_bindings": 0,
-                    "preview_size": "medium"
-                },
-                {
-                    "key": "field_68cf310f01ac4",
-                    "label": "Content Color",
-                    "name": "archive_hero_posttype_content_type",
-                    "aria-label": "",
-                    "type": "radio",
-                    "instructions": "",
-                    "required": 0,
-                    "conditional_logic": [
-                        [
-                            {
-                                "field": "field_68cf23be74075",
-                                "operator": "!=empty"
-                            }
-                        ]
-                    ],
                     "wrapper": {
                         "width": "",
                         "class": "",
                         "id": ""
                     },
                     "choices": {
-                        "light-content": "Light Content",
-                        "dark-content": "Dark Content"
+                        "image": "Image",
+                        "primary": "Primary Color",
+                        "secondary": "Secondary Color",
+                        "font": "Font Color Variable",
+                        "white": "White",
+                        "black": "Black",
+                        "custom": "Custom Color",
+                        "gradient": "Linear Gradient"
                     },
-                    "default_value": "",
+                    "default_value": "image",
                     "return_format": "value",
-                    "allow_null": 1,
-                    "other_choice": 0,
-                    "allow_in_bindings": 0,
-                    "layout": "vertical",
-                    "save_other_choice": 0
-                },
-                {
-                    "key": "field_68d986af4fe7a",
-                    "label": "Banner for Archive Post",
-                    "name": "",
-                    "aria-label": "",
-                    "type": "tab",
-                    "instructions": "",
-                    "required": 0,
-                    "conditional_logic": 0,
-                    "wrapper": {
-                        "width": "",
-                        "class": "",
-                        "id": ""
-                    },
-                    "placement": "top",
-                    "endpoint": 0,
-                    "selected": 0
-                },
-                {
-                    "key": "field_68d986bd4fe7b",
-                    "label": "Background",
-                    "name": "archive_hero_post",
-                    "aria-label": "",
-                    "type": "image",
-                    "instructions": "",
-                    "required": 0,
-                    "conditional_logic": 0,
-                    "wrapper": {
-                        "width": "",
-                        "class": "",
-                        "id": ""
-                    },
-                    "return_format": "url",
-                    "library": "all",
-                    "min_width": "",
-                    "min_height": "",
-                    "min_size": "",
-                    "max_width": "",
-                    "max_height": "",
-                    "max_size": "",
-                    "mime_types": "",
-                    "allow_in_bindings": 0,
-                    "preview_size": "medium"
-                },
-                {
-                    "key": "field_68d986c34fe7c",
-                    "label": "Content Color",
-                    "name": "archive_hero_post_content_type",
-                    "aria-label": "",
-                    "type": "radio",
-                    "instructions": "",
-                    "required": 0,
-                    "conditional_logic": [
-                        [
-                            {
-                                "field": "field_68d986bd4fe7b",
-                                "operator": "!=empty"
-                            }
-                        ]
-                    ],
-                    "wrapper": {
-                        "width": "",
-                        "class": "",
-                        "id": ""
-                    },
-                    "choices": {
-                        "light-content": "Light Content",
-                        "dark-content": "Dark Content"
-                    },
-                    "default_value": "",
-                    "return_format": "value",
-                    "allow_null": 1,
-                    "other_choice": 0,
-                    "allow_in_bindings": 0,
-                    "layout": "vertical",
-                    "save_other_choice": 0
-                },
-                {
-                    "key": "field_68cf275357904",
-                    "label": "Default Category Banner",
-                    "name": "",
-                    "aria-label": "",
-                    "type": "tab",
-                    "instructions": "",
-                    "required": 0,
-                    "conditional_logic": 0,
-                    "wrapper": {
-                        "width": "",
-                        "class": "",
-                        "id": ""
-                    },
-                    "placement": "top",
-                    "endpoint": 0,
-                    "selected": 0
+                    "multiple": 0,
+                    "allow_null": 0,
+                    "ui": 0,
+                    "ajax": 0,
+                    "placeholder": "",
+                    "create_options": 0,
+                    "save_options": 0
                 },
                 {
                     "key": "field_68cf275757905",
-                    "label": "Background",
+                    "label": "Default Taxonomy Term Image",
                     "name": "default_taxonomy_hero",
                     "aria-label": "",
                     "type": "image",
                     "instructions": "",
                     "required": 0,
-                    "conditional_logic": 0,
+                    "conditional_logic": [
+                        [
+                            {
+                                "field": "field_683a4511_taxdef_bgtype",
+                                "operator": "==",
+                                "value": "image"
+                            }
+                        ],
+                        [
+                            {
+                                "field": "field_683a4511_taxdef_bgtype",
+                                "operator": "==empty"
+                            }
+                        ]
+                    ],
                     "wrapper": {
                         "width": "",
                         "class": "",
@@ -598,8 +827,65 @@
                     "preview_size": "medium"
                 },
                 {
+                    "key": "field_683a4511_taxdef_bgcolor",
+                    "label": "Custom Color",
+                    "name": "default_taxonomy_background_color",
+                    "aria-label": "",
+                    "type": "color_picker",
+                    "instructions": "",
+                    "required": 0,
+                    "conditional_logic": [
+                        [
+                            {
+                                "field": "field_683a4511_taxdef_bgtype",
+                                "operator": "==",
+                                "value": "custom"
+                            }
+                        ]
+                    ],
+                    "wrapper": {
+                        "width": "",
+                        "class": "",
+                        "id": ""
+                    },
+                    "default_value": "",
+                    "enable_opacity": 0,
+                    "return_format": "string",
+                    "custom_palette_source": "",
+                    "palette_colors": "",
+                    "show_color_wheel": true
+                },
+                {
+                    "key": "field_683a4511_taxdef_bggradient",
+                    "label": "Gradient",
+                    "name": "default_taxonomy_background_gradient",
+                    "aria-label": "",
+                    "type": "textarea",
+                    "instructions": "Paste a full CSS gradient value, e.g. linear-gradient(180deg, #000000 0%, #333333 100%).",
+                    "required": 1,
+                    "conditional_logic": [
+                        [
+                            {
+                                "field": "field_683a4511_taxdef_bgtype",
+                                "operator": "==",
+                                "value": "gradient"
+                            }
+                        ]
+                    ],
+                    "wrapper": {
+                        "width": "",
+                        "class": "",
+                        "id": ""
+                    },
+                    "default_value": "",
+                    "placeholder": "linear-gradient(180deg, #000000 0%, #333333 100%)",
+                    "maxlength": "",
+                    "rows": 2,
+                    "new_lines": ""
+                },
+                {
                     "key": "field_68cf313501ac6",
-                    "label": "Content Color",
+                    "label": "Default Taxonomy Term Content Color",
                     "name": "default_taxonomy_hero_content_type",
                     "aria-label": "",
                     "type": "radio",
@@ -608,7 +894,7 @@
                     "conditional_logic": [
                         [
                             {
-                                "field": "field_68cf275757905",
+                                "field": "field_683a4511_taxdef_bgtype",
                                 "operator": "!=empty"
                             }
                         ]
@@ -631,8 +917,8 @@
                     "save_other_choice": 0
                 },
                 {
-                    "key": "field_68cf284357906",
-                    "label": "Banner same one for all categores of PT 'posttype'",
+                    "key": "field_683a4511_hero_ptset_tab",
+                    "label": "Per Post Type Banners",
                     "name": "",
                     "aria-label": "",
                     "type": "tab",
@@ -649,11 +935,504 @@
                     "selected": 0
                 },
                 {
-                    "key": "field_68cf284757907",
-                    "label": "Background",
-                    "name": "taxonomy_hero_posttype",
+                    "key": "field_683a4511_hero_ptset_repeater",
+                    "label": "Post Type Hero Settings",
+                    "name": "hero_post_type_settings",
                     "aria-label": "",
-                    "type": "image",
+                    "type": "repeater",
+                    "instructions": "Add a row per post type to enable its hero banner. New post types just need a new row here \u2014 no code changes required.",
+                    "required": 0,
+                    "conditional_logic": 0,
+                    "wrapper": {
+                        "width": "",
+                        "class": "",
+                        "id": ""
+                    },
+                    "layout": "block",
+                    "pagination": 0,
+                    "min": 0,
+                    "max": 0,
+                    "collapsed": "field_683a4511_hero_ptset_post_type",
+                    "button_label": "Add Post Type",
+                    "rows_per_page": 20,
+                    "sub_fields": [
+                        {
+                            "key": "field_683a4511_hero_ptset_post_type",
+                            "label": "Post Type",
+                            "name": "post_type",
+                            "aria-label": "",
+                            "type": "select",
+                            "instructions": "",
+                            "required": 1,
+                            "conditional_logic": 0,
+                            "wrapper": {
+                                "width": "33",
+                                "class": "",
+                                "id": ""
+                            },
+                            "choices": {},
+                            "default_value": false,
+                            "return_format": "value",
+                            "multiple": 0,
+                            "allow_null": 0,
+                            "ui": 0,
+                            "ajax": 0,
+                            "placeholder": "",
+                            "create_options": 0,
+                            "save_options": 0
+                        },
+                        {
+                            "key": "field_683a4511_hero_ptset_enable",
+                            "label": "Enable Hero",
+                            "name": "enable_hero",
+                            "aria-label": "",
+                            "type": "true_false",
+                            "instructions": "",
+                            "required": 0,
+                            "conditional_logic": 0,
+                            "wrapper": {
+                                "width": "33",
+                                "class": "",
+                                "id": ""
+                            },
+                            "message": "",
+                            "default_value": 0,
+                            "ui": 1,
+                            "ui_on_text": "",
+                            "ui_off_text": ""
+                        },
+                        {
+                            "key": "field_683a4511_ptset_single_bgtype",
+                            "label": "Background Type",
+                            "name": "single_background_type",
+                            "aria-label": "",
+                            "type": "select",
+                            "instructions": "",
+                            "required": 0,
+                            "conditional_logic": [
+                                [
+                                    {
+                                        "field": "field_683a4511_hero_ptset_enable",
+                                        "operator": "==",
+                                        "value": "1"
+                                    }
+                                ]
+                            ],
+                            "wrapper": {
+                                "width": "33",
+                                "class": "",
+                                "id": ""
+                            },
+                            "choices": {
+                                "image": "Image",
+                                "primary": "Primary Color",
+                                "secondary": "Secondary Color",
+                                "font": "Font Color Variable",
+                                "white": "White",
+                                "black": "Black",
+                                "custom": "Custom Color",
+                                "gradient": "Linear Gradient"
+                            },
+                            "default_value": "image",
+                            "return_format": "value",
+                            "multiple": 0,
+                            "allow_null": 0,
+                            "ui": 0,
+                            "ajax": 0,
+                            "placeholder": "",
+                            "create_options": 0,
+                            "save_options": 0
+                        },
+                        {
+                            "key": "field_683a4511_hero_ptset_single_image",
+                            "label": "Singular Default Image",
+                            "name": "default_single_image",
+                            "aria-label": "",
+                            "type": "image",
+                            "instructions": "Used on single posts of this type unless a post overrides it or has a featured image.",
+                            "required": 0,
+                            "conditional_logic": [
+                                [
+                                    {
+                                        "field": "field_683a4511_ptset_single_bgtype",
+                                        "operator": "==",
+                                        "value": "image"
+                                    },
+                                    {
+                                        "field": "field_683a4511_hero_ptset_enable",
+                                        "operator": "==",
+                                        "value": "1"
+                                    }
+                                ],
+                                [
+                                    {
+                                        "field": "field_683a4511_ptset_single_bgtype",
+                                        "operator": "==empty"
+                                    },
+                                    {
+                                        "field": "field_683a4511_hero_ptset_enable",
+                                        "operator": "==",
+                                        "value": "1"
+                                    }
+                                ]
+                            ],
+                            "wrapper": {
+                                "width": "50",
+                                "class": "",
+                                "id": ""
+                            },
+                            "return_format": "url",
+                            "library": "all",
+                            "min_width": "",
+                            "min_height": "",
+                            "min_size": "",
+                            "max_width": "",
+                            "max_height": "",
+                            "max_size": "",
+                            "mime_types": "",
+                            "allow_in_bindings": 0,
+                            "preview_size": "medium"
+                        },
+                        {
+                            "key": "field_683a4511_ptset_single_bgcolor",
+                            "label": "Custom Color",
+                            "name": "single_background_color",
+                            "aria-label": "",
+                            "type": "color_picker",
+                            "instructions": "",
+                            "required": 0,
+                            "conditional_logic": [
+                                [
+                                    {
+                                        "field": "field_683a4511_ptset_single_bgtype",
+                                        "operator": "==",
+                                        "value": "custom"
+                                    },
+                                    {
+                                        "field": "field_683a4511_hero_ptset_enable",
+                                        "operator": "==",
+                                        "value": "1"
+                                    }
+                                ]
+                            ],
+                            "wrapper": {
+                                "width": "50",
+                                "class": "",
+                                "id": ""
+                            },
+                            "default_value": "",
+                            "enable_opacity": 0,
+                            "return_format": "string",
+                            "custom_palette_source": "",
+                            "palette_colors": "",
+                            "show_color_wheel": true
+                        },
+                        {
+                            "key": "field_683a4511_ptset_single_bggradient",
+                            "label": "Gradient",
+                            "name": "single_background_gradient",
+                            "aria-label": "",
+                            "type": "textarea",
+                            "instructions": "Paste a full CSS gradient value, e.g. linear-gradient(180deg, #000000 0%, #333333 100%).",
+                            "required": 1,
+                            "conditional_logic": [
+                                [
+                                    {
+                                        "field": "field_683a4511_ptset_single_bgtype",
+                                        "operator": "==",
+                                        "value": "gradient"
+                                    },
+                                    {
+                                        "field": "field_683a4511_hero_ptset_enable",
+                                        "operator": "==",
+                                        "value": "1"
+                                    }
+                                ]
+                            ],
+                            "wrapper": {
+                                "width": "50",
+                                "class": "",
+                                "id": ""
+                            },
+                            "default_value": "",
+                            "placeholder": "linear-gradient(180deg, #000000 0%, #333333 100%)",
+                            "maxlength": "",
+                            "rows": 2,
+                            "new_lines": ""
+                        },
+                        {
+                            "key": "field_683a4511_hero_ptset_single_content_type",
+                            "label": "Singular Content Color",
+                            "name": "default_single_content_type",
+                            "aria-label": "",
+                            "type": "radio",
+                            "instructions": "",
+                            "required": 0,
+                            "conditional_logic": [
+                                [
+                                    {
+                                        "field": "field_683a4511_ptset_single_bgtype",
+                                        "operator": "!=empty"
+                                    },
+                                    {
+                                        "field": "field_683a4511_hero_ptset_enable",
+                                        "operator": "==",
+                                        "value": "1"
+                                    }
+                                ]
+                            ],
+                            "wrapper": {
+                                "width": "50",
+                                "class": "",
+                                "id": ""
+                            },
+                            "choices": {
+                                "light-content": "Light Content",
+                                "dark-content": "Dark Content"
+                            },
+                            "default_value": "",
+                            "return_format": "value",
+                            "allow_null": 1,
+                            "other_choice": 0,
+                            "allow_in_bindings": 0,
+                            "layout": "vertical",
+                            "save_other_choice": 0
+                        },
+                        {
+                            "key": "field_683a4511_ptset_archive_bgtype",
+                            "label": "Background Type",
+                            "name": "archive_background_type",
+                            "aria-label": "",
+                            "type": "select",
+                            "instructions": "",
+                            "required": 0,
+                            "conditional_logic": [
+                                [
+                                    {
+                                        "field": "field_683a4511_hero_ptset_enable",
+                                        "operator": "==",
+                                        "value": "1"
+                                    },
+                                    {
+                                        "field": "field_683a4511_hero_ptset_post_type",
+                                        "operator": "!=",
+                                        "value": "page"
+                                    }
+                                ]
+                            ],
+                            "wrapper": {
+                                "width": "33",
+                                "class": "",
+                                "id": ""
+                            },
+                            "choices": {
+                                "image": "Image",
+                                "primary": "Primary Color",
+                                "secondary": "Secondary Color",
+                                "font": "Font Color Variable",
+                                "white": "White",
+                                "black": "Black",
+                                "custom": "Custom Color",
+                                "gradient": "Linear Gradient"
+                            },
+                            "default_value": "image",
+                            "return_format": "value",
+                            "multiple": 0,
+                            "allow_null": 0,
+                            "ui": 0,
+                            "ajax": 0,
+                            "placeholder": "",
+                            "create_options": 0,
+                            "save_options": 0
+                        },
+                        {
+                            "key": "field_683a4511_hero_ptset_archive_image",
+                            "label": "Archive Default Image",
+                            "name": "default_archive_image",
+                            "aria-label": "",
+                            "type": "image",
+                            "instructions": "Used on this post type's archive page.",
+                            "required": 0,
+                            "conditional_logic": [
+                                [
+                                    {
+                                        "field": "field_683a4511_ptset_archive_bgtype",
+                                        "operator": "==",
+                                        "value": "image"
+                                    },
+                                    {
+                                        "field": "field_683a4511_hero_ptset_enable",
+                                        "operator": "==",
+                                        "value": "1"
+                                    },
+                                    {
+                                        "field": "field_683a4511_hero_ptset_post_type",
+                                        "operator": "!=",
+                                        "value": "page"
+                                    }
+                                ],
+                                [
+                                    {
+                                        "field": "field_683a4511_ptset_archive_bgtype",
+                                        "operator": "==empty"
+                                    },
+                                    {
+                                        "field": "field_683a4511_hero_ptset_enable",
+                                        "operator": "==",
+                                        "value": "1"
+                                    },
+                                    {
+                                        "field": "field_683a4511_hero_ptset_post_type",
+                                        "operator": "!=",
+                                        "value": "page"
+                                    }
+                                ]
+                            ],
+                            "wrapper": {
+                                "width": "50",
+                                "class": "",
+                                "id": ""
+                            },
+                            "return_format": "url",
+                            "library": "all",
+                            "min_width": "",
+                            "min_height": "",
+                            "min_size": "",
+                            "max_width": "",
+                            "max_height": "",
+                            "max_size": "",
+                            "mime_types": "",
+                            "allow_in_bindings": 0,
+                            "preview_size": "medium"
+                        },
+                        {
+                            "key": "field_683a4511_ptset_archive_bgcolor",
+                            "label": "Custom Color",
+                            "name": "archive_background_color",
+                            "aria-label": "",
+                            "type": "color_picker",
+                            "instructions": "",
+                            "required": 0,
+                            "conditional_logic": [
+                                [
+                                    {
+                                        "field": "field_683a4511_ptset_archive_bgtype",
+                                        "operator": "==",
+                                        "value": "custom"
+                                    },
+                                    {
+                                        "field": "field_683a4511_hero_ptset_enable",
+                                        "operator": "==",
+                                        "value": "1"
+                                    },
+                                    {
+                                        "field": "field_683a4511_hero_ptset_post_type",
+                                        "operator": "!=",
+                                        "value": "page"
+                                    }
+                                ]
+                            ],
+                            "wrapper": {
+                                "width": "50",
+                                "class": "",
+                                "id": ""
+                            },
+                            "default_value": "",
+                            "enable_opacity": 0,
+                            "return_format": "string",
+                            "custom_palette_source": "",
+                            "palette_colors": "",
+                            "show_color_wheel": true
+                        },
+                        {
+                            "key": "field_683a4511_ptset_archive_bggradient",
+                            "label": "Gradient",
+                            "name": "archive_background_gradient",
+                            "aria-label": "",
+                            "type": "textarea",
+                            "instructions": "Paste a full CSS gradient value, e.g. linear-gradient(180deg, #000000 0%, #333333 100%).",
+                            "required": 1,
+                            "conditional_logic": [
+                                [
+                                    {
+                                        "field": "field_683a4511_ptset_archive_bgtype",
+                                        "operator": "==",
+                                        "value": "gradient"
+                                    },
+                                    {
+                                        "field": "field_683a4511_hero_ptset_enable",
+                                        "operator": "==",
+                                        "value": "1"
+                                    },
+                                    {
+                                        "field": "field_683a4511_hero_ptset_post_type",
+                                        "operator": "!=",
+                                        "value": "page"
+                                    }
+                                ]
+                            ],
+                            "wrapper": {
+                                "width": "50",
+                                "class": "",
+                                "id": ""
+                            },
+                            "default_value": "",
+                            "placeholder": "linear-gradient(180deg, #000000 0%, #333333 100%)",
+                            "maxlength": "",
+                            "rows": 2,
+                            "new_lines": ""
+                        },
+                        {
+                            "key": "field_683a4511_hero_ptset_archive_content_type",
+                            "label": "Archive Content Color",
+                            "name": "default_archive_content_type",
+                            "aria-label": "",
+                            "type": "radio",
+                            "instructions": "",
+                            "required": 0,
+                            "conditional_logic": [
+                                [
+                                    {
+                                        "field": "field_683a4511_ptset_archive_bgtype",
+                                        "operator": "!=empty"
+                                    },
+                                    {
+                                        "field": "field_683a4511_hero_ptset_enable",
+                                        "operator": "==",
+                                        "value": "1"
+                                    },
+                                    {
+                                        "field": "field_683a4511_hero_ptset_post_type",
+                                        "operator": "!=",
+                                        "value": "page"
+                                    }
+                                ]
+                            ],
+                            "wrapper": {
+                                "width": "50",
+                                "class": "",
+                                "id": ""
+                            },
+                            "choices": {
+                                "light-content": "Light Content",
+                                "dark-content": "Dark Content"
+                            },
+                            "default_value": "",
+                            "return_format": "value",
+                            "allow_null": 1,
+                            "other_choice": 0,
+                            "allow_in_bindings": 0,
+                            "layout": "vertical",
+                            "save_other_choice": 0
+                        }
+                    ]
+                },
+                {
+                    "key": "field_683a4511_hero_taxset_tab",
+                    "label": "Per Taxonomy Banners",
+                    "name": "",
+                    "aria-label": "",
+                    "type": "tab",
                     "instructions": "",
                     "required": 0,
                     "conditional_logic": 0,
@@ -662,50 +1441,222 @@
                         "class": "",
                         "id": ""
                     },
-                    "return_format": "url",
-                    "library": "all",
-                    "min_width": "",
-                    "min_height": "",
-                    "min_size": "",
-                    "max_width": "",
-                    "max_height": "",
-                    "max_size": "",
-                    "mime_types": "",
-                    "allow_in_bindings": 0,
-                    "preview_size": "medium"
+                    "placement": "top",
+                    "endpoint": 0,
+                    "selected": 0
                 },
                 {
-                    "key": "field_68cf314801ac7",
-                    "label": "Content Color",
-                    "name": "taxonomy_hero_posttype_content_type",
+                    "key": "field_683a4511_hero_taxset_repeater",
+                    "label": "Taxonomy Hero Settings",
+                    "name": "hero_taxonomy_settings",
                     "aria-label": "",
-                    "type": "radio",
-                    "instructions": "",
+                    "type": "repeater",
+                    "instructions": "Add a row per taxonomy to give it its own default banner. Used when a term of that taxonomy doesn't have its own Hero set. New taxonomies just need a new row here \u2014 no code changes required.",
                     "required": 0,
-                    "conditional_logic": [
-                        [
-                            {
-                                "field": "field_68cf284757907",
-                                "operator": "!=empty"
-                            }
-                        ]
-                    ],
+                    "conditional_logic": 0,
                     "wrapper": {
                         "width": "",
                         "class": "",
                         "id": ""
                     },
-                    "choices": {
-                        "light-content": "Light Content",
-                        "dark-content": "Dark Content"
-                    },
-                    "default_value": "",
-                    "return_format": "value",
-                    "allow_null": 1,
-                    "other_choice": 0,
-                    "allow_in_bindings": 0,
-                    "layout": "vertical",
-                    "save_other_choice": 0
+                    "layout": "block",
+                    "pagination": 0,
+                    "min": 0,
+                    "max": 0,
+                    "collapsed": "field_683a4511_hero_taxset_taxonomy",
+                    "button_label": "Add Taxonomy",
+                    "rows_per_page": 20,
+                    "sub_fields": [
+                        {
+                            "key": "field_683a4511_hero_taxset_taxonomy",
+                            "label": "Taxonomy",
+                            "name": "taxonomy",
+                            "aria-label": "",
+                            "type": "select",
+                            "instructions": "",
+                            "required": 1,
+                            "conditional_logic": 0,
+                            "wrapper": {
+                                "width": "33",
+                                "class": "",
+                                "id": ""
+                            },
+                            "choices": {},
+                            "default_value": false,
+                            "return_format": "value",
+                            "multiple": 0,
+                            "allow_null": 0,
+                            "ui": 0,
+                            "ajax": 0,
+                            "placeholder": "",
+                            "create_options": 0,
+                            "save_options": 0
+                        },
+                        {
+                            "key": "field_683a4511_taxset_bgtype",
+                            "label": "Background Type",
+                            "name": "background_type",
+                            "aria-label": "",
+                            "type": "select",
+                            "instructions": "",
+                            "required": 0,
+                            "conditional_logic": 0,
+                            "wrapper": {
+                                "width": "25",
+                                "class": "",
+                                "id": ""
+                            },
+                            "choices": {
+                                "image": "Image",
+                                "primary": "Primary Color",
+                                "secondary": "Secondary Color",
+                                "font": "Font Color Variable",
+                                "white": "White",
+                                "black": "Black",
+                                "custom": "Custom Color",
+                                "gradient": "Linear Gradient"
+                            },
+                            "default_value": "image",
+                            "return_format": "value",
+                            "multiple": 0,
+                            "allow_null": 0,
+                            "ui": 0,
+                            "ajax": 0,
+                            "placeholder": "",
+                            "create_options": 0,
+                            "save_options": 0
+                        },
+                        {
+                            "key": "field_683a4511_hero_taxset_image",
+                            "label": "Default Image",
+                            "name": "default_image",
+                            "aria-label": "",
+                            "type": "image",
+                            "instructions": "Used for any term of this taxonomy that doesn't have its own Hero image set.",
+                            "required": 0,
+                            "conditional_logic": [
+                                [
+                                    {
+                                        "field": "field_683a4511_taxset_bgtype",
+                                        "operator": "==",
+                                        "value": "image"
+                                    }
+                                ],
+                                [
+                                    {
+                                        "field": "field_683a4511_taxset_bgtype",
+                                        "operator": "==empty"
+                                    }
+                                ]
+                            ],
+                            "wrapper": {
+                                "width": "33",
+                                "class": "",
+                                "id": ""
+                            },
+                            "return_format": "url",
+                            "library": "all",
+                            "min_width": "",
+                            "min_height": "",
+                            "min_size": "",
+                            "max_width": "",
+                            "max_height": "",
+                            "max_size": "",
+                            "mime_types": "",
+                            "allow_in_bindings": 0,
+                            "preview_size": "medium"
+                        },
+                        {
+                            "key": "field_683a4511_taxset_bgcolor",
+                            "label": "Custom Color",
+                            "name": "background_color",
+                            "aria-label": "",
+                            "type": "color_picker",
+                            "instructions": "",
+                            "required": 0,
+                            "conditional_logic": [
+                                [
+                                    {
+                                        "field": "field_683a4511_taxset_bgtype",
+                                        "operator": "==",
+                                        "value": "custom"
+                                    }
+                                ]
+                            ],
+                            "wrapper": {
+                                "width": "25",
+                                "class": "",
+                                "id": ""
+                            },
+                            "default_value": "",
+                            "enable_opacity": 0,
+                            "return_format": "string",
+                            "custom_palette_source": "",
+                            "palette_colors": "",
+                            "show_color_wheel": true
+                        },
+                        {
+                            "key": "field_683a4511_taxset_bggradient",
+                            "label": "Gradient",
+                            "name": "background_gradient",
+                            "aria-label": "",
+                            "type": "textarea",
+                            "instructions": "Paste a full CSS gradient value, e.g. linear-gradient(180deg, #000000 0%, #333333 100%).",
+                            "required": 1,
+                            "conditional_logic": [
+                                [
+                                    {
+                                        "field": "field_683a4511_taxset_bgtype",
+                                        "operator": "==",
+                                        "value": "gradient"
+                                    }
+                                ]
+                            ],
+                            "wrapper": {
+                                "width": "25",
+                                "class": "",
+                                "id": ""
+                            },
+                            "default_value": "",
+                            "placeholder": "linear-gradient(180deg, #000000 0%, #333333 100%)",
+                            "maxlength": "",
+                            "rows": 2,
+                            "new_lines": ""
+                        },
+                        {
+                            "key": "field_683a4511_hero_taxset_content_type",
+                            "label": "Content Color",
+                            "name": "default_content_type",
+                            "aria-label": "",
+                            "type": "radio",
+                            "instructions": "",
+                            "required": 0,
+                            "conditional_logic": [
+                                [
+                                    {
+                                        "field": "field_683a4511_taxset_bgtype",
+                                        "operator": "!=empty"
+                                    }
+                                ]
+                            ],
+                            "wrapper": {
+                                "width": "34",
+                                "class": "",
+                                "id": ""
+                            },
+                            "choices": {
+                                "light-content": "Light Content",
+                                "dark-content": "Dark Content"
+                            },
+                            "default_value": "",
+                            "return_format": "value",
+                            "allow_null": 1,
+                            "other_choice": 0,
+                            "allow_in_bindings": 0,
+                            "layout": "vertical",
+                            "save_other_choice": 0
+                        }
+                    ]
                 }
             ]
         }
@@ -731,5 +1682,5 @@
     "display_title": "",
     "allow_ai_access": false,
     "ai_description": "",
-    "modified": 1785797154
+    "modified": 1785799900
 }

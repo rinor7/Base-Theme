@@ -150,11 +150,26 @@ function base_theme_load_public_post_type_choices($field) {
 }
 
 // Reuse the same dynamic post type choices on the Theme Settings "Per Post Type Banners" repeater.
+// Pages are a valid choice here too: if enabled, it's the site-wide default hero for any page that
+// doesn't add its own Hero module — a page's own Hero module (if present) always wins.
 add_filter('acf/load_field/key=field_683a4511_hero_ptset_post_type', 'base_theme_load_public_post_type_choices');
+
+// Populate the "Taxonomy" select on the Theme Settings "Per Taxonomy Banners" repeater with the
+// site's actual registered public taxonomies, so new taxonomies show up automatically.
+add_filter('acf/load_field/key=field_683a4511_hero_taxset_taxonomy', 'base_theme_load_public_taxonomy_choices');
+function base_theme_load_public_taxonomy_choices($field) {
+    $taxonomies = get_taxonomies(array('public' => true), 'objects');
+    $choices = array();
+    foreach ($taxonomies as $taxonomy) {
+        $choices[$taxonomy->name] = $taxonomy->label;
+    }
+    $field['choices'] = $choices;
+    return $field;
+}
 
 // Returns the enabled Hero row (from Theme Settings > hero_banners > hero_post_type_settings)
 // for a given post type, or null if Hero isn't enabled for it. Shared by the admin field
-// visibility filter below and by includes/flexible/layouts/hero/hero.php + includes/blocks/hero.php.
+// visibility filter below and by the automatic-page-hero renderer further down.
 function base_theme_get_post_type_hero_settings($post_type) {
     static $cache = array();
     if (array_key_exists($post_type, $cache)) {
@@ -170,6 +185,144 @@ function base_theme_get_post_type_hero_settings($post_type) {
     }
     $cache[$post_type] = $result;
     return $result;
+}
+
+// Turns a Background Type + image/color/gradient combo (as used across the Hero Banners fields in
+// Theme Settings) into a raw CSS "background" declaration. Caller is responsible for wrapping the
+// result in esc_attr() before echoing as a style="" attribute.
+function base_theme_hero_background_style($type, $image, $color, $gradient) {
+    $theme_color_vars = array(
+        'primary'   => 'var(--primary-color)',
+        'secondary' => 'var(--secondary-color)',
+        'font'      => 'var(--font-color)',
+        'white'     => 'var(--white)',
+        'black'     => 'var(--black)',
+    );
+    switch ($type) {
+        case 'gradient':
+            $gradient = trim($gradient);
+            return $gradient !== '' ? 'background:' . $gradient . ';' : '';
+        case 'custom':
+            return $color !== '' ? 'background-color:' . $color . ';' : '';
+        case 'image':
+            return $image !== '' ? "background-image:url('" . esc_url($image) . "');" : '';
+        default:
+            return isset($theme_color_vars[$type]) ? 'background-color:' . $theme_color_vars[$type] . ';' : '';
+    }
+}
+
+// Hero min-height, as CSS custom properties. Falls back to the site-wide Theme Settings value when
+// no override is passed, and CSS falls back further to 300px if neither is set. Shared by the
+// automatic Theme Settings hero below and by includes/flexible/layouts/hero/hero.php (which passes
+// its own per-instance fields as overrides, letting one page's Hero module differ from the rest).
+function base_theme_hero_min_height_style($override_desktop = '', $override_mobile = '') {
+    $hero_banners = get_field('hero_banners', 'option') ?: [];
+    $desktop = $override_desktop !== '' ? $override_desktop : ($hero_banners['min_height_desktop'] ?? '');
+    $mobile  = $override_mobile !== '' ? $override_mobile : ($hero_banners['min_height_mobile'] ?? '');
+    $style = '';
+    if ($desktop !== '') {
+        $style .= '--hero-min-height-desktop:' . intval($desktop) . 'px;';
+    }
+    if ($mobile !== '') {
+        $style .= '--hero-min-height-mobile:' . intval($mobile) . 'px;';
+    }
+    return $style;
+}
+
+// Whether a Background Type slot actually has usable content for the given type.
+function base_theme_hero_slot_has_content($type, $image, $color, $gradient) {
+    switch ($type) {
+        case 'gradient': return trim((string) $gradient) !== '';
+        case 'custom':   return $color !== '';
+        case 'image':    return $image !== '';
+        default:         return true; // theme palette colors (primary/secondary/font/white/black) are always usable
+    }
+}
+
+// Resolves the background to use for a page's automatic hero: this post type's row in Theme
+// Settings -> the site-wide single default -> the page's featured image -> the hardcoded default.
+function base_theme_get_automatic_page_hero() {
+    $post_type_settings = base_theme_get_post_type_hero_settings('page');
+    if (!$post_type_settings) {
+        return null; // Hero not enabled for Pages in Theme Settings
+    }
+
+    $hero_banners = get_field('hero_banners', 'option') ?: [];
+
+    $type         = $post_type_settings['single_background_type'] ?? 'image';
+    $image        = $post_type_settings['default_single_image'] ?? '';
+    $color        = $post_type_settings['single_background_color'] ?? '';
+    $gradient     = $post_type_settings['single_background_gradient'] ?? '';
+    $content_type = $post_type_settings['default_single_content_type'] ?? '';
+
+    if (!base_theme_hero_slot_has_content($type, $image, $color, $gradient)) {
+        $type         = $hero_banners['default_single_background_type'] ?? 'image';
+        $image        = $hero_banners['default_single_hero'] ?? '';
+        $color        = $hero_banners['default_single_background_color'] ?? '';
+        $gradient     = $hero_banners['default_single_background_gradient'] ?? '';
+        $content_type = $hero_banners['default_single_hero_content_type'] ?? '';
+    }
+
+    if ($type === 'image' && $image === '' && has_post_thumbnail()) {
+        $image = get_the_post_thumbnail_url(get_the_ID(), 'full');
+    }
+
+    if (!base_theme_hero_slot_has_content($type, $image, $color, $gradient)) {
+        $type  = 'image';
+        $image = get_template_directory_uri() . '/assets/img/bg.webp';
+    }
+
+    return compact('type', 'image', 'color', 'gradient', 'content_type');
+}
+
+// Whether this page already has its own Hero module in flex_sections — if so, that always wins
+// over the automatic Theme Settings hero.
+function base_theme_page_has_hero_module($post_id = null) {
+    $post_id = $post_id ?: get_the_ID();
+    $rows = get_field('flex_sections', $post_id) ?: [];
+    foreach ($rows as $row) {
+        if (($row['acf_fc_layout'] ?? '') === 'hero') {
+            return true;
+        }
+    }
+    return false;
+}
+
+// Renders the automatic Theme Settings hero for a Page, unless the page has its own Hero module
+// (which always takes priority) or Hero isn't enabled for Pages at all.
+function base_theme_render_automatic_page_hero() {
+    if (base_theme_page_has_hero_module()) {
+        return;
+    }
+    $hero = base_theme_get_automatic_page_hero();
+    if (!$hero) {
+        return;
+    }
+    $style = base_theme_hero_background_style($hero['type'], $hero['image'], $hero['color'], $hero['gradient']);
+    if ($style === '') {
+        return;
+    }
+    $style .= base_theme_hero_min_height_style();
+    $class = 'block-hero';
+    if ($hero['content_type']) {
+        $class .= ' ' . $hero['content_type'];
+    }
+    ?>
+    <section class="<?php echo esc_attr($class); ?>" style="<?php echo esc_attr($style); ?>">
+        <div class="container">
+            <div class="block-hero-content">
+                <div class="content">
+                    <h1 class="hero-title"><?php echo esc_html(get_the_title()); ?></h1>
+                    <div class="breadcrumbs">
+                        <?php if (function_exists('yoast_breadcrumb')) {
+                            yoast_breadcrumb('<p id="breadcrumbs">', '</p>');
+                        } ?>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <?php
 }
 
 // Only show the per-post "Hero Override" fields when Hero is actually enabled for that post's type.

@@ -4,15 +4,22 @@
 $section = get_sub_field('group_hero') ?: [];
 
 if (empty($section['disable_section'])):
+    $background_type = $section['background_type'] ?? 'image';
     $image = $section['image'] ?? '';
+    $background_color = $section['background_color'] ?? '';
+    $background_gradient = $section['background_gradient'] ?? '';
     $content_type = $section['content_type'] ?? '';
 
-    $thumbnail = has_post_thumbnail() ? get_the_post_thumbnail_url(get_the_ID(), 'full') : '';
-    $default_image = get_template_directory_uri() . '/assets/img/bg.webp';
-    $background_image = $image ?: ($thumbnail ?: $default_image);
+    // Image type only: fall back to the featured image, then the theme default.
+    if ($background_type === 'image' && $image === '' && has_post_thumbnail()) {
+        $image = get_the_post_thumbnail_url(get_the_ID(), 'full');
+    }
+    if ($background_type === 'image' && $image === '') {
+        $image = get_template_directory_uri() . '/assets/img/bg.webp';
+    }
 
     $section_classes = 'block-hero flex-hero';
-    if ($image && $content_type) {
+    if ($content_type) {
         $section_classes .= ' ' . $content_type;
     }
 
@@ -20,8 +27,14 @@ if (empty($section['disable_section'])):
     if ($custom_class !== '') {
         $section_classes .= ' ' . sanitize_text_field($custom_class);
     }
+
+    $min_height_desktop = $section['min_height_desktop'] ?? '';
+    $min_height_mobile  = $section['min_height_mobile'] ?? '';
+
+    $section_style = base_theme_hero_background_style($background_type, $image, $background_color, $background_gradient);
+    $section_style .= base_theme_hero_min_height_style($min_height_desktop, $min_height_mobile);
 ?>
-<section class="<?php echo esc_attr($section_classes); ?>" style="background-image: url('<?php echo esc_url($background_image); ?>');">
+<section class="<?php echo esc_attr($section_classes); ?>" style="<?php echo esc_attr($section_style); ?>">
     <div class="container">
         <div class="block-hero-content">
             <div class="content">

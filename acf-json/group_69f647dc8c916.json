@@ -60,6 +60,40 @@
                                     "ui_off_text": ""
                                 },
                                 {
+                                    "key": "field_69f647dc_hero_bgtype",
+                                    "label": "Background Type",
+                                    "name": "background_type",
+                                    "aria-label": "",
+                                    "type": "select",
+                                    "instructions": "",
+                                    "required": 0,
+                                    "conditional_logic": 0,
+                                    "wrapper": {
+                                        "width": "",
+                                        "class": "",
+                                        "id": ""
+                                    },
+                                    "choices": {
+                                        "image": "Image",
+                                        "primary": "Primary Color",
+                                        "secondary": "Secondary Color",
+                                        "font": "Font Color Variable",
+                                        "white": "White",
+                                        "black": "Black",
+                                        "custom": "Custom Color",
+                                        "gradient": "Linear Gradient"
+                                    },
+                                    "default_value": "image",
+                                    "return_format": "value",
+                                    "multiple": 0,
+                                    "allow_null": 0,
+                                    "ui": 0,
+                                    "ajax": 0,
+                                    "placeholder": "",
+                                    "create_options": 0,
+                                    "save_options": 0
+                                },
+                                {
                                     "key": "field_69f647dc_hero_image",
                                     "label": "Background Image",
                                     "name": "image",
@@ -67,7 +101,21 @@
                                     "type": "image",
                                     "instructions": "Leave empty to use the page's featured image, or the site default if there isn't one.",
                                     "required": 0,
-                                    "conditional_logic": 0,
+                                    "conditional_logic": [
+                                        [
+                                            {
+                                                "field": "field_69f647dc_hero_bgtype",
+                                                "operator": "==",
+                                                "value": "image"
+                                            }
+                                        ],
+                                        [
+                                            {
+                                                "field": "field_69f647dc_hero_bgtype",
+                                                "operator": "==empty"
+                                            }
+                                        ]
+                                    ],
                                     "wrapper": {
                                         "width": "",
                                         "class": "",
@@ -86,6 +134,63 @@
                                     "preview_size": "medium"
                                 },
                                 {
+                                    "key": "field_69f647dc_hero_bgcolor",
+                                    "label": "Custom Color",
+                                    "name": "background_color",
+                                    "aria-label": "",
+                                    "type": "color_picker",
+                                    "instructions": "",
+                                    "required": 0,
+                                    "conditional_logic": [
+                                        [
+                                            {
+                                                "field": "field_69f647dc_hero_bgtype",
+                                                "operator": "==",
+                                                "value": "custom"
+                                            }
+                                        ]
+                                    ],
+                                    "wrapper": {
+                                        "width": "",
+                                        "class": "",
+                                        "id": ""
+                                    },
+                                    "default_value": "",
+                                    "enable_opacity": 0,
+                                    "return_format": "string",
+                                    "custom_palette_source": "",
+                                    "palette_colors": "",
+                                    "show_color_wheel": true
+                                },
+                                {
+                                    "key": "field_69f647dc_hero_bggradient",
+                                    "label": "Gradient",
+                                    "name": "background_gradient",
+                                    "aria-label": "",
+                                    "type": "textarea",
+                                    "instructions": "Paste a full CSS gradient value, e.g. linear-gradient(180deg, #000000 0%, #333333 100%).",
+                                    "required": 1,
+                                    "conditional_logic": [
+                                        [
+                                            {
+                                                "field": "field_69f647dc_hero_bgtype",
+                                                "operator": "==",
+                                                "value": "gradient"
+                                            }
+                                        ]
+                                    ],
+                                    "wrapper": {
+                                        "width": "",
+                                        "class": "",
+                                        "id": ""
+                                    },
+                                    "default_value": "",
+                                    "placeholder": "linear-gradient(180deg, #000000 0%, #333333 100%)",
+                                    "maxlength": "",
+                                    "rows": 2,
+                                    "new_lines": ""
+                                },
+                                {
                                     "key": "field_69f647dc_hero_content_type",
                                     "label": "Content Color",
                                     "name": "content_type",
@@ -93,7 +198,14 @@
                                     "type": "radio",
                                     "instructions": "",
                                     "required": 0,
-                                    "conditional_logic": 0,
+                                    "conditional_logic": [
+                                        [
+                                            {
+                                                "field": "field_69f647dc_hero_bgtype",
+                                                "operator": "!=empty"
+                                            }
+                                        ]
+                                    ],
                                     "wrapper": {
                                         "width": "",
                                         "class": "",
@@ -130,6 +242,46 @@
                                     "placeholder": "",
                                     "prepend": "",
                                     "append": ""
+                                },
+                                {
+                                    "key": "field_69f647dc_hero_min_height_desktop",
+                                    "label": "Minimum Height Desktop (px)",
+                                    "name": "min_height_desktop",
+                                    "aria-label": "",
+                                    "type": "number",
+                                    "instructions": "Leave empty to use the site-wide Hero height (Theme Settings).",
+                                    "required": 0,
+                                    "conditional_logic": 0,
+                                    "wrapper": {
+                                        "width": "50",
+                                        "class": "",
+                                        "id": ""
+                                    },
+                                    "default_value": "",
+                                    "min": 0,
+                                    "max": "",
+                                    "placeholder": "",
+                                    "step": ""
+                                },
+                                {
+                                    "key": "field_69f647dc_hero_min_height_mobile",
+                                    "label": "Minimum Height Mobile (px)",
+                                    "name": "min_height_mobile",
+                                    "aria-label": "",
+                                    "type": "number",
+                                    "instructions": "Leave empty to use the site-wide Hero height (Theme Settings).",
+                                    "required": 0,
+                                    "conditional_logic": 0,
+                                    "wrapper": {
+                                        "width": "50",
+                                        "class": "",
+                                        "id": ""
+                                    },
+                                    "default_value": "",
+                                    "min": 0,
+                                    "max": "",
+                                    "placeholder": "",
+                                    "step": ""
                                 }
                             ]
                         }
@@ -5215,5 +5367,5 @@
     "display_title": "",
     "allow_ai_access": false,
     "ai_description": "",
-    "modified": 1785796861
+    "modified": 1785800103
 }
