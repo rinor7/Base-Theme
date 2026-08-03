@@ -57,12 +57,40 @@ if (empty($section['disable_section'])):
 
     $padding_desktop = $section['padding_desktop'] ?? '';
     $padding_mobile  = $section['padding_mobile'] ?? '';
+    $min_height_desktop = $section['min_height_desktop'] ?? '';
+    $min_height_mobile  = $section['min_height_mobile'] ?? '';
     $section_style = $build_background_style($section['background_color'] ?? '', $section['background_color_custom'] ?? '', $section['background_gradient'] ?? '');
     if ($padding_desktop !== '') {
         $section_style .= '--section-padding-desktop:' . intval($padding_desktop) . 'px;';
     }
     if ($padding_mobile !== '') {
         $section_style .= '--section-padding-mobile:' . intval($padding_mobile) . 'px;';
+    }
+    if ($min_height_desktop !== '') {
+        $section_style .= '--flex-image-text-min-height-desktop:' . intval($min_height_desktop) . 'px;';
+    }
+    if ($min_height_mobile !== '') {
+        $section_style .= '--flex-image-text-min-height-mobile:' . intval($min_height_mobile) . 'px;';
+    }
+
+    // Content Split Ratio: how much horizontal space the image takes vs. the text at desktop widths.
+    $split_ratio_choices = array(
+        '50-50' => array(50, 50),
+        '60-40' => array(60, 40),
+        '40-60' => array(40, 60),
+        '70-30' => array(70, 30),
+        '30-70' => array(30, 70),
+        '75-25' => array(75, 25),
+        '25-75' => array(25, 75),
+    );
+    $split_ratio = $section['split_ratio'] ?? '50-50';
+    if (!isset($split_ratio_choices[$split_ratio])) {
+        $split_ratio = '50-50';
+    }
+    if ($split_ratio !== '50-50') {
+        list($media_width, $content_width) = $split_ratio_choices[$split_ratio];
+        $section_style .= '--flex-image-text-media-width:' . $media_width . '%;';
+        $section_style .= '--flex-image-text-content-width:' . $content_width . '%;';
     }
     $section_style_attr = $section_style ? ' style="' . esc_attr($section_style) . '"' : '';
 

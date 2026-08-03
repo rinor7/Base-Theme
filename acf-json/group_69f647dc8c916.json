@@ -1159,6 +1159,39 @@
                                     "ui_off_text": ""
                                 },
                                 {
+                                    "key": "field_69f647dc_image_text_split_ratio",
+                                    "label": "Content Split Ratio",
+                                    "name": "split_ratio",
+                                    "aria-label": "",
+                                    "type": "select",
+                                    "instructions": "Image width vs. text width at desktop sizes. Always stacks full-width on mobile.",
+                                    "required": 0,
+                                    "conditional_logic": 0,
+                                    "wrapper": {
+                                        "width": "",
+                                        "class": "",
+                                        "id": ""
+                                    },
+                                    "choices": {
+                                        "50-50": "Even (50% / 50%)",
+                                        "60-40": "Image 60% / Content 40%",
+                                        "40-60": "Image 40% / Content 60%",
+                                        "70-30": "Image 70% / Content 30%",
+                                        "30-70": "Image 30% / Content 70%",
+                                        "75-25": "Image 75% / Content 25%",
+                                        "25-75": "Image 25% / Content 75%"
+                                    },
+                                    "default_value": "50-50",
+                                    "return_format": "value",
+                                    "multiple": 0,
+                                    "allow_null": 0,
+                                    "ui": 0,
+                                    "ajax": 0,
+                                    "placeholder": "",
+                                    "create_options": 0,
+                                    "save_options": 0
+                                },
+                                {
                                     "key": "field_69f647dc_image_text_bg_color",
                                     "label": "Background Color",
                                     "name": "background_color",
@@ -1286,6 +1319,46 @@
                                     "min": 0,
                                     "max": "",
                                     "placeholder": "20",
+                                    "step": ""
+                                },
+                                {
+                                    "key": "field_69f647dc_image_text_min_height_desktop",
+                                    "label": "Minimum Section Height Desktop (px)",
+                                    "name": "min_height_desktop",
+                                    "aria-label": "",
+                                    "type": "number",
+                                    "instructions": "Leave empty for automatic height based on content.",
+                                    "required": 0,
+                                    "conditional_logic": 0,
+                                    "wrapper": {
+                                        "width": "50",
+                                        "class": "",
+                                        "id": ""
+                                    },
+                                    "default_value": "",
+                                    "min": 0,
+                                    "max": "",
+                                    "placeholder": "Auto",
+                                    "step": ""
+                                },
+                                {
+                                    "key": "field_69f647dc_image_text_min_height_mobile",
+                                    "label": "Minimum Section Height Mobile (px)",
+                                    "name": "min_height_mobile",
+                                    "aria-label": "",
+                                    "type": "number",
+                                    "instructions": "Leave empty for automatic height based on content.",
+                                    "required": 0,
+                                    "conditional_logic": 0,
+                                    "wrapper": {
+                                        "width": "50",
+                                        "class": "",
+                                        "id": ""
+                                    },
+                                    "default_value": "",
+                                    "min": 0,
+                                    "max": "",
+                                    "placeholder": "Auto",
                                     "step": ""
                                 },
                                 {
@@ -5022,5 +5095,5 @@
     "display_title": "",
     "allow_ai_access": false,
     "ai_description": "",
-    "modified": 1785794250
+    "modified": 1785794839
 }

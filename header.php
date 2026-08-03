@@ -26,7 +26,7 @@
     <?php wp_head(); ?>
 </head>
 
-<body <?php body_class( array( wp_is_mobile() ? 'wp-is-mobile' : 'wp-is-desktop', get_field('sticky', 'option') ? 'header-sticky' : '' ) ); ?>>
+<body <?php body_class( array( get_field('sticky', 'option') ? 'header-sticky' : '' ) ); ?>>
     <div id="page" class="site">
 
         <!-- Header Righside Menu -->

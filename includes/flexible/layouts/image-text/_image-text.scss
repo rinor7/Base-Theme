@@ -1,9 +1,13 @@
 /* Image - Text style Start */
 .flex-image-text {
     padding: var(--section-padding-mobile, 20px) 0;
+    display: flex;
+    align-items: center;
+    min-height: var(--flex-image-text-min-height-mobile, auto);
 
     @include min-md {
         padding: var(--section-padding-desktop, 20px) 0;
+        min-height: var(--flex-image-text-min-height-desktop, auto);
     }
 
     .row {
@@ -12,6 +16,10 @@
 
     &__media {
         align-self: center;
+
+        @include min-md {
+            width: var(--flex-image-text-media-width, 50%);
+        }
 
         .flex-image-text__image {
             width: 100%;
@@ -40,6 +48,7 @@
         row-gap: var(--row-gap-mobile, 8px);
         @include min-md {
             row-gap: var(--row-gap-desktop, 16px);
+            width: var(--flex-image-text-content-width, 50%);
         }
         .flex-image-text__buttons {
             display: flex;
@@ -98,7 +107,7 @@
         }
 
         @include min-md {
-            width: 50%;
+            width: var(--flex-image-text-media-width, 50%);
             position: absolute;
         }
 
