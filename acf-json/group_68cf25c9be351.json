@@ -1,6 +1,6 @@
 {
     "key": "group_68cf25c9be351",
-    "title": "Category\/Taxonomy Hero",
+    "title": "Category/Taxonomy Hero",
     "fields": [
         {
             "key": "field_68cf25c984631",
@@ -27,6 +27,67 @@
             "mime_types": "",
             "allow_in_bindings": 0,
             "preview_size": "medium"
+        },
+        {
+            "key": "field_68cf25c9_hero_content_type",
+            "label": "Content Color",
+            "name": "hero_content_type",
+            "aria-label": "",
+            "type": "radio",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": [
+                [
+                    {
+                        "field": "field_68cf25c984631",
+                        "operator": "!=empty"
+                    }
+                ]
+            ],
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "choices": {
+                "light-content": "Light Content",
+                "dark-content": "Dark Content"
+            },
+            "default_value": "",
+            "return_format": "value",
+            "allow_null": 1,
+            "other_choice": 0,
+            "allow_in_bindings": 0,
+            "layout": "vertical",
+            "save_other_choice": 0
+        },
+        {
+            "key": "field_68cf25c9_hero_overlay_color",
+            "label": "Overlay Color",
+            "name": "hero_overlay_color",
+            "aria-label": "",
+            "type": "color_picker",
+            "instructions": "Optional tinted layer on top of the image, for text readability. Leave empty for no overlay.",
+            "required": 0,
+            "conditional_logic": [
+                [
+                    {
+                        "field": "field_68cf25c984631",
+                        "operator": "!=empty"
+                    }
+                ]
+            ],
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "default_value": "",
+            "enable_opacity": 1,
+            "return_format": "string",
+            "custom_palette_source": "",
+            "palette_colors": "",
+            "show_color_wheel": true
         }
     ],
     "location": [
@@ -47,5 +108,5 @@
     "active": true,
     "description": "",
     "show_in_rest": 0,
-    "modified": 1758406148
+    "modified": 1785805422
 }

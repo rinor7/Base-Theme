@@ -642,6 +642,35 @@
                     "save_other_choice": 0
                 },
                 {
+                    "key": "field_683a4511_single_overlay_color",
+                    "label": "Overlay Color",
+                    "name": "default_single_overlay_color",
+                    "aria-label": "",
+                    "type": "color_picker",
+                    "instructions": "Optional tinted layer on top of the image, for text readability. Leave empty for no overlay.",
+                    "required": 0,
+                    "conditional_logic": [
+                        [
+                            {
+                                "field": "field_683a4511_single_bgtype",
+                                "operator": "==",
+                                "value": "image"
+                            }
+                        ]
+                    ],
+                    "wrapper": {
+                        "width": "",
+                        "class": "",
+                        "id": ""
+                    },
+                    "default_value": "",
+                    "enable_opacity": 1,
+                    "return_format": "string",
+                    "custom_palette_source": "",
+                    "palette_colors": "",
+                    "show_color_wheel": true
+                },
+                {
                     "key": "field_683a4511_archive_bgtype",
                     "label": "Background Type",
                     "name": "default_archive_background_type",
@@ -839,6 +868,35 @@
                     "save_other_choice": 0
                 },
                 {
+                    "key": "field_683a4511_archive_overlay_color",
+                    "label": "Overlay Color",
+                    "name": "default_archive_overlay_color",
+                    "aria-label": "",
+                    "type": "color_picker",
+                    "instructions": "Optional tinted layer on top of the image, for text readability. Leave empty for no overlay.",
+                    "required": 0,
+                    "conditional_logic": [
+                        [
+                            {
+                                "field": "field_683a4511_archive_bgtype",
+                                "operator": "==",
+                                "value": "image"
+                            }
+                        ]
+                    ],
+                    "wrapper": {
+                        "width": "",
+                        "class": "",
+                        "id": ""
+                    },
+                    "default_value": "",
+                    "enable_opacity": 1,
+                    "return_format": "string",
+                    "custom_palette_source": "",
+                    "palette_colors": "",
+                    "show_color_wheel": true
+                },
+                {
                     "key": "field_683a4511_taxdef_bgtype",
                     "label": "Background Type",
                     "name": "default_taxonomy_background_type",
@@ -1034,6 +1092,35 @@
                     "allow_in_bindings": 0,
                     "layout": "vertical",
                     "save_other_choice": 0
+                },
+                {
+                    "key": "field_683a4511_taxdef_overlay_color",
+                    "label": "Overlay Color",
+                    "name": "default_taxonomy_overlay_color",
+                    "aria-label": "",
+                    "type": "color_picker",
+                    "instructions": "Optional tinted layer on top of the image, for text readability. Leave empty for no overlay.",
+                    "required": 0,
+                    "conditional_logic": [
+                        [
+                            {
+                                "field": "field_683a4511_taxdef_bgtype",
+                                "operator": "==",
+                                "value": "image"
+                            }
+                        ]
+                    ],
+                    "wrapper": {
+                        "width": "",
+                        "class": "",
+                        "id": ""
+                    },
+                    "default_value": "",
+                    "enable_opacity": 1,
+                    "return_format": "string",
+                    "custom_palette_source": "",
+                    "palette_colors": "",
+                    "show_color_wheel": true
                 },
                 {
                     "key": "field_683a4511_hero_ptset_tab",
@@ -1318,6 +1405,40 @@
                             "save_other_choice": 0
                         },
                         {
+                            "key": "field_683a4511_ptset_single_overlay_color",
+                            "label": "Overlay Color",
+                            "name": "single_overlay_color",
+                            "aria-label": "",
+                            "type": "color_picker",
+                            "instructions": "Optional tinted layer on top of the image, for text readability. Leave empty for no overlay.",
+                            "required": 0,
+                            "conditional_logic": [
+                                [
+                                    {
+                                        "field": "field_683a4511_ptset_single_bgtype",
+                                        "operator": "==",
+                                        "value": "image"
+                                    },
+                                    {
+                                        "field": "field_683a4511_hero_ptset_enable",
+                                        "operator": "==",
+                                        "value": "1"
+                                    }
+                                ]
+                            ],
+                            "wrapper": {
+                                "width": "50",
+                                "class": "",
+                                "id": ""
+                            },
+                            "default_value": "",
+                            "enable_opacity": 1,
+                            "return_format": "string",
+                            "custom_palette_source": "",
+                            "palette_colors": "",
+                            "show_color_wheel": true
+                        },
+                        {
                             "key": "field_683a4511_ptset_archive_bgtype",
                             "label": "Background Type",
                             "name": "archive_background_type",
@@ -1543,6 +1664,45 @@
                             "allow_in_bindings": 0,
                             "layout": "vertical",
                             "save_other_choice": 0
+                        },
+                        {
+                            "key": "field_683a4511_ptset_archive_overlay_color",
+                            "label": "Overlay Color",
+                            "name": "archive_overlay_color",
+                            "aria-label": "",
+                            "type": "color_picker",
+                            "instructions": "Optional tinted layer on top of the image, for text readability. Leave empty for no overlay.",
+                            "required": 0,
+                            "conditional_logic": [
+                                [
+                                    {
+                                        "field": "field_683a4511_ptset_archive_bgtype",
+                                        "operator": "==",
+                                        "value": "image"
+                                    },
+                                    {
+                                        "field": "field_683a4511_hero_ptset_enable",
+                                        "operator": "==",
+                                        "value": "1"
+                                    },
+                                    {
+                                        "field": "field_683a4511_hero_ptset_post_type",
+                                        "operator": "!=",
+                                        "value": "page"
+                                    }
+                                ]
+                            ],
+                            "wrapper": {
+                                "width": "50",
+                                "class": "",
+                                "id": ""
+                            },
+                            "default_value": "",
+                            "enable_opacity": 1,
+                            "return_format": "string",
+                            "custom_palette_source": "",
+                            "palette_colors": "",
+                            "show_color_wheel": true
                         }
                     ]
                 },
@@ -1774,6 +1934,35 @@
                             "allow_in_bindings": 0,
                             "layout": "vertical",
                             "save_other_choice": 0
+                        },
+                        {
+                            "key": "field_683a4511_taxset_overlay_color",
+                            "label": "Overlay Color",
+                            "name": "overlay_color",
+                            "aria-label": "",
+                            "type": "color_picker",
+                            "instructions": "Optional tinted layer on top of the image, for text readability. Leave empty for no overlay.",
+                            "required": 0,
+                            "conditional_logic": [
+                                [
+                                    {
+                                        "field": "field_683a4511_taxset_bgtype",
+                                        "operator": "==",
+                                        "value": "image"
+                                    }
+                                ]
+                            ],
+                            "wrapper": {
+                                "width": "25",
+                                "class": "",
+                                "id": ""
+                            },
+                            "default_value": "",
+                            "enable_opacity": 1,
+                            "return_format": "string",
+                            "custom_palette_source": "",
+                            "palette_colors": "",
+                            "show_color_wheel": true
                         }
                     ]
                 }
@@ -1801,5 +1990,5 @@
     "display_title": "",
     "allow_ai_access": false,
     "ai_description": "",
-    "modified": 1785802510
+    "modified": 1785805357
 }

@@ -10,6 +10,18 @@
     }
     // background-repeat: no-repeat;
     background-size: cover;
+
+    .hero-overlay {
+        position: absolute;
+        inset: 0;
+        z-index: 0;
+    }
+
+    .container {
+        position: relative;
+        z-index: 1;
+    }
+
     &.light-content {
         .content {
             &>* {

@@ -9,6 +9,7 @@ if (empty($section['disable_section'])):
     $background_color = $section['background_color'] ?? '';
     $background_gradient = $section['background_gradient'] ?? '';
     $content_type = $section['content_type'] ?? '';
+    $overlay_color = $section['overlay_color'] ?? '';
 
     // Image type only: fall back to the featured image, then the theme default.
     if ($background_type === 'image' && $image === '' && has_post_thumbnail()) {
@@ -33,8 +34,15 @@ if (empty($section['disable_section'])):
 
     $section_style = base_theme_hero_background_style($background_type, $image, $background_color, $background_gradient);
     $section_style .= base_theme_hero_min_height_style($min_height_desktop, $min_height_mobile);
+
+    // Overlay only makes sense on top of an image — a color/gradient background is already
+    // fully under the editor's control.
+    $overlay_style = $background_type === 'image' ? base_theme_hero_overlay_style($overlay_color) : '';
 ?>
 <section class="<?php echo esc_attr($section_classes); ?>" style="<?php echo esc_attr($section_style); ?>">
+    <?php if ($overlay_style !== '') : ?>
+    <div class="hero-overlay" style="<?php echo esc_attr($overlay_style); ?>"></div>
+    <?php endif; ?>
     <div class="container">
         <div class="block-hero-content">
             <div class="content">

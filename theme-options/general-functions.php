@@ -224,6 +224,13 @@ function base_theme_hero_background_style($type, $image, $color, $gradient) {
     }
 }
 
+// Style for the optional tinted layer shown on top of an image hero, for text readability.
+// Caller wraps the result in esc_attr() before echoing.
+function base_theme_hero_overlay_style($overlay_color) {
+    $overlay_color = trim((string) $overlay_color);
+    return $overlay_color !== '' ? 'background-color:' . $overlay_color . ';' : '';
+}
+
 // Hero min-height, as CSS custom properties. Falls back to the site-wide Theme Settings value when
 // no override is passed, and CSS falls back further to 300px if neither is set. Shared by the
 // automatic Theme Settings hero below and by includes/flexible/layouts/hero/hero.php (which passes
@@ -264,13 +271,15 @@ function base_theme_resolve_hero_fallback_chain($post_type, $post_id) {
     $color        = $post_type_settings['single_background_color'] ?? '';
     $gradient     = $post_type_settings['single_background_gradient'] ?? '';
     $content_type = $post_type_settings['default_single_content_type'] ?? '';
+    $overlay_color = $post_type_settings['single_overlay_color'] ?? '';
 
     if (!base_theme_hero_slot_has_content($type, $image, $color, $gradient) && !empty($hero_banners['enable_sitewide_default'])) {
-        $type         = $hero_banners['default_single_background_type'] ?? 'image';
-        $image        = $hero_banners['default_single_hero'] ?? '';
-        $color        = $hero_banners['default_single_background_color'] ?? '';
-        $gradient     = $hero_banners['default_single_background_gradient'] ?? '';
-        $content_type = $hero_banners['default_single_hero_content_type'] ?? '';
+        $type          = $hero_banners['default_single_background_type'] ?? 'image';
+        $image         = $hero_banners['default_single_hero'] ?? '';
+        $color         = $hero_banners['default_single_background_color'] ?? '';
+        $gradient      = $hero_banners['default_single_background_gradient'] ?? '';
+        $content_type  = $hero_banners['default_single_hero_content_type'] ?? '';
+        $overlay_color = $hero_banners['default_single_overlay_color'] ?? '';
     }
 
     if ($type === 'image' && $image === '' && has_post_thumbnail($post_id)) {
@@ -282,7 +291,7 @@ function base_theme_resolve_hero_fallback_chain($post_type, $post_id) {
         $image = get_template_directory_uri() . '/assets/img/bg.webp';
     }
 
-    return compact('type', 'image', 'color', 'gradient', 'content_type');
+    return compact('type', 'image', 'color', 'gradient', 'content_type', 'overlay_color');
 }
 
 // Resolves the automatic hero for a Page.
@@ -310,6 +319,7 @@ function base_theme_get_automatic_post_hero($post_id = null) {
             'color' => '',
             'gradient' => '',
             'content_type' => get_field('hero_override_content_type', $post_id) ?: '',
+            'overlay_color' => get_field('hero_override_overlay_color', $post_id) ?: '',
         );
     }
 
@@ -321,6 +331,7 @@ function base_theme_get_automatic_post_hero($post_id = null) {
             'color' => '',
             'gradient' => '',
             'content_type' => get_field('hero_override_content_type', $post_id) ?: '',
+            'overlay_color' => get_field('hero_override_overlay_color', $post_id) ?: '',
         );
     }
 
@@ -342,13 +353,15 @@ function base_theme_get_automatic_archive_hero($post_type) {
     $color        = $post_type_settings['archive_background_color'] ?? '';
     $gradient     = $post_type_settings['archive_background_gradient'] ?? '';
     $content_type = $post_type_settings['default_archive_content_type'] ?? '';
+    $overlay_color = $post_type_settings['archive_overlay_color'] ?? '';
 
     if (!base_theme_hero_slot_has_content($type, $image, $color, $gradient) && !empty($hero_banners['enable_sitewide_default'])) {
-        $type         = $hero_banners['default_archive_background_type'] ?? 'image';
-        $image        = $hero_banners['default_archive_hero'] ?? '';
-        $color        = $hero_banners['default_archive_background_color'] ?? '';
-        $gradient     = $hero_banners['default_archive_background_gradient'] ?? '';
-        $content_type = $hero_banners['default_archive_hero_content_type'] ?? '';
+        $type          = $hero_banners['default_archive_background_type'] ?? 'image';
+        $image         = $hero_banners['default_archive_hero'] ?? '';
+        $color         = $hero_banners['default_archive_background_color'] ?? '';
+        $gradient      = $hero_banners['default_archive_background_gradient'] ?? '';
+        $content_type  = $hero_banners['default_archive_hero_content_type'] ?? '';
+        $overlay_color = $hero_banners['default_archive_overlay_color'] ?? '';
     }
 
     if (!base_theme_hero_slot_has_content($type, $image, $color, $gradient)) {
@@ -356,7 +369,7 @@ function base_theme_get_automatic_archive_hero($post_type) {
         $image = get_template_directory_uri() . '/assets/img/bg.webp';
     }
 
-    return compact('type', 'image', 'color', 'gradient', 'content_type');
+    return compact('type', 'image', 'color', 'gradient', 'content_type', 'overlay_color');
 }
 
 // Resolves the automatic hero for a taxonomy term archive: the term's own Hero field (always
@@ -371,6 +384,7 @@ function base_theme_get_automatic_taxonomy_hero($term) {
             'color' => '',
             'gradient' => '',
             'content_type' => get_field('hero_content_type', $term) ?: '',
+            'overlay_color' => get_field('hero_overlay_color', $term) ?: '',
         );
     }
 
@@ -389,19 +403,21 @@ function base_theme_get_automatic_taxonomy_hero($term) {
             return array(
                 'type' => $type, 'image' => $image, 'color' => $color, 'gradient' => $gradient,
                 'content_type' => $row['default_content_type'] ?? '',
+                'overlay_color' => $row['overlay_color'] ?? '',
             );
         }
         break;
     }
 
     if (!empty($hero_banners['enable_sitewide_default'])) {
-        $type         = $hero_banners['default_taxonomy_background_type'] ?? 'image';
-        $image        = $hero_banners['default_taxonomy_hero'] ?? '';
-        $color        = $hero_banners['default_taxonomy_background_color'] ?? '';
-        $gradient     = $hero_banners['default_taxonomy_background_gradient'] ?? '';
-        $content_type = $hero_banners['default_taxonomy_hero_content_type'] ?? '';
+        $type          = $hero_banners['default_taxonomy_background_type'] ?? 'image';
+        $image         = $hero_banners['default_taxonomy_hero'] ?? '';
+        $color         = $hero_banners['default_taxonomy_background_color'] ?? '';
+        $gradient      = $hero_banners['default_taxonomy_background_gradient'] ?? '';
+        $content_type  = $hero_banners['default_taxonomy_hero_content_type'] ?? '';
+        $overlay_color = $hero_banners['default_taxonomy_overlay_color'] ?? '';
         if (base_theme_hero_slot_has_content($type, $image, $color, $gradient)) {
-            return compact('type', 'image', 'color', 'gradient', 'content_type');
+            return compact('type', 'image', 'color', 'gradient', 'content_type', 'overlay_color');
         }
     }
 
@@ -411,6 +427,7 @@ function base_theme_get_automatic_taxonomy_hero($term) {
         'color' => '',
         'gradient' => '',
         'content_type' => '',
+        'overlay_color' => '',
     );
 }
 
@@ -439,8 +456,14 @@ function base_theme_render_hero_section($hero, $page_title) {
     if (!empty($hero['content_type'])) {
         $class .= ' ' . $hero['content_type'];
     }
+    // Overlay only makes sense on top of an image — a color/gradient background is already
+    // fully under the editor's control.
+    $overlay_style = $hero['type'] === 'image' ? base_theme_hero_overlay_style($hero['overlay_color'] ?? '') : '';
     ?>
     <section class="<?php echo esc_attr($class); ?>" style="<?php echo esc_attr($style); ?>">
+        <?php if ($overlay_style !== '') : ?>
+        <div class="hero-overlay" style="<?php echo esc_attr($overlay_style); ?>"></div>
+        <?php endif; ?>
         <div class="container">
             <div class="block-hero-content">
                 <div class="content">
@@ -474,6 +497,7 @@ function base_theme_render_automatic_page_hero() {
 add_filter('acf/prepare_field/key=field_690b1a2c_use_featured_image_for_hero', 'base_theme_hide_hero_override_if_disabled');
 add_filter('acf/prepare_field/key=field_690b1a2c_hero_override_image', 'base_theme_hide_hero_override_if_disabled');
 add_filter('acf/prepare_field/key=field_690b1a2c_hero_override_content_type', 'base_theme_hide_hero_override_if_disabled');
+add_filter('acf/prepare_field/key=field_690b1a2c_hero_override_overlay_color', 'base_theme_hide_hero_override_if_disabled');
 add_filter('acf/prepare_field/key=field_690b1a2c_show_thumbnail_in_content', 'base_theme_hide_hero_override_if_disabled');
 function base_theme_hide_hero_override_if_disabled($field) {
     global $post;

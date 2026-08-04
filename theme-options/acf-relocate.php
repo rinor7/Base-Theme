@@ -60,3 +60,28 @@ function base_theme_lock_json_only_field_groups($data, $postarr) {
 
     return $data;
 }
+
+// Hide the same JSON-only field groups from the Field Groups list screen entirely — purely a
+// display change on that one admin screen. Their location rules (which is what actually assigns
+// them to post types) are untouched and still evaluated normally everywhere else.
+add_action('admin_head-edit.php', 'base_theme_hide_json_only_field_groups_from_list');
+function base_theme_hide_json_only_field_groups_from_list() {
+    $screen = get_current_screen();
+    if (!$screen || $screen->post_type !== 'acf-field-group') {
+        return;
+    }
+    $titles = array('Hero Override', 'Category/Taxonomy Hero', 'Menu Icon/Image');
+    ?>
+    <script>
+    document.addEventListener('DOMContentLoaded', function () {
+        var titles = <?php echo wp_json_encode($titles); ?>;
+        document.querySelectorAll('#the-list tr').forEach(function (row) {
+            var titleLink = row.querySelector('.row-title');
+            if (titleLink && titles.indexOf(titleLink.textContent.trim()) !== -1) {
+                row.remove();
+            }
+        });
+    });
+    </script>
+    <?php
+}

@@ -224,6 +224,35 @@
                                     "save_other_choice": 0
                                 },
                                 {
+                                    "key": "field_69f647dc_hero_overlay_color",
+                                    "label": "Overlay Color",
+                                    "name": "overlay_color",
+                                    "aria-label": "",
+                                    "type": "color_picker",
+                                    "instructions": "Optional tinted layer on top of the image, for text readability. Leave empty for no overlay.",
+                                    "required": 0,
+                                    "conditional_logic": [
+                                        [
+                                            {
+                                                "field": "field_69f647dc_hero_bgtype",
+                                                "operator": "==",
+                                                "value": "image"
+                                            }
+                                        ]
+                                    ],
+                                    "wrapper": {
+                                        "width": "",
+                                        "class": "",
+                                        "id": ""
+                                    },
+                                    "default_value": "",
+                                    "enable_opacity": 1,
+                                    "return_format": "string",
+                                    "custom_palette_source": "",
+                                    "palette_colors": "",
+                                    "show_color_wheel": true
+                                },
+                                {
                                     "key": "field_69f647dc_hero_custom_class",
                                     "label": "Custom CSS Class",
                                     "name": "custom_class",
@@ -5367,5 +5396,5 @@
     "display_title": "",
     "allow_ai_access": false,
     "ai_description": "",
-    "modified": 1785802538
+    "modified": 1785805387
 }

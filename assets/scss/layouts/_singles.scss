@@ -20,9 +20,17 @@
             }
         }
 
-        h1 {}
+        h1 {
+            margin-bottom: 20px;
+        }
 
-        p {}
+        p {
+            margin-bottom: 16px;
+
+            &:last-child {
+                margin-bottom: 0;
+            }
+        }
     }
 }
 

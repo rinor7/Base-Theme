@@ -1,0 +1,71 @@
+/* Baseline styling for Contact Form 7 — it ships with no visual styles of its own by design,
+   and Bootstrap's reset strips native input borders, so without this any embedded form
+   (widget, flexible content, wherever) renders as invisible/borderless fields. */
+.wpcf7-form {
+    p {
+        margin-bottom: 20px;
+    }
+
+    label {
+        display: block;
+        margin-bottom: 6px;
+        font-weight: 500;
+    }
+
+    .wpcf7-form-control-wrap {
+        display: block;
+    }
+
+    .wpcf7-form-control {
+        width: 100%;
+        padding: 12px 16px;
+        border: 1px solid #ddd;
+        border-radius: 4px;
+        background-color: $white;
+        font-family: inherit;
+        font-size: 15px;
+        color: $black;
+        @include transition;
+
+        &:focus {
+            outline: none;
+            border-color: $primary-color;
+        }
+    }
+
+    textarea.wpcf7-form-control {
+        min-height: 140px;
+        resize: vertical;
+    }
+
+    input[type="submit"].wpcf7-submit {
+        @include btn-1;
+        border: none;
+        cursor: pointer;
+    }
+
+    .wpcf7-not-valid-tip {
+        display: block;
+        margin-top: 4px;
+        color: #e63946;
+        font-size: 13px;
+    }
+
+    .wpcf7-response-output {
+        margin-top: 20px;
+        padding: 12px 16px;
+        border: 1px solid #ddd;
+        border-radius: 4px;
+    }
+
+    &.sent .wpcf7-response-output {
+        border-color: #2a9d5c;
+        color: #2a9d5c;
+    }
+
+    &.invalid .wpcf7-response-output,
+    &.unaccepted .wpcf7-response-output {
+        border-color: #e63946;
+        color: #e63946;
+    }
+}
