@@ -100,7 +100,7 @@
                                     "aria-label": "",
                                     "type": "image",
                                     "instructions": "Leave empty to use the page's featured image, or the site default if there isn't one.",
-                                    "required": 0,
+                                    "required": 1,
                                     "conditional_logic": [
                                         [
                                             {
@@ -140,7 +140,7 @@
                                     "aria-label": "",
                                     "type": "color_picker",
                                     "instructions": "",
-                                    "required": 0,
+                                    "required": 1,
                                     "conditional_logic": [
                                         [
                                             {
@@ -5367,5 +5367,5 @@
     "display_title": "",
     "allow_ai_access": false,
     "ai_description": "",
-    "modified": 1785800103
+    "modified": 1785802538
 }

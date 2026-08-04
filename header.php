@@ -112,3 +112,12 @@
                 </div>
             </div>
         </header>
+
+        <?php
+        // Automatic Page hero: runs for every Page template automatically (no per-template call
+        // needed), except the Frontpage template which never shows a hero. A page's own Hero
+        // module (if added) still always wins — see base_theme_render_automatic_page_hero().
+        if (is_page() && get_page_template_slug() !== 'frontpage.php') {
+            base_theme_render_automatic_page_hero();
+        }
+        ?>

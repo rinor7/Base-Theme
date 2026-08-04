@@ -39,3 +39,9 @@ function standard_widgets_init() {
 	);
 }
 add_action( 'widgets_init', 'standard_widgets_init' );
+
+// Process shortcodes (e.g. [phone], [email]) in widget content. WordPress runs do_shortcode() on
+// the classic Text widget by default, but deliberately not on the Custom HTML widget — since the
+// footer widgets here are commonly Custom HTML, that filter needs adding explicitly.
+add_filter( 'widget_text', 'do_shortcode' );
+add_filter( 'widget_custom_html_content', 'do_shortcode' );

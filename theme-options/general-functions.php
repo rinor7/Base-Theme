@@ -175,7 +175,8 @@ function base_theme_get_post_type_hero_settings($post_type) {
     if (array_key_exists($post_type, $cache)) {
         return $cache[$post_type];
     }
-    $rows = get_field('hero_banners', 'option')['hero_post_type_settings'] ?? [];
+    $hero_banners = get_field('hero_banners', 'option') ?: [];
+    $rows = $hero_banners['hero_post_type_settings'] ?? [];
     $result = null;
     foreach ($rows as $row) {
         if (($row['post_type'] ?? '') === $post_type && !empty($row['enable_hero'])) {
@@ -185,6 +186,18 @@ function base_theme_get_post_type_hero_settings($post_type) {
     }
     $cache[$post_type] = $result;
     return $result;
+}
+
+// Whether Hero is "active" for a given post type at all — either because that type has its own
+// enabled row in Per Post Type Banners, or because Enable Site-wide Default Banners is on (which
+// acts as a global fallback covering every post type, not just ones with their own row). Shared by
+// the admin field visibility filter and the automatic hero renderer.
+function base_theme_is_hero_active_for_post_type($post_type) {
+    if (base_theme_get_post_type_hero_settings($post_type)) {
+        return true;
+    }
+    $hero_banners = get_field('hero_banners', 'option') ?: [];
+    return !empty($hero_banners['enable_sitewide_default']);
 }
 
 // Turns a Background Type + image/color/gradient combo (as used across the Hero Banners fields in
@@ -239,14 +252,11 @@ function base_theme_hero_slot_has_content($type, $image, $color, $gradient) {
     }
 }
 
-// Resolves the background to use for a page's automatic hero: this post type's row in Theme
-// Settings -> the site-wide single default -> the page's featured image -> the hardcoded default.
-function base_theme_get_automatic_page_hero() {
-    $post_type_settings = base_theme_get_post_type_hero_settings('page');
-    if (!$post_type_settings) {
-        return null; // Hero not enabled for Pages in Theme Settings
-    }
-
+// Shared singular fallback chain: this post type's row in Theme Settings -> the site-wide single
+// default -> the post's featured image -> the hardcoded default. Used for both Pages and
+// Posts/CPTs; per-post Hero Override (Posts/CPTs only) is layered on top by the caller.
+function base_theme_resolve_hero_fallback_chain($post_type, $post_id) {
+    $post_type_settings = base_theme_get_post_type_hero_settings($post_type);
     $hero_banners = get_field('hero_banners', 'option') ?: [];
 
     $type         = $post_type_settings['single_background_type'] ?? 'image';
@@ -255,7 +265,7 @@ function base_theme_get_automatic_page_hero() {
     $gradient     = $post_type_settings['single_background_gradient'] ?? '';
     $content_type = $post_type_settings['default_single_content_type'] ?? '';
 
-    if (!base_theme_hero_slot_has_content($type, $image, $color, $gradient)) {
+    if (!base_theme_hero_slot_has_content($type, $image, $color, $gradient) && !empty($hero_banners['enable_sitewide_default'])) {
         $type         = $hero_banners['default_single_background_type'] ?? 'image';
         $image        = $hero_banners['default_single_hero'] ?? '';
         $color        = $hero_banners['default_single_background_color'] ?? '';
@@ -263,8 +273,8 @@ function base_theme_get_automatic_page_hero() {
         $content_type = $hero_banners['default_single_hero_content_type'] ?? '';
     }
 
-    if ($type === 'image' && $image === '' && has_post_thumbnail()) {
-        $image = get_the_post_thumbnail_url(get_the_ID(), 'full');
+    if ($type === 'image' && $image === '' && has_post_thumbnail($post_id)) {
+        $image = get_the_post_thumbnail_url($post_id, 'full');
     }
 
     if (!base_theme_hero_slot_has_content($type, $image, $color, $gradient)) {
@@ -273,6 +283,125 @@ function base_theme_get_automatic_page_hero() {
     }
 
     return compact('type', 'image', 'color', 'gradient', 'content_type');
+}
+
+// Resolves the automatic hero for a Page.
+function base_theme_get_automatic_page_hero() {
+    if (!base_theme_is_hero_active_for_post_type('page')) {
+        return null; // Hero not active for Pages at all — no per-type row and no site-wide default
+    }
+    return base_theme_resolve_hero_fallback_chain('page', get_the_ID());
+}
+
+// Resolves the automatic hero for a singular Post/CPT: per-post Hero Override always wins first,
+// then the same fallback chain Pages use.
+function base_theme_get_automatic_post_hero($post_id = null) {
+    $post_id = $post_id ?: get_the_ID();
+    $post_type = get_post_type($post_id);
+
+    if (!base_theme_is_hero_active_for_post_type($post_type)) {
+        return null;
+    }
+
+    $override_image = get_field('hero_override_image', $post_id);
+    if ($override_image) {
+        return array(
+            'type' => 'image',
+            'image' => $override_image,
+            'color' => '',
+            'gradient' => '',
+            'content_type' => get_field('hero_override_content_type', $post_id) ?: '',
+        );
+    }
+
+    return base_theme_resolve_hero_fallback_chain($post_type, $post_id);
+}
+
+// Resolves the automatic hero for a post type archive (including the blog index via is_home(),
+// which passes 'post'). No featured-image fallback — an archive isn't a single post.
+function base_theme_get_automatic_archive_hero($post_type) {
+    if (!base_theme_is_hero_active_for_post_type($post_type)) {
+        return null;
+    }
+
+    $post_type_settings = base_theme_get_post_type_hero_settings($post_type);
+    $hero_banners = get_field('hero_banners', 'option') ?: [];
+
+    $type         = $post_type_settings['archive_background_type'] ?? 'image';
+    $image        = $post_type_settings['default_archive_image'] ?? '';
+    $color        = $post_type_settings['archive_background_color'] ?? '';
+    $gradient     = $post_type_settings['archive_background_gradient'] ?? '';
+    $content_type = $post_type_settings['default_archive_content_type'] ?? '';
+
+    if (!base_theme_hero_slot_has_content($type, $image, $color, $gradient) && !empty($hero_banners['enable_sitewide_default'])) {
+        $type         = $hero_banners['default_archive_background_type'] ?? 'image';
+        $image        = $hero_banners['default_archive_hero'] ?? '';
+        $color        = $hero_banners['default_archive_background_color'] ?? '';
+        $gradient     = $hero_banners['default_archive_background_gradient'] ?? '';
+        $content_type = $hero_banners['default_archive_hero_content_type'] ?? '';
+    }
+
+    if (!base_theme_hero_slot_has_content($type, $image, $color, $gradient)) {
+        $type  = 'image';
+        $image = get_template_directory_uri() . '/assets/img/bg.webp';
+    }
+
+    return compact('type', 'image', 'color', 'gradient', 'content_type');
+}
+
+// Resolves the automatic hero for a taxonomy term archive: the term's own Hero field (always
+// respected, no gating — an editor set it directly) -> a per-taxonomy default row -> the
+// site-wide taxonomy default -> the hardcoded default.
+function base_theme_get_automatic_taxonomy_hero($term) {
+    $term_hero = get_field('hero', $term);
+    if ($term_hero) {
+        return array(
+            'type' => 'image',
+            'image' => $term_hero,
+            'color' => '',
+            'gradient' => '',
+            'content_type' => get_field('hero_content_type', $term) ?: '',
+        );
+    }
+
+    $hero_banners = get_field('hero_banners', 'option') ?: [];
+
+    $tax_rows = $hero_banners['hero_taxonomy_settings'] ?? [];
+    foreach ($tax_rows as $row) {
+        if (($row['taxonomy'] ?? '') !== $term->taxonomy) {
+            continue;
+        }
+        $type     = $row['background_type'] ?? 'image';
+        $image    = $row['default_image'] ?? '';
+        $color    = $row['background_color'] ?? '';
+        $gradient = $row['background_gradient'] ?? '';
+        if (base_theme_hero_slot_has_content($type, $image, $color, $gradient)) {
+            return array(
+                'type' => $type, 'image' => $image, 'color' => $color, 'gradient' => $gradient,
+                'content_type' => $row['default_content_type'] ?? '',
+            );
+        }
+        break;
+    }
+
+    if (!empty($hero_banners['enable_sitewide_default'])) {
+        $type         = $hero_banners['default_taxonomy_background_type'] ?? 'image';
+        $image        = $hero_banners['default_taxonomy_hero'] ?? '';
+        $color        = $hero_banners['default_taxonomy_background_color'] ?? '';
+        $gradient     = $hero_banners['default_taxonomy_background_gradient'] ?? '';
+        $content_type = $hero_banners['default_taxonomy_hero_content_type'] ?? '';
+        if (base_theme_hero_slot_has_content($type, $image, $color, $gradient)) {
+            return compact('type', 'image', 'color', 'gradient', 'content_type');
+        }
+    }
+
+    return array(
+        'type' => 'image',
+        'image' => get_template_directory_uri() . '/assets/img/bg.webp',
+        'color' => '',
+        'gradient' => '',
+        'content_type' => '',
+    );
 }
 
 // Whether this page already has its own Hero module in flex_sections — if so, that always wins
@@ -288,23 +417,16 @@ function base_theme_page_has_hero_module($post_id = null) {
     return false;
 }
 
-// Renders the automatic Theme Settings hero for a Page, unless the page has its own Hero module
-// (which always takes priority) or Hero isn't enabled for Pages at all.
-function base_theme_render_automatic_page_hero() {
-    if (base_theme_page_has_hero_module()) {
-        return;
-    }
-    $hero = base_theme_get_automatic_page_hero();
-    if (!$hero) {
-        return;
-    }
+// Renders a resolved hero array (see the base_theme_get_automatic_*_hero() functions above) as a
+// .block-hero section. Shared by the Page hero and includes/hero.php (Posts/CPTs/archives/terms).
+function base_theme_render_hero_section($hero, $page_title) {
     $style = base_theme_hero_background_style($hero['type'], $hero['image'], $hero['color'], $hero['gradient']);
     if ($style === '') {
         return;
     }
     $style .= base_theme_hero_min_height_style();
     $class = 'block-hero';
-    if ($hero['content_type']) {
+    if (!empty($hero['content_type'])) {
         $class .= ' ' . $hero['content_type'];
     }
     ?>
@@ -312,7 +434,7 @@ function base_theme_render_automatic_page_hero() {
         <div class="container">
             <div class="block-hero-content">
                 <div class="content">
-                    <h1 class="hero-title"><?php echo esc_html(get_the_title()); ?></h1>
+                    <h1 class="hero-title"><?php echo esc_html($page_title); ?></h1>
                     <div class="breadcrumbs">
                         <?php if (function_exists('yoast_breadcrumb')) {
                             yoast_breadcrumb('<p id="breadcrumbs">', '</p>');
@@ -325,12 +447,25 @@ function base_theme_render_automatic_page_hero() {
     <?php
 }
 
+// Renders the automatic Theme Settings hero for a Page, unless the page has its own Hero module
+// (which always takes priority) or Hero isn't enabled for Pages at all.
+function base_theme_render_automatic_page_hero() {
+    if (base_theme_page_has_hero_module()) {
+        return;
+    }
+    $hero = base_theme_get_automatic_page_hero();
+    if (!$hero) {
+        return;
+    }
+    base_theme_render_hero_section($hero, get_the_title());
+}
+
 // Only show the per-post "Hero Override" fields when Hero is actually enabled for that post's type.
 add_filter('acf/prepare_field/key=field_690b1a2c_hero_override_image', 'base_theme_hide_hero_override_if_disabled');
 add_filter('acf/prepare_field/key=field_690b1a2c_hero_override_content_type', 'base_theme_hide_hero_override_if_disabled');
 function base_theme_hide_hero_override_if_disabled($field) {
     global $post;
-    if (!$post || !base_theme_get_post_type_hero_settings(get_post_type($post))) {
+    if (!$post || !base_theme_is_hero_active_for_post_type(get_post_type($post))) {
         return false;
     }
     return $field;
@@ -343,7 +478,7 @@ function base_theme_hide_hero_override_if_disabled($field) {
 add_filter('acf/prepare_field/key=field_69f647dc_flex_sections', 'base_theme_hide_hero_layout_on_frontpage');
 function base_theme_hide_hero_layout_on_frontpage($field) {
     global $post;
-    if (empty($field['layouts']) || !$post || get_page_template_slug($post) !== 'flexible-content-work.php') {
+    if (empty($field['layouts']) || !$post || get_page_template_slug($post) !== 'frontpage.php') {
         return $field;
     }
     foreach ($field['layouts'] as $i => $layout) {

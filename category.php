@@ -2,7 +2,7 @@
 
 <main id="primary" class="site-archive site-blog-category">
 
-	<?php include("includes/blocks/hero.php"); ?>
+	<?php include("includes/hero.php"); ?>
 
 </main>
 

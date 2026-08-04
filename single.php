@@ -2,7 +2,7 @@
 
 	<main id="primary" class="site-single single-page">
 
-	<?php include("includes/blocks/hero.php"); ?>
+	<?php include("includes/hero.php"); ?>
 
 
 	

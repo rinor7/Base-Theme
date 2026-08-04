@@ -223,7 +223,7 @@
                         .layer {
                             width: 100%;
                             height: 100%;
-                            background: rgba(128, 255, 0, 0.302);
+                            background: color-mix(in srgb, var(--primary-color, $primary-color) 30%, transparent);
                             position: absolute;
                             left: 0;
                             top: 0;

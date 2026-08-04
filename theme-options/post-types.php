@@ -11,4 +11,4 @@ function custom_post_type() {
         'menu_icon' => 'dashicons-welcome-add-page',
     ));
 }
-// add_action('init', 'custom_post_type');
+add_action('init', 'custom_post_type');

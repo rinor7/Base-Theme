@@ -2,7 +2,7 @@
 
 <main id="primary" class="site-archive archive-page">
 
-	<?php include("includes/blocks/hero.php"); ?>
+	<?php include("includes/hero.php"); ?>
 
     <div class="container">
         <div class="archive-content">
