@@ -303,6 +303,16 @@ function base_theme_get_automatic_post_hero($post_id = null) {
         return null;
     }
 
+    if (get_field('use_featured_image_for_hero', $post_id) && has_post_thumbnail($post_id)) {
+        return array(
+            'type' => 'image',
+            'image' => get_the_post_thumbnail_url($post_id, 'full'),
+            'color' => '',
+            'gradient' => '',
+            'content_type' => get_field('hero_override_content_type', $post_id) ?: '',
+        );
+    }
+
     $override_image = get_field('hero_override_image', $post_id);
     if ($override_image) {
         return array(
@@ -461,8 +471,10 @@ function base_theme_render_automatic_page_hero() {
 }
 
 // Only show the per-post "Hero Override" fields when Hero is actually enabled for that post's type.
+add_filter('acf/prepare_field/key=field_690b1a2c_use_featured_image_for_hero', 'base_theme_hide_hero_override_if_disabled');
 add_filter('acf/prepare_field/key=field_690b1a2c_hero_override_image', 'base_theme_hide_hero_override_if_disabled');
 add_filter('acf/prepare_field/key=field_690b1a2c_hero_override_content_type', 'base_theme_hide_hero_override_if_disabled');
+add_filter('acf/prepare_field/key=field_690b1a2c_show_thumbnail_in_content', 'base_theme_hide_hero_override_if_disabled');
 function base_theme_hide_hero_override_if_disabled($field) {
     global $post;
     if (!$post || !base_theme_is_hero_active_for_post_type(get_post_type($post))) {

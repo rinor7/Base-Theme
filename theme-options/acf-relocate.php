@@ -28,3 +28,35 @@ function my_acf_json_load_point( $paths ) {
     // return
     return $paths;
 }
+
+// These field groups are meant to be managed only from their JSON file in acf-json/ — never
+// from wp-admin. If they're ever saved via the Field Groups screen, ACF gives them a database
+// copy, and from then on that DB copy (not the JSON) becomes the source of truth until manually
+// synced — which is exactly the confusion/data-loss this is meant to prevent. Editing/viewing the
+// screen is still fine; only the actual save is blocked, before anything is written.
+add_filter('wp_insert_post_data', 'base_theme_lock_json_only_field_groups', 10, 2);
+function base_theme_lock_json_only_field_groups($data, $postarr) {
+    if (($data['post_type'] ?? '') !== 'acf-field-group') {
+        return $data;
+    }
+
+    $json_only_keys = array(
+        'group_690b1a2c3d4e6', // Hero Override
+        'group_68cf25c9be351', // Category/Taxonomy Hero
+        'group_683b303a36178', // Menu Icon/Image
+    );
+
+    $post_id = $postarr['ID'] ?? 0;
+    $existing_slug = $post_id ? get_post_field('post_name', $post_id) : '';
+    $incoming_slug = $data['post_name'] ?? '';
+
+    if (in_array($existing_slug, $json_only_keys, true) || in_array($incoming_slug, $json_only_keys, true)) {
+        wp_die(
+            esc_html__('This field group is managed only from its JSON file in acf-json/ and cannot be saved from wp-admin. Edit the theme file directly instead.', 'base-theme'),
+            esc_html__('Field Group Locked', 'base-theme'),
+            array('back_link' => true, 'response' => 403)
+        );
+    }
+
+    return $data;
+}

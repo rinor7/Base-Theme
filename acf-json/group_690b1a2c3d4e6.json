@@ -3,6 +3,33 @@
     "title": "Hero Override",
     "fields": [
         {
+            "key": "field_690b1a2c_use_featured_image_for_hero",
+            "label": "Use Featured Image as Hero (skip Override and Theme Settings)",
+            "name": "use_featured_image_for_hero",
+            "aria-label": "",
+            "type": "true_false",
+            "instructions": "If checked, this post always uses its Featured Image as the Hero background, ignoring Hero Override Image and every Theme Settings default. Requires a Featured Image to be set.",
+            "required": 0,
+            "conditional_logic": [
+                [
+                    {
+                        "field": "field_690b1a2c_hero_override_image",
+                        "operator": "==empty"
+                    }
+                ]
+            ],
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "message": "",
+            "default_value": 0,
+            "ui": 1,
+            "ui_on_text": "",
+            "ui_off_text": ""
+        },
+        {
             "key": "field_690b1a2c_hero_override_image",
             "label": "Hero Override Image",
             "name": "hero_override_image",
@@ -60,6 +87,26 @@
             "allow_in_bindings": 0,
             "layout": "vertical",
             "save_other_choice": 0
+        },
+        {
+            "key": "field_690b1a2c_show_thumbnail_in_content",
+            "label": "Also Show Featured Image in Content",
+            "name": "show_thumbnail_in_content",
+            "aria-label": "",
+            "type": "true_false",
+            "instructions": "By default, the featured image is hidden in the content area when Hero is already showing it (to avoid showing it twice). Check this to show it in both places anyway.",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "50",
+                "class": "",
+                "id": ""
+            },
+            "message": "",
+            "default_value": 0,
+            "ui": 1,
+            "ui_on_text": "",
+            "ui_off_text": ""
         }
     ],
     "location": [
@@ -88,5 +135,5 @@
     "display_title": "",
     "allow_ai_access": false,
     "ai_description": "",
-    "modified": 1785797086
+    "modified": 1785804284
 }

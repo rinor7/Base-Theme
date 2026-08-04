@@ -1,17 +1,29 @@
 /*Single page Start*/
 
 .site-single {
-    .intro {
-        height: 250px;
-    }
-
     .content {
-        // margin-top: 40px;
+        padding: 40px 0;
+
+        .wp-post-image {
+            display: inline-block;
+            width: 30%;
+            @include sm {
+                width: 40%;
+            }
+        }
+
+        &.has-post-thumbnail .wp-post-image {
+            float: right;
+            margin-left: 20px;
+             @include sm {
+                margin-left: 12px;
+            }
+        }
 
         h1 {}
 
         p {}
     }
-} 
+}
 
 /*Single page END*/
